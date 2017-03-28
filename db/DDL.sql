@@ -18,6 +18,8 @@ CREATE TABLE public.userinfo
     about_me text COLLATE pg_catalog."default",
     interests text COLLATE pg_catalog."default",
     network_visibility integer NOT NULL,
+    location_lat real,
+    location_lng real,
     CONSTRAINT userinfo_pkey PRIMARY KEY (user_id)
 );
 
@@ -43,14 +45,16 @@ CREATE TABLE public.friendrelation
         ON DELETE CASCADE
 );
 
-CREATE TABLE public.multimediaposts
+CREATE TABLE public.multimedia
 (
-    multimedia_postid integer NOT NULL,
-    user_id SERIAL,
-    friendship_status integer NOT NULL,
-    visibility_status integer NOT NULL,
-    action_user_id integer NOT NULL,
-    updates_timestamp timestamp without time zone,
+    media_id integer NOT NULL,
+    user_id integer NOT NULL DEFAULT nextval('multimediaposts_user_id_seq'::regclass),
+    post_time timestamp without time zone,
+    content bytea NOT NULL,
+    description text COLLATE pg_catalog."default",
+    category integer NOT NULL,
+    location_lat real,
+    location_lng real,
     CONSTRAINT fk_multimediaposts_userinfo FOREIGN KEY (user_id)
         REFERENCES public.userinfo (user_id) MATCH SIMPLE
         ON UPDATE CASCADE
@@ -60,13 +64,14 @@ CREATE TABLE public.multimediaposts
 CREATE TABLE public.diaryentry
 (
     entry text COLLATE pg_catalog."default",
-    diary_id SERIAL,
+    diary_id integer NOT NULL DEFAULT nextval('diaryentry_diary_id_seq'::regclass),
     media bytea NOT NULL,
-    diary_loc point,
     user_id integer NOT NULL,
-    diarytime timestamp NOT NULL,
+    diarytime timestamp without time zone NOT NULL,
     like_id integer,
     comment_id integer,
+    location_lat real,
+    location_lng real,
     CONSTRAINT diaryentry_pkey PRIMARY KEY (diary_id),
     CONSTRAINT diaryentry_user_id_fkey FOREIGN KEY (user_id)
         REFERENCES public.userinfo (user_id) MATCH SIMPLE
