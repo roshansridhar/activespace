@@ -122,3 +122,34 @@ CREATE TABLE public.credentials
         ON DELETE CASCADE
 );
 
+CREATE TABLE public.events
+(
+    event_id integer NOT NULL DEFAULT nextval('events_event_id_seq'::regclass),
+    description text COLLATE pg_catalog."default",
+    event_time timestamp without time zone,
+    location_lat real,
+    location_lng real,
+    CONSTRAINT events_pkey PRIMARY KEY (event_id)
+);
+
+CREATE TABLE public.event_members
+(
+    event_id integer NOT NULL,
+    user_id integer NOT NULL,
+    invited_by integer NOT NULL,
+    invite_date timestamp without time zone,
+    status integer,
+    CONSTRAINT event_members_pkey PRIMARY KEY (event_id, user_id, invited_by),
+    CONSTRAINT event_members_event_id_fkey FOREIGN KEY (event_id)
+        REFERENCES public.events (event_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT event_members_invited_by_fkey FOREIGN KEY (invited_by)
+        REFERENCES public.userinfo (user_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT event_members_user_id_fkey FOREIGN KEY (user_id)
+        REFERENCES public.userinfo (user_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
