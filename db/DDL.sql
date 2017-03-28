@@ -20,6 +20,7 @@ CREATE TABLE public.userinfo
     network_visibility integer NOT NULL,
     CONSTRAINT userinfo_pkey PRIMARY KEY (user_id)
 );
+
 CREATE TABLE public.friendrelation
 (
     user_one_id integer NOT NULL,
@@ -56,7 +57,6 @@ CREATE TABLE public.multimediaposts
         ON DELETE CASCADE
 );
 
-
 CREATE TABLE public.diaryentry
 (
     entry text COLLATE pg_catalog."default",
@@ -72,22 +72,9 @@ CREATE TABLE public.diaryentry
         REFERENCES public.userinfo (user_id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE,
-******    ADD CUSTOM   ****
+-- add the following foreign key constraint after creating the diary_comments table below 
         CONSTRAINT diaryentry_comment_id_fkey FOREIGN KEY (comment_id)
         REFERENCES public.diary_comments (comment_id) MATCH SIMPLE
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
-
-);
-
-CREATE TABLE public.diary_likes
-(
-    diary_id integer NOT NULL,
-    user_id integer NOT NULL,
-    like_time timestamp,
-    CONSTRAINT diary_likes_pkey PRIMARY KEY (diary_id, user_id),
-    CONSTRAINT diary_likes_user_id_fkey FOREIGN KEY (user_id)
-        REFERENCES public.userinfo (user_id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE
 
@@ -110,5 +97,28 @@ CREATE TABLE public.diary_comments
         ON UPDATE CASCADE
         ON DELETE CASCADE
 
+);
+
+CREATE TABLE public.diary_likes
+(
+    diary_id integer NOT NULL,
+    user_id integer NOT NULL,
+    like_time timestamp,
+    CONSTRAINT diary_likes_pkey PRIMARY KEY (diary_id, user_id),
+    CONSTRAINT diary_likes_user_id_fkey FOREIGN KEY (user_id)
+        REFERENCES public.userinfo (user_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+
+);
+
+CREATE TABLE public.credentials
+(
+    user_id integer NOT NULL,
+    password character varying(100) COLLATE pg_catalog."default",
+    CONSTRAINT credentials_user_id_fkey FOREIGN KEY (user_id)
+        REFERENCES public.userinfo (user_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
 
