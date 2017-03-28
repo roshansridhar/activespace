@@ -30,7 +30,8 @@ CREATE TABLE public.friendrelation
     friendship_status integer NOT NULL,
     visibility_status integer NOT NULL,
     action_user_id integer NOT NULL,
-    updates_timestamp timestamp without time zone,
+    request_time timestamp without time zone,
+    action_taken_time timestamp without time zone,
     CONSTRAINT fk_friendrelation_userinfo FOREIGN KEY (user_one_id)
         REFERENCES public.userinfo (user_id) MATCH SIMPLE
         ON UPDATE CASCADE
@@ -72,6 +73,7 @@ CREATE TABLE public.diaryentry
     comment_id integer,
     location_lat real,
     location_lng real,
+    title character varying(100) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT diaryentry_pkey PRIMARY KEY (diary_id),
     CONSTRAINT diaryentry_user_id_fkey FOREIGN KEY (user_id)
         REFERENCES public.userinfo (user_id) MATCH SIMPLE
