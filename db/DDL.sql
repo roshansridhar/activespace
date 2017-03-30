@@ -64,14 +64,11 @@ CREATE TABLE public.friendrelation
 CREATE TABLE public.multimedia
 (
     media_id integer NOT NULL,
-    user_id integer NOT NULL DEFAULT nextval('multimediaposts_user_id_seq'::regclass),
     post_time timestamp without time zone,
     content bytea NOT NULL,
     description text COLLATE pg_catalog."default",
-    category integer NOT NULL,
-    location_lat real,
-    location_lng real,
-    CONSTRAINT fk_multimediaposts_userinfo FOREIGN KEY (user_id)
+    user_id integer,
+    CONSTRAINT multimedia_user_id_fkey FOREIGN KEY (user_id)
         REFERENCES public.userinfo (user_id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE
