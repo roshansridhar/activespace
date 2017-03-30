@@ -1,16 +1,28 @@
 #postgres
 
+CREATE TABLE public.location
+(
+    loc_id integer NOT NULL DEFAULT nextval('location_loc_id_seq'::regclass),
+    lat real,
+    lng real,
+    address character varying(60) COLLATE pg_catalog."default",
+    city character varying(20) COLLATE pg_catalog."default",
+    state character varying(20) COLLATE pg_catalog."default",
+    country character varying(20) COLLATE pg_catalog."default",
+    CONSTRAINT location_pkey PRIMARY KEY (loc_id)
+);
+
 CREATE TABLE public.userinfo
 (
-    user_id SERIAL,
+    user_id integer NOT NULL DEFAULT nextval('userinfo_user_id_seq'::regclass),
     creation_timestamp timestamp without time zone,
     email_id character varying(100) COLLATE pg_catalog."default" NOT NULL,
     username character varying(40) COLLATE pg_catalog."default" NOT NULL,
     user_password character varying(30) COLLATE pg_catalog."default" NOT NULL,
     first_name character(255) COLLATE pg_catalog."default" NOT NULL,
     last_name character(255) COLLATE pg_catalog."default" NOT NULL,
-    phone integer NOT NULL,
-    gender character(10) COLLATE pg_catalog."default" NOT NULL,
+    phone integer,
+    gender character(10) COLLATE pg_catalog."default",
     date_of_birth date NOT NULL,
     picture_medium bytea,
     update_timestamp timestamp without time zone,
@@ -18,9 +30,12 @@ CREATE TABLE public.userinfo
     about_me text COLLATE pg_catalog."default",
     interests text COLLATE pg_catalog."default",
     network_visibility integer NOT NULL,
-    location_lat real,
-    location_lng real,
-    CONSTRAINT userinfo_pkey PRIMARY KEY (user_id)
+    loc_id integer,
+    CONSTRAINT userinfo_pkey PRIMARY KEY (user_id),
+    CONSTRAINT userinfo_loc_id_fkey FOREIGN KEY (loc_id)
+        REFERENCES public.location (loc_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
 
 CREATE TABLE public.friendrelation
@@ -71,20 +86,22 @@ CREATE TABLE public.diaryentry
     diarytime timestamp without time zone NOT NULL,
     like_id integer,
     comment_id integer,
-    location_lat real,
-    location_lng real,
     title character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    loc_id integer,
     CONSTRAINT diaryentry_pkey PRIMARY KEY (diary_id),
+-- add the following comment foreign key constraint after creating the diary_comments table below 
+    CONSTRAINT diaryentry_comment_id_fkey FOREIGN KEY (comment_id)
+        REFERENCES public.diary_comments (comment_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT diaryentry_loc_id_fkey FOREIGN KEY (loc_id)
+        REFERENCES public.location (loc_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
     CONSTRAINT diaryentry_user_id_fkey FOREIGN KEY (user_id)
         REFERENCES public.userinfo (user_id) MATCH SIMPLE
         ON UPDATE CASCADE
-        ON DELETE CASCADE,
--- add the following foreign key constraint after creating the diary_comments table below 
-        CONSTRAINT diaryentry_comment_id_fkey FOREIGN KEY (comment_id)
-        REFERENCES public.diary_comments (comment_id) MATCH SIMPLE
-        ON UPDATE CASCADE
         ON DELETE CASCADE
-
 );
 
 CREATE TABLE public.diary_comments
@@ -134,9 +151,12 @@ CREATE TABLE public.events
     event_id integer NOT NULL DEFAULT nextval('events_event_id_seq'::regclass),
     description text COLLATE pg_catalog."default",
     event_time timestamp without time zone,
-    location_lat real,
-    location_lng real,
-    CONSTRAINT events_pkey PRIMARY KEY (event_id)
+    loc_id integer,
+    CONSTRAINT events_pkey PRIMARY KEY (event_id),
+    CONSTRAINT events_loc_id_fkey FOREIGN KEY (loc_id)
+        REFERENCES public.location (loc_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
 
 CREATE TABLE public.event_members
@@ -156,6 +176,24 @@ CREATE TABLE public.event_members
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     CONSTRAINT event_members_user_id_fkey FOREIGN KEY (user_id)
+        REFERENCES public.userinfo (user_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
+CREATE TABLE public.posts
+(
+    poster_id integer,
+    postee_id integer,
+    content text COLLATE pg_catalog."default",
+    post_time timestamp without time zone,
+    post_id integer NOT NULL DEFAULT nextval('posts_post_id_seq'::regclass),
+    CONSTRAINT posts_pkey PRIMARY KEY (post_id),
+    CONSTRAINT posts_postee_id_fkey FOREIGN KEY (postee_id)
+        REFERENCES public.userinfo (user_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT posts_poster_id_fkey FOREIGN KEY (poster_id)
         REFERENCES public.userinfo (user_id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE
