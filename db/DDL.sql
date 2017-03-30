@@ -68,31 +68,35 @@ CREATE TABLE public.multimedia
     content bytea NOT NULL,
     description text COLLATE pg_catalog."default",
     user_id integer,
+    CONSTRAINT multimedia_pkey PRIMARY KEY (media_id),
     CONSTRAINT multimedia_user_id_fkey FOREIGN KEY (user_id)
         REFERENCES public.userinfo (user_id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE
-);
+)
 
 CREATE TABLE public.diaryentry
 (
     entry text COLLATE pg_catalog."default",
     diary_id integer NOT NULL DEFAULT nextval('diaryentry_diary_id_seq'::regclass),
-    media bytea NOT NULL,
     user_id integer NOT NULL,
     diarytime timestamp without time zone NOT NULL,
     like_id integer,
     comment_id integer,
     title character varying(100) COLLATE pg_catalog."default" NOT NULL,
     loc_id integer,
+    media_id integer,
     CONSTRAINT diaryentry_pkey PRIMARY KEY (diary_id),
--- add the following comment foreign key constraint after creating the diary_comments table below 
     CONSTRAINT diaryentry_comment_id_fkey FOREIGN KEY (comment_id)
         REFERENCES public.diary_comments (comment_id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     CONSTRAINT diaryentry_loc_id_fkey FOREIGN KEY (loc_id)
         REFERENCES public.location (loc_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT diaryentry_media_id_fkey FOREIGN KEY (media_id)
+        REFERENCES public.multimedia (media_id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     CONSTRAINT diaryentry_user_id_fkey FOREIGN KEY (user_id)
@@ -124,14 +128,17 @@ CREATE TABLE public.diary_likes
 (
     diary_id integer NOT NULL,
     user_id integer NOT NULL,
-    like_time timestamp,
+    like_time timestamp without time zone,
     CONSTRAINT diary_likes_pkey PRIMARY KEY (diary_id, user_id),
+    CONSTRAINT diary_likes_diary_id_fkey FOREIGN KEY (diary_id)
+        REFERENCES public.diaryentry (diary_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
     CONSTRAINT diary_likes_user_id_fkey FOREIGN KEY (user_id)
         REFERENCES public.userinfo (user_id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE
-
-);
+)
 
 CREATE TABLE public.credentials
 (
@@ -149,9 +156,14 @@ CREATE TABLE public.events
     description text COLLATE pg_catalog."default",
     event_time timestamp without time zone,
     loc_id integer,
+    media_id integer,
     CONSTRAINT events_pkey PRIMARY KEY (event_id),
     CONSTRAINT events_loc_id_fkey FOREIGN KEY (loc_id)
         REFERENCES public.location (loc_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT events_media_id_fkey FOREIGN KEY (media_id)
+        REFERENCES public.multimedia (media_id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
