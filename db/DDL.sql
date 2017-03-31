@@ -73,7 +73,7 @@ CREATE TABLE public.multimedia
         REFERENCES public.userinfo (user_id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE
-)
+);
 
 CREATE TABLE public.diaryentry
 (
@@ -132,7 +132,7 @@ CREATE TABLE public.diary_likes
         REFERENCES public.userinfo (user_id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE
-)
+);
 
 CREATE TABLE public.credentials
 (
