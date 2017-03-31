@@ -81,16 +81,10 @@ CREATE TABLE public.diaryentry
     diary_id integer NOT NULL DEFAULT nextval('diaryentry_diary_id_seq'::regclass),
     user_id integer NOT NULL,
     diarytime timestamp without time zone NOT NULL,
-    like_id integer,
-    comment_id integer,
     title character varying(100) COLLATE pg_catalog."default" NOT NULL,
     loc_id integer,
     media_id integer,
     CONSTRAINT diaryentry_pkey PRIMARY KEY (diary_id),
-    CONSTRAINT diaryentry_comment_id_fkey FOREIGN KEY (comment_id)
-        REFERENCES public.diary_comments (comment_id) MATCH SIMPLE
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
     CONSTRAINT diaryentry_loc_id_fkey FOREIGN KEY (loc_id)
         REFERENCES public.location (loc_id) MATCH SIMPLE
         ON UPDATE CASCADE
@@ -172,16 +166,8 @@ CREATE TABLE public.event_members
 (
     event_id integer NOT NULL,
     user_id integer NOT NULL,
-    invited_by integer NOT NULL,
-    invite_date timestamp without time zone,
-    status integer,
-    CONSTRAINT event_members_pkey PRIMARY KEY (event_id, user_id, invited_by),
     CONSTRAINT event_members_event_id_fkey FOREIGN KEY (event_id)
         REFERENCES public.events (event_id) MATCH SIMPLE
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
-    CONSTRAINT event_members_invited_by_fkey FOREIGN KEY (invited_by)
-        REFERENCES public.userinfo (user_id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     CONSTRAINT event_members_user_id_fkey FOREIGN KEY (user_id)
