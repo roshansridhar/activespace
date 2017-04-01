@@ -1,5 +1,3 @@
-#postgres
-
 CREATE TABLE public.location
 (
     loc_id integer NOT NULL DEFAULT nextval('location_loc_id_seq'::regclass),
