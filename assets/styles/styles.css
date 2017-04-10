@@ -4,6 +4,7 @@ body{
     height:100%;
     width:100%;
     margin-right: 5%;
+    background-image: url("../../home_img.jpeg");
     background-size:cover;
     background-size: cover;
     font-size: 16px;
@@ -23,27 +24,39 @@ img {
   max-width: 100%;
 }
 button {
-  border-radius: 70px;
-  text-shadow: 1px 1px 3px #666666;
-  font-family: 'Oswald', sans-serif;
-  color: white;
-  font-size: 15px;
+  background-color: #808080;
+  border: none;
+  border-radius: 10px;
+  font-family: 'pacifico';
+  font-weight: 10px;
+  color: #FFCA28;
+  font-size: 20px;
   background: black;
-  padding: 15px;
-  text-decoration: none;
+  padding: 10px;
+  text-decoration: inherit;
   text-align: center;
   vertical-align: center;
+  border: 3px solid;
+  border-radius: 15px;
 }
 
 button:hover {
-  background: #FFCA28;
+  color: black;
+  background: grey;
   text-decoration: none;
 }
+
+button:active {
+  color: black;
+  background: grey;
+  text-decoration: none;
+}
+
 
 h2 { 
   color: white; 
   text-shadow: 1px 1 white, 1 1px black, 1px 0 black, 0 -1px black; 
-  background: rgba(0, 0, 0, .50); font-size: 25px; 
+  background: rgba(0, 0, 0, .70); font-size: 25px; 
   line-height: 15px; 
   font-weight: 200; 
   margin: 0 5px 10px; 
@@ -86,6 +99,25 @@ h4 {
   text-shadow: 1px 1px 2px #082b94;
 }
 
+ h1 { 
+  color: #FFCA28; 
+  text-shadow: 10px 1 white, 1 10px white, 15px 1 white, 1 20px white; 
+  background: rgba(0, 0, 0, .80); 
+  font-size: 175px; 
+  line-height: 75px; 
+  font-weight: 500; 
+  margin: 0 5px 24px; 
+  float: center; 
+  padding: 24px; 
+  margin: 0 5px 24px; 
+  font-family: pacifico; 
+  font-size: 50px; 
+  font-weight: lighter; 
+  line-height: 48px; 
+  margin: 0 0 50px; 
+  text-align: left; 
+  text-shadow: 1px 1px 2px #082b94;
+}
 
 .signin {
   text-align: center;
@@ -114,25 +146,20 @@ h4 {
 
   }
 
-  input[type="text"] {
-    font-size: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-    vertical-align: center;
-    height: auto;
-    border-bottom-left-radius: 10;
-    border-bottom-right-radius: 10;
-  }
-
-
-  input[type="password"] {
-    font-size: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-    vertical-align: center;
-    height: auto;
-    border-top-left-radius: 10;
-    border-top-right-radius: 10;
+  input[type="text"],input[type="password"] {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    background: rgba(255,255,255,.1);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 0;
+    outline: 0;
+    padding: 7px;
+    width: 100%;
+    background-color: #e8eeef;
+    color:#8a93a0;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 30px;
   }
 
 }
