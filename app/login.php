@@ -62,6 +62,11 @@ if(isset($_POST["submitbutton"])){
             <div align="center">
                 <input type="submit" name="submitbutton" value="Submit">
             </div> 
+            <div align:"center"; style="color: red; background:rgba(200, 255, 255, .50); font-size: 15px;" ><?php echo $ID ?></div>
+        </div>
+            <div align:"center"; style="color: red; background:rgba(200, 255, 255, .50); font-size: 15px;" ><?php echo $PWD ?></div>
+        </div>
+            <div align:"center"; style="color: red; background:rgba(200, 255, 255, .50); font-size: 15px;" ><?php echo $Invalid_pwd ?></div>
         </form>
         <br>
         <br> 
@@ -70,11 +75,7 @@ if(isset($_POST["submitbutton"])){
             <div align="center">
         <a href="newuser.php" class="button"> <button> Sign UP </button> </a>
     </div>
-    <div style="color: red; background:rgba(0, 0, 0, .50); font-size: 25px;" align:"center"><?php echo $ID ?></div>
-        </div>
-    <div style="color: red; background:rgba(0, 0, 0, .50); font-size: 25px;" align:"center"><?php echo $PWD ?></div>
-        </div>
-    <div style="color: red; background:rgba(0, 0, 0, .50); font-size: 25px;" align:"center"><?php echo $Invalid_pwd ?></div>
+
 </body>
 </html>
 
