@@ -28,6 +28,7 @@
   font-weight: 500; 
   margin: 0 5px 24px; 
   float: center; 
+  align: left;
   padding: 24px; 
   margin: 0 5px 24px; 
   font-family: pacifico; 
@@ -42,46 +43,50 @@
 .tabs_button{
   margin: 0 0px -5px; 
   float: left;
-  margin-top: -5px; 
+  margin-top: -40px;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, .70);
+  text-align: center;
+  padding: 2px 2px;
+  text-decoration: none;
+  font-size: 20px;
+  margin-left: 10px;
+  vertical-align: 5px; 
 }
 
-.search {
+.search{
   float: right;
+  margin-top: -40px;
   display: inline-block;
-  color: white;
-  background-color: rgba(0, 0, 0, .70);
+  background-color: rgba(255, 255, 255, .40);
   text-align: center;
   padding: 5px 5px;
   text-decoration: none;
   font-size: 20px;
-  margin-top: 0px;
-  border: groove;
-  margin-right: 20px;
-  vertical-align: 10px;
+  color: black;
+  margin-right: 10px;
 }
 
+div {
+  display: inline-block;
+     }
+
 input[type="text"]{
-    width: 100px;
-    border: 1px solid #ccc;
+    width: 200px;
+    display: inline-block;
+    border: 5px solid #FFCA28;
     border-radius: 10px;
-    font-size: 15px;
-    color: white;
+    font-size: 20px;
+    color: #FFCA28;
     background-color: black;
     padding: 10px;
-    margin-top: -10px;
   }
 
 
 input[type="radio"] {
   display: inline-block;
   font-size: 5px;  
-   width: 10px;  
-}
-
-input[type="submitbutton"] {
-  display: block;
-  font-size: 5px;  
-   width: 10px;  
+  width: 10px;  
 }
 
 
@@ -89,26 +94,18 @@ input[type="submitbutton"] {
 </head>
 <body>
 
-<div align="left"><h4> ActiveSpace </h4></div>
-    <div class="tabs_button">
+<h4> ActiveSpace </h4>
     <button class="tabs_button" onclick="home.php?variable1=".$_SESSION['EMAIL_ID']>My Live Feed</button>
     <button class="tabs_button" onclick="profile.php?variable1=".$_SESSION['EMAIL_ID']>My Profile</button>
     <button class="tabs_button" onclick="diary.php?variable1=".$_SESSION['EMAIL_ID']>My Diary Entry</button>
     <button class="tabs_button" onclick="photos.php?variable1=".$_SESSION['EMAIL_ID']>My Photos</button>
-  </div>
-  <div align="center">
-  <form class="search" action="home.php" align="center" method="post">       
-            <p> Search network </p>
-            <input type="text" class="form-control" name="Name" placeholder="Enter name" />
-            <br>
-            <input type="radio" name="Association" value="1" checked /> Friend<br>
-            <input type="radio" name="Association" value="2"> Friend of Friend<br>
-            <input type="radio" name="Association" value="3"> Everyone <br>
-            <div align="right">
-            <input type="submit" name="submitbutton" value="Submit">
-            </div>
-  </form>
-  </div>
+  <form class="search" action="home.php" align="left" method="post">       
+            <div><input type="text" class="form-control" name="Name" placeholder="Search ActiveSpace" />
+            <input type="image" alt="Submit" align="center" src="img_search.png" name="submitbutton"  width="50" height="50"></div><br>
+            <div><input type="radio" name="Association" value="1" checked /> Friend</div>
+            <div><input type="radio" name="Association" value="2"> Friend of Friend</div>
+            <div><input type="radio" name="Association" value="3"> Everyone </div><br>
+  </form>            
 </body>
 </html>
 
