@@ -2,7 +2,7 @@
 $Invalid_pwd='';
 $ID='';
 $PWD='';
-include('includes/db_connect.php'); 
+include('../includes/db_connect.php'); 
 
   
 if(isset($_POST["submitbutton"])){     
@@ -31,7 +31,7 @@ if(isset($_POST["submitbutton"])){
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/styles/styles.css">
     <title>ActiveSpace: Let's Go!</title>
     <style type="text/css">
     body{

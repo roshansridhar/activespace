@@ -1,7 +1,7 @@
 <?php
   $Invalid_search='';
   $input='';
-  include('includes/db_connect.php');  
+  include('../includes/db_connect.php');  
   
   session_start();
   if(!isset($_SESSION['EmailID'])){
@@ -15,7 +15,7 @@
 <head>
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <title>ActiveSpace: HomePage</title>
-    <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/styles/styles.css">
     <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
 <style type="text/css">
  
@@ -106,7 +106,7 @@ div[container_items]{
     </a>
 
     <a href="message.php">
-    <img align="right" style="float:right; margin-top: -125px; margin-right: 100px; display: inline-block; padding: 10px 10px;" src="message.png" name="message" width="50" height="50">
+    <img align="right" style="float:right; margin-top: -125px; margin-right: 100px; display: inline-block; padding: 10px 10px;" src="inbox.gif" name="message" width="50" height="50">
     </a>
     <a href="home.php?variable1=".$_SESSION['EMAIL_ID']><button class="tabs_button">My Live Feed</button></a>
     <a href="profile.php?variable1=".$_SESSION['EMAIL_ID']><button class="tabs_button">My Profile</button></a>
