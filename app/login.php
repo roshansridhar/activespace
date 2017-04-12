@@ -38,7 +38,7 @@ if(isset($_POST["submitbutton"])){
     height:100%;
     width:100%;
     margin-right: 5%;
-    background-image:url("login_img.jpg");
+    background-image:url("home.jpeg");
     background-size:cover;
     background-size: cover;
     font-size: 16px;
@@ -58,15 +58,13 @@ if(isset($_POST["submitbutton"])){
             <input type="text" class="form-control" name="EmailID" placeholder="Email Address" required="" autofocus="" />
             <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
             <br>
-            <h3><a href="Forgotpwd.php">Can't recall the password?</a></h3>
+            <h3 background= "white"><a href="Forgotpwd.php">Can't recall the password?</a></h3>
             <div align="center">
-                <input type="submit" name="submitbutton" value="Submit">
+                <input type="image" alt="Submit" src="img_submit.png" name="submitbutton" value="Submit" width="45" height="45">
             </div> 
-            <div align:"center"; style="color: red; background:rgba(200, 255, 255, .50); font-size: 15px;" ><?php echo $ID ?></div>
-        </div>
-            <div align:"center"; style="color: red; background:rgba(200, 255, 255, .50); font-size: 15px;" ><?php echo $PWD ?></div>
-        </div>
-            <div align:"center"; style="color: red; background:rgba(200, 255, 255, .50); font-size: 15px;" ><?php echo $Invalid_pwd ?></div>
+            <div align:"center"; style="color: red; background:rgba(0, 0, 0, .70); font-size: 15px;" ><?php echo $ID ?></div>
+            <div align:"center"; style="color: red; background:rgba(0, 0, 0, .70); font-size: 15px;" ><?php echo $PWD ?></div>
+            <div align:"center"; style="color: red; background:rgba(0, 0, 0, .70); font-size: 15px;" ><?php echo $Invalid_pwd ?></div>
         </form>
         <br>
         <br> 

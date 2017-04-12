@@ -89,22 +89,42 @@ input[type="radio"] {
   width: 10px;  
 }
 
+div[container_items]{
+    width: 588px;
+    height: 617px;
+    background-color:#000;
+    margin: auto;
+}
 
 </style>
 </head>
 <body>
 
 <h4> ActiveSpace </h4>
-    <button class="tabs_button" onclick="home.php?variable1=".$_SESSION['EMAIL_ID']>My Live Feed</button>
-    <button class="tabs_button" onclick="profile.php?variable1=".$_SESSION['EMAIL_ID']>My Profile</button>
-    <button class="tabs_button" onclick="diary.php?variable1=".$_SESSION['EMAIL_ID']>My Diary Entry</button>
-    <button class="tabs_button" onclick="photos.php?variable1=".$_SESSION['EMAIL_ID']>My Photos</button>
+    <a href="logout.php">
+    <img align="right" style="float:right; margin-top: -140px; display: inline-block; padding: 10px 10px;"src="Power_button.png" name="logout" width="70" height="70">
+    </a>
+
+    <a href="message.php">
+    <img align="right" style="float:right; margin-top: -125px; margin-right: 100px; display: inline-block; padding: 10px 10px;" src="message.png" name="message" width="50" height="50">
+    </a>
+    <a href="home.php?variable1=".$_SESSION['EMAIL_ID']><button class="tabs_button">My Live Feed</button></a>
+    <a href="profile.php?variable1=".$_SESSION['EMAIL_ID']><button class="tabs_button">My Profile</button></a>
+    <a href="diary.php?variable1=".$_SESSION['EMAIL_ID']><button class="tabs_button" onclick="diary.php?variable1=".$_SESSION['EMAIL_ID']>My Diary Entry</button></a>
+    <a href="photos.php?variable1=".$_SESSION['EMAIL_ID']><button class="tabs_button">My Photos</button></a>
   <form class="search" action="home.php" align="left" method="post">       
             <div><input type="text" class="form-control" name="Name" placeholder="Search ActiveSpace" />
             <input type="image" alt="Submit" align="center" src="img_search.png" name="submitbutton"  width="50" height="50"></div><br>
             <div><input type="radio" name="Association" value="1" checked /> Friend</div>
             <div><input type="radio" name="Association" value="2"> Friend of Friend</div>
             <div><input type="radio" name="Association" value="3"> Everyone </div><br>
+
+     <div name="container_items" id="container">
+
+
+<p>Live Feed</p>
+
+</div>
   </form>            
 </body>
 </html>

@@ -4,7 +4,7 @@ body{
     height:100%;
     width:100%;
     margin-right: 5%;
-    background-image: url("../../home_img.jpeg");
+    background-image: url("/activespace/login.jpg");
     background-size:cover;
     background-size: cover;
     font-size: 16px;
@@ -120,19 +120,20 @@ h4 {
 }
 
 .signin {
+  float: center;
   text-align: center;
   vertical-align: center;
   max-width: 400px;
-  padding: 10px 15px 20px;
+  padding: 20px;
   background: rgba(10, 10, 10, .50);
-  border: 1px solid rgba(10,10,10,.1);  
+  border: 1px solid rgba(10,10,10,.2);  
   }
 
   .heading {
   text-align: center;
   vertical-align: center;
   max-width: 400px;
-  padding: 10px 15px 20px;
+  padding: 20px;
   background: rgba(0, 0, 0, .50);
   border: 1px solid rgba(0,0,0,0.1);  
   }
@@ -152,14 +153,14 @@ h4 {
     border: none;
     border-radius: 4px;
     font-size: 16px;
-    margin: 0;
+    margin: 0px;
     outline: 0;
-    padding: 7px;
-    width: 100%;
+    padding: 10px;
+    width: 70%;
     background-color: #e8eeef;
     color:#8a93a0;
     box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
 }
