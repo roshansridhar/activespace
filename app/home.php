@@ -31,7 +31,6 @@
                 echo $row[0].'! What is up today? Updates from your network :';
               }
             echo '<br>';
-            
             $id= "select user_id from userinfo where email_id like '".$_SESSION['EmailID']."';";
             $result1=pg_query($id);
             $id_op=pg_fetch_row($result1);
