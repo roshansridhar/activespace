@@ -132,3 +132,18 @@ insert into event_members values(2,2);
 insert into event_members values(1,3);
 insert into event_members values(2,3);
 insert into event_members values(2,2);
+
+--posts
+insert into posts values(1,2,'POSTS',current_timestamp,1);
+insert into posts values(1,3,'POSTS',current_timestamp,2);
+insert into posts values(1,5,'POSTS',current_timestamp,3);
+insert into posts values(1,6,'POSTS',current_timestamp,4);
+insert into posts values(1,7,'POSTS',current_timestamp,5);
+insert into posts values(1,9,'POSTS',current_timestamp,6);
+insert into posts values(2,2,'POSTS',current_timestamp,7);
+insert into posts values(6,2,'POSTS',current_timestamp,8);
+insert into posts values(3,2,'POSTS',current_timestamp,9);
+insert into posts values(6,2,'POSTS',current_timestamp,10);
+insert into posts values(7,2,'POSTS',current_timestamp,11);
+insert into posts values(9,2,'POSTS',current_timestamp,12);
+insert into posts values(4,2,'POSTS',current_timestamp,13);
