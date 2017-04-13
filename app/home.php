@@ -96,9 +96,6 @@
        </p>
         </div>
 
-</body>
-<<<<<<< HEAD
+  </body>
+
 </html>
-=======
-</html>
->>>>>>> 8c4ba5d5e507a2d0e3b24eaf0789a2bba4d12de4
