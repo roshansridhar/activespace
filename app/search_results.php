@@ -87,7 +87,7 @@
           echo '</p>';
           }
 
-          if ($input=="3"){
+        if ($input=="3"){
           echo 'Diplaying all of members in the network. Please search for specific name in the search box';
           echo '<br>';
           echo 'Click on the username in the list generated to navigate to user profile';
@@ -121,7 +121,7 @@
             select username, picture_medium, first_name, last_name from userinfo, friendrelation where userinfo.user_id=friendrelation.user_one_id and friendship_status=2 and user_two_id='".$id_op[0]."'and first_name like '%".$_POST['Name']."%';";
             $result2=pg_query($query);
             
-            if($row = pg_fetch_row($result2)){
+            if(pg_num_rows($result2)>0){
                 echo 'Click on the username in the list generated to navigate to user profile';
                 echo '<br><br>';
                 echo '<p>';
@@ -154,7 +154,7 @@
 
               $result2=pg_query($query);
               
-              if($row = pg_fetch_row($result2)){
+              if(pg_num_rows($result2)>0){
                 echo 'Click on the username in the list generated to navigate to user profile';
                 echo '<br><br>';
                 echo '<p>';
@@ -174,7 +174,8 @@
           if ($input=="3"){
               $query = " select username, picture_medium, first_name, last_name from userinfo where first_name like '%".$_POST['Name']."%';"; 
               $result2= pg_query($query);
-              if($row = pg_fetch_row($result2)){
+
+              if(pg_num_rows($result2)>0){
                 echo 'Click on the username in the list generated to navigate to user profile';
                 echo '<br><br>';
                 echo '<p>';
@@ -189,8 +190,8 @@
                 echo '<p>Invalid input. Please try again</p>';
                 } 
               }
+        }
       }
-    }
   ?>
   </p>   
   </div>
