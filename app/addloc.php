@@ -136,43 +136,14 @@
     <h4> ActiveSpace </h4>
 </head>
 <body>
-    <h2>Create your profile</h2>
+    <h2>Add a location to the social network</h2>
         <div class="container">
-    <form method="POST" style=" border:1px solid #ccc ">
+    <form method="POST" style=" border:1px solid #ccc "> 
+        <label>Address: <input type="text" name="form_address"></label><br>
+        <label>City: <input type="text" name="form_city"></label><br>
+        <label>State: <input type="text" name="form_state"></label><br>
+        <label>Country code: <input type="text" name="form_country"></label><br>
 
-        <label>Username: <input type="text" name="form_username" required=""></label><br>
-        <label>Password: <input type="password" name="form_password" required=""></label><br>
-        <label>First Name: <input type="text" name="form_first" required=""></label><br>
-        <label>Last Name: <input type="text" name="form_last" required=""></label><br>
-        <label>Email ID: <input type="email" name="form_email" required=""></label><br>
-        <label>Phone: <input type="number" name="form_phone"></label><br>
-        <label>Date of Birth: <input type="date" name="form_dob"></label><br>
-        <label><input type="radio" name="form_gender" value="male">Male</label><br>
-        <label><input type="radio" name="form_gender" value="female">Female</label><br>
-        <label><input type="radio" name="form_gender" value="other">Other</label><br>
-        <label>Choose your privacy setting:</label><br>
-          <select name="visibility">
-            <option default>Choose who can see your profile and uploads...</option>
-            <option value = "0">Only Me</option>
-            <option value = "1">Friends</option>
-            <option value = "2">Friends of friends</option>
-            <option value = "3">Everyone</option>
-          </select><br>
-        <label>About Me:</label><br>
-        <textarea id="about_me" "></textarea>
-
-        <label style="margin-left:102px;">Location:</label>        
-        <button type="button" name="add_loc" action="addloc.php" style="float:right;">+ Add Location</button>
-        <select name="form_loc">
-          <?php
-            $query = "SELECT loc_id,CONCAT(address,' ',city,' ',state,' ',country) FROM location";
-            $rs = pg_query($db, $query) or die("Cannot execute query: $query\n"); 
-            echo '<option default>Choose a location from the list...</option>';
-            while($row = pg_fetch_row($rs)){
-              echo '<option value ='.$row[0].'>'.$row[1].'</option>';
-              }
-            echo '</select>';
-          ?>
         <input type="submit" value="Submit">
         <input type="reset">
         </form>
@@ -180,7 +151,9 @@
 </body>
 </html>
 <?php
-  $query = "INSERT INTO userinfo VALUES (DEFAULT,LOCALTIMESTAMP,'$_POST[form_email]','$_POST[form_username]','$_POST[form_password]','$_POST[form_first]','$_POST[form_last]',$_POST[form_phone],'$_POST[form_gender]','$_POST[form_dob]',NULL,LOCALTIMESTAMP,LOCALTIMESTAMP,'$_POST[about_me]',NULL,$_POST[visibility],$_POST[form_loc])";
+  $query = "INSERT INTO location values (DEFAULT,NULL,NULL,'$_POST[form_address]','$_POST[form_city]','$_POST[form_state]','$_POST[form_country]')";
+  $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
+
   $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
   pg_close($db);  
 ?>
