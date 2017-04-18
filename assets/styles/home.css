@@ -75,7 +75,7 @@ div.container{
     margin-top: 120px;
 }
 
-p{  width: 1300px;
+p{  width: 1250px;
     align: center;
     border: .5px solid #FFCA28;
     font-size: 20px;
@@ -89,8 +89,5 @@ p{  width: 1300px;
     float: center;
     white-space: pre-line;
     clear: left;
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> 8c4ba5d5e507a2d0e3b24eaf0789a2bba4d12de4
+    margin-left: 10px;
+  }
