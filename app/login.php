@@ -31,6 +31,7 @@ if(isset($_POST["submitbutton"])){
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../assets/styles/styles.css">
     <title>ActiveSpace: Let's Go!</title>
     <style type="text/css">
