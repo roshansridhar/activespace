@@ -50,7 +50,7 @@ div.searchbox {
   display: inline-block;
      }
 
-input[type="text"]{
+input[type="text"],input[type="password"],input[type="email"],input[type="number"],input[type="date"],input[type="text-area"] {
     width: 200px;
     display: inline-block;
     border: 1px solid #FFCA28;
@@ -67,6 +67,14 @@ input[type="radio"] {
   font-size: 5px;  
   width: 10px;  
 }
+
+select {
+        width: 200px;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        }
 
 div.container{
     width: 1300px;

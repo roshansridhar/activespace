@@ -21,8 +21,8 @@
       <div class="container">
       <p align= "center">Create your profile</p>
 
-        <form method="POST" style=" border:1px solid #ccc ">
-
+        <form method="POST">
+        <p>
         <label>Username: <input type="text" name="form_username" required=""></label><br>
         <label>Password: <input type="password" name="form_password" required=""></label><br>
         <label>First Name: <input type="text" name="form_first" required=""></label><br>
@@ -45,8 +45,9 @@
         <textarea id="about_me"></textarea>
 
         <label style="margin-left:102px;">Location:</label>        
-        <button type="button" name="add_loc" action="addloc.php" style="float:right;">+ Add Location</button>
+        <button type="button" name="add_loc" action="addloc.php" style="float:center;"> + Add Location </button>
         <select name="form_loc">
+
           
           <?php
             $query = "SELECT loc_id,CONCAT(address,' ',city,' ',state,' ',country) FROM location";
@@ -61,6 +62,7 @@
         <input type="submit" value="Submit" name="newuser_submit">
         <input type="reset">
         </form>
+      </p>
         </div>
 </body>
 </html>
