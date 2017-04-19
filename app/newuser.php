@@ -16,8 +16,8 @@
 
 <body>
   
-  <?php 
-  include('../includes/navbar.php'); ?>  
+  <a href="home.php" color="#FFCA28"><h4> ActiveSpace </h4></a>
+  
       <div class="container">
       <p align= "center">Create your profile</p>
 
