@@ -7,12 +7,11 @@
 <?php
   $ID='';
   if(isset($_POST["newuser_submit"])){
-    // if(isset($_POST["form_username"])){
-       $query = " SELECT username from userinfo where username = '$_POST[form_username]' ";
-       $result = pg_query($query);
-        if(pg_num_rows($result)>0){
-            $msg = 'Username already exists. Please choose a different username.';
-        }
+    $query = " SELECT username from userinfo where username = '$_POST[form_username]' ";
+    $result = pg_query($query);
+    if(pg_num_rows($result)>0){
+        $msg = 'Username already exists. Please choose a different username.';
+    }
   }
 ?>
 
