@@ -1,0 +1,33 @@
+-- For Accepting Friendship
+CREATE OR REPLACE FUNCTION accept_friendship(user1 integer, user2 integer) 
+    RETURNS void AS $$
+      BEGIN
+     UPDATE  friendrelation SET friendship_status='2' WHERE action_user_id=user2 and user_one_id in (user1,user2) and user_two_id in (user1,user2);
+    END;
+    $$ LANGUAGE plpgsql;
+
+-- For Adding Friendship
+CREATE OR REPLACE FUNCTION add_friendship(user1 integer, user2 integer) 
+    RETURNS void AS $$
+      BEGIN
+      INSERT INTO friendrelation VALUES (user_one_id, user_two_id,1,0,user_one_id,current_timestamp,current_timestamp);
+    END;
+    $$ LANGUAGE plpgsql;
+    
+
+-- For Declining Friendship
+CREATE OR REPLACE FUNCTION decline_friendship(user1 integer, user2 integer) 
+    RETURNS void AS $$
+      BEGIN
+      DELETE from friendrelation  where user_one_id in (user1,user2) and user_two_id in (user1,user2);
+    END;
+    $$ LANGUAGE plpgsql;
+    
+    
+-- For Uploading photos to profile
+CREATE OR REPLACE FUNCTION upload_photos(character varchar(100),image varchar(50),userid integer) 
+    RETURNS void AS $$
+      BEGIN
+      INSERT INTO multimedia(post_time,content,description,user_id) VALUES (current_timestamp,image,text,userid);
+    END;
+    $$ LANGUAGE plpgsql;
