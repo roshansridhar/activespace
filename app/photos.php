@@ -39,7 +39,7 @@
               
               echo '<p>';
               while($row = pg_fetch_row($result_media)){
-                echo $row[0];
+                echo '<img src="uploads/'.$row[0].'">';
                 echo '<br>';
                 echo $row[1];
                 echo '<br>'; 

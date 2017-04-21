@@ -31,11 +31,16 @@
               $query= "select username from userinfo where email_id='".$_SESSION['EmailID']."';";
               $result=pg_query($query);
               if($row = pg_fetch_row($result)){
-                echo $row[0].'! What is up today? Updates from your network :';
+                echo $row[0].'! Its good to see you up and running! <br><br>';
+                echo 'Click on either of the buttons below to share a POST or DIARY ENTRY or PICTURE about your latest ventures<br>';
+                echo '<br><br><p> Below you will find updates from your network. Come, lets activate the space! </p><br>';
+                echo '<p align="center">';
+                echo '<a href="upload_post.php"><button> POST IT! </button></a>';
+                echo '<a href="upload_diary.php"><button> DIARY IT! </button></a>';
+                echo '<a href="upload_photo.php"><button> SNAP IT! </button></a>';
+                echo '</p>';
               }
-            
-              echo '<br>';
-              
+
               $id= "select user_id from userinfo where email_id like '".$_SESSION['EmailID']."';";
               $result1=pg_query($id);
               $id_op=pg_fetch_row($result1);
@@ -141,7 +146,8 @@
               while($row = pg_fetch_row($result_media)){
                 echo '<a href="search.php?variable_search='.$row[0].'">'.$row[0].'</a>';
                 echo '<br>';
-                echo $row[1]." ".$row[2]." ".$row[3];
+                echo '<img class= "imageformat" src="uploads/'.$row[1].'">';
+                echo $row[2]." ".$row[3];
                 echo '<br>'; 
                 echo '<br>';
               }
