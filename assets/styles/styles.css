@@ -158,6 +158,17 @@ h4 {
 
   }
 
+.imageformat {
+  float: center;
+  text-align: center;
+  vertical-align: center;
+  font-size: 10px;
+  max-width: 1000px;
+  background: rgba(10, 250, 10, .50);
+  border: 1px solid rgba(10,10,10,.2);  
+
+  }
+
   input[type="text"],input[type="password"] {
     font-family: Georgia, "Times New Roman", Times, serif;
     background: rgba(255,255,255,.1);
