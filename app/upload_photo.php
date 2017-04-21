@@ -86,7 +86,9 @@
                         $query = "select upload_photos('".$description."','".$filename."','".$id_op[0]."'); ";
                         $result = pg_query($query);
                         echo "File has been successfully uploaded! <br> Click on Photos in navigation bar to check out the latest uploads!";
-                    } else {
+                    } 
+                    // If moving a file does not work.
+                    else {
                         echo "Sorry, there was an error uploading your file.";
                     }
                 }
