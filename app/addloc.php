@@ -142,16 +142,17 @@
         <label>State: <input type="text" name="form_state"></label><br>
         <label>Country code: <input type="text" name="form_country"></label><br>
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" name="newloc_submit">
         <input type="reset">
         </form>
         </div>
 </body>
 </html>
 <?php
-  $query = "INSERT INTO location values (DEFAULT,NULL,NULL,'$_POST[form_address]','$_POST[form_city]','$_POST[form_state]','$_POST[form_country]')";
-  $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
-
-  $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
+  if(isset($_POST["newloc_submit"])){
+    $query = "INSERT INTO location values (DEFAULT,NULL,NULL,'$_POST[form_address]','$_POST[form_city]','$_POST[form_state]','$_POST[form_country]')";
+    $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
+    $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
+  }
   pg_close($db);  
 ?>
