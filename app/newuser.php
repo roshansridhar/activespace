@@ -57,7 +57,7 @@
             <option value = "3">Everyone</option>
           </select><br>
         <label>About Me:</label><br>
-        <textarea id="about_me"></textarea>
+        <textarea id="about_me_text"></textarea>
 
         <label>Location:</label>        
         <a href="addloc.php"><button type="button" name="add_loc" style="float:center;"> + Add Location </button></a>
@@ -65,11 +65,11 @@
 
           
           <?php
-            $query = "SELECT loc_id,CONCAT(address,' ',city,' ',state,' ',country) FROM location";
-            $rs = pg_query($db, $query) or die("Cannot execute query: $query\n"); 
+            $lquery = "SELECT loc_id,CONCAT(address,' ',city,' ',state,' ',country) FROM location";
+            $lrs = pg_query($db, $lquery) or die("Cannot execute query: $query\n"); 
             echo '<option default>Choose a location from the list...</option>';
-            while($row = pg_fetch_row($rs)){
-              echo '<option value ='.$row[0].'>'.$row[1].'</option>';
+            while($lrow = pg_fetch_row($lrs)){
+              echo '<option value ='.$lrow[0].'>'.$lrow[1].'</option>';
               }
             echo '</select>';
           ?>
@@ -83,7 +83,7 @@
 </html>
 <?php
     if(isset($_POST["newuser_submit"])){ 
-        $query = "INSERT INTO userinfo VALUES (DEFAULT,LOCALTIMESTAMP,'$_POST[form_email]','$_POST[form_username]','$_POST[form_password]','$_POST[form_first]','$_POST[form_last]',$_POST[form_phone],'$_POST[form_gender]','$_POST[form_dob]',NULL,LOCALTIMESTAMP,LOCALTIMESTAMP,'$_POST[about_me]',NULL,$_POST[visibility],$_POST[form_loc]);";
+        $query = "INSERT INTO userinfo VALUES (DEFAULT,LOCALTIMESTAMP,'$_POST[form_email]','$_POST[form_username]','$_POST[form_password]','$_POST[form_first]','$_POST[form_last]',$_POST[form_phone],'$_POST[form_gender]','$_POST[form_dob]',NULL,LOCALTIMESTAMP,LOCALTIMESTAMP,'$_POST[about_me_text]',NULL,$_POST[visibility],$_POST[form_loc]);";
         $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
     }
     pg_close($db);  
