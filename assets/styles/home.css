@@ -1,3 +1,11 @@
+@font-face {
+    font-family: Fiona;
+    src: url(../fonts/pacifico/Pacifico.ttf);
+}
+@font-face {
+    font-family: Oswald;
+    src: url(../fonts/oswald/Oswald-Regular.ttf);
+}
 h4 { 
   color: #FFCA28; 
   text-shadow: 10px 1 white, 1 10px white, 15px 1 white, 1 20px white; 
@@ -10,7 +18,7 @@ h4 {
   align: left;
   padding: 24px; 
   margin: 0 5px 24px; 
-  font-family: pacifico; 
+  font-family: Fiona; 
   font-size: 50px; 
   font-weight: lighter; 
   line-height: 48px; 
@@ -21,7 +29,8 @@ h4 {
 
 .tabs_button{
   margin: 0 0px -5px; 
-  float: left;
+  /*float: left;*/
+  font-family: Fiona;
   margin-top: -40px;
   display: inline-block;
   background-color: rgba(0, 0, 0, .70);
