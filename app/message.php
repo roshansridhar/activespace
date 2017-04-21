@@ -53,16 +53,16 @@
                 $row= pg_fetch_row($result);
 
               if(pg_num_rows($result)>0){
-                (int)$count=(int)$count+1;
+                
                 if($row[0]==(int)$usertwo[0]){
                 echo "<p> ";
 
-                $query= "select username,picture_medium from userinfo where user_id='".$usertwo[0]."';";
+                $query= "select username,picture_medium from userinfo where user_id='".$row[0]."';";
                 $result=pg_query($query);
                 $user_msg = pg_fetch_row($result);
                 echo '<a href="search.php?variable_search='.$user_msg[0].'">'.$user_msg[0].$user_msg[1]."</a> has sent you a request to connect.";
-                echo '<br><a href="accept.php?request='.(int)$usertwo.'"><button>   ACCEPT INVITE </button></a>';
-                echo '<a href="decline.php?request='.(int)$usertwo.'"><button>    DECLINE INVITE </button></a>';
+                echo '<br><a href="accept.php?request='.(int)$row[0].'"><button>   ACCEPT INVITE </button></a>';
+                echo '<a href="decline.php?request='.(int)$row[0].'"><button>    DECLINE INVITE </button></a>';
                 echo '<br>';
                 echo '</p>';
               }

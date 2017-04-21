@@ -31,7 +31,7 @@
               $query= "select U.username, L.like_time from userinfo U,diary_likes L where U.user_id=L.user_id and L.diary_id='".$_GET['liker']."';";
               $result=pg_query($query);
               while($row = pg_fetch_row($result)){
-                echo '<a href="search.php?variable_search='.$row[0].'">'.$row[0].'</a>'.', ';
+                echo '<a href="search.php?variable_search='.$row[0].'">'.$row[0].'</a>'.' at '.$row[1].'<br>';
               }
               echo " liked the diary entry";
 
