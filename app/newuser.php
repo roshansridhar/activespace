@@ -11,7 +11,7 @@
        $query = " SELECT username from userinfo where username = '$_POST[form_username]' ";
        $result = pg_query($query);
         if(pg_num_rows($result)>0){
-            $msg = 'Username already exists. Please choose a different username';
+            $msg = 'Username already exists. Please choose a different username.';
         }
   }
 ?>
