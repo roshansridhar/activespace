@@ -45,7 +45,7 @@
               echo '<br>';
              $query_diary =  "WITH get_location as(select city, state, country, loc_id from location)
 
-                    select D.diary_id,D.title, D.entry, M.content, date(diarytime), L.city, L.state, L.country from diaryentry D, get_location L,multimedia M, userinfo U where D.user_id=U.user_id and L.loc_id=D.loc_id and M.media_id=D.media_id and D.user_id in   (select userinfo.user_id from userinfo, friendrelation where userinfo.user_id=friendrelation.user_two_id and friendship_status=2 and user_one_id='".$id_op[0]."'
+                    select D.diary_id,D.title, D.entry, M.content, date(diarytime), L.city, L.state, L.country, U.username from diaryentry D, get_location L,multimedia M, userinfo U where D.user_id=U.user_id and L.loc_id=D.loc_id and M.media_id=D.media_id and D.user_id in   (select userinfo.user_id from userinfo, friendrelation where userinfo.user_id=friendrelation.user_two_id and friendship_status=2 and user_one_id='".$id_op[0]."'
                       UNION
                       select userinfo.user_id from userinfo, friendrelation where userinfo.user_id=friendrelation.user_one_id and friendship_status=2 and user_two_id='".$id_op[0]."') order by D.diarytime DESC";
             $result_diary=pg_query($query_diary);
@@ -53,8 +53,9 @@
             
             while($diary = pg_fetch_row($result_diary)){
                 echo '<h1>'.$diary[1].'</h1>';
-                echo '<p>'.' on '. $diary[4].'</p>';
-                echo '<p>'.' at '.$diary[5].", ".$diary[6].", ".$diary[7].'</p>';
+                echo '<p> by <a href="search.php?variable_search='.$diary[8].'">'. $diary[8].'</a></p>';
+                echo '<p> on '. $diary[4].'</p>';
+                echo '<p> at '.$diary[5].", ".$diary[6].", ".$diary[7].'</p>';
                 echo '<br>';
                 echo '<p>';
                 echo $diary[3];
@@ -65,12 +66,12 @@
                 $query_likes= "WITH get_likes as
                 (select count(*) as counter,diary_id from diary_likes group by diary_id)
 
-                select L.counter from get_likes L where L.diary_id='".$diary[0]."';";
+                select L.counter,L.diary_id from get_likes L where L.diary_id='".$diary[0]."';";
                 $result_likes=pg_query($query_likes);
-                $likes=pg_fetch_row($result_likes);
+                (int)$likes=pg_fetch_row($result_likes);
                 echo '<p>';
                 if((int)$likes[0]>0){
-                  echo (int)$likes[0]." users like this post ";
+                  echo '<a href="likers.php?liker='.$likes[1].'">'.(int)$likes[0]."</a> users like this post ";
                 }
                 else{
                   echo "Be the first to like this ";

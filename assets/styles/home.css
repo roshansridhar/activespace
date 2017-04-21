@@ -50,7 +50,7 @@ div.searchbox {
   display: inline-block;
      }
 
-input[type="text"],input[type="password"],input[type="email"],input[type="number"],input[type="date"],input[type="text-area"] {
+input[type="text"],input[type="password"],input[type="email"],input[type="number"],input[type="date"] {
     width: 200px;
     display: inline-block;
     border: 1px solid #FFCA28;
@@ -60,7 +60,16 @@ input[type="text"],input[type="password"],input[type="email"],input[type="number
     background-color: black;
     padding: 10px;
   }
-
+textarea{
+  width: 200px;
+    display: inline-block;
+    border: 1px solid #FFCA28;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #FFCA28;
+    background-color: black;
+    padding: 10px;
+}
 
 input[type="radio"] {
   display: inline-block;
