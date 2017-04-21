@@ -40,11 +40,18 @@
          $friendstat="select friendship_status,action_user_id from friendrelation where user_one_id IN (".(int)$userone.",".(int)$usertwo.") and user_two_id IN (".(int)$userone.",".(int)$usertwo.");";
          $result=pg_query($friendstat);
 
-          if($row=pg_fetch_row($result)){
+          if((int)$userone==(int)$usertwo){
+
+            echo 'The following is how your profile is visible to everyone';
+          }
+          else if($row=pg_fetch_row($result)){
         
             if($row[0]==2){
-                echo "<p> You and ".$_GET['variable_search']." are already connected as friends </p>";
-                }
+                echo "<p>";
+                echo " You and ".$_GET['variable_search']." are already connected as friends </p>";
+                echo '<br><a href="decline.php?request='.(int)$usertwo.'"><button> DROP FRIENDSHIP </button><a>';
+                echo "</p>";
+              }
 
             else if(pg_num_rows($result)>0){
               
@@ -53,24 +60,21 @@
               }
 
               if($row[1]==(int)$usertwo){
-                echo "<p> ".$_GET['variable_search']." has previously sent you a request to connect.";
-                echo '<br><a href="add.php?request='.$usertwo.'">   ADD</a>';
+                echo "<p> ";
+                echo $_GET['variable_search']." has previously sent you a request to connect.";
+                echo '<br><a href="accept.php?request='.(int)$usertwo.'"><button>   ACCEPT INVITE </button></a>';
+                echo '<a href="decline.php?request='.(int)$usertwo.'"><button>    DECLINE INVITE </button></a>';
                 echo '<br>';
-                echo '<a href="decline.php?request='.(int)$usertwo.'">    DECLINE</a>';
-                echo '<br></p>';
+                echo '</p>';
               }
             }
           }
             else{
-              echo "<p> ".$_GET['variable_search']." and you are not currently connected.";
-              echo '<a href="add.php?request='.$usertwo.'">   ADD</a>';
-            }
-        
-          
-
-              
-            
-      
+              echo "<p> ";
+              echo $_GET['variable_search']." and you are not currently connected.";
+              echo '<a href="add.php?request='.(int)$usertwo.'"><button>   ADD TO NETWORK </button></a>';
+              echo "</p> ";
+              }
 
          $query_visibility="select network_visibility from userinfo where user_id ='".(int)$usertwo."';";
          $result=pg_query($query_visibility);

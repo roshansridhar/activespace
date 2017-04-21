@@ -45,7 +45,7 @@
         <textarea id="about_me"></textarea>
 
         <label style="margin-left:102px;">Location:</label>        
-        <button type="button" name="add_loc" action="addloc.php" style="float:center;"> + Add Location </button>
+        <a href="addloc.php"><button type="button" name="add_loc" style="float:center;"> + Add Location </button></a>
         <select name="form_loc">
 
           
