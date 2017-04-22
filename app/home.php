@@ -50,7 +50,7 @@
               echo '<br>';
              $query_diary =  "WITH get_location as(select city, state, country, loc_id from location)
 
-                    select D.diary_id,D.title, D.entry, M.content, date(diarytime), L.city, L.state, L.country, U.username from diaryentry D, get_location L,multimedia M, userinfo U where D.user_id=U.user_id and L.loc_id=D.loc_id and M.media_id=D.media_id and D.user_id in   (select userinfo.user_id from userinfo, friendrelation where userinfo.user_id=friendrelation.user_two_id and friendship_status=2 and user_one_id='".$id_op[0]."'
+                    select D.diary_id,D.title, D.entry, D.multimedia, date(diarytime), L.city, L.state, L.country, U.username from diaryentry D, get_location L, userinfo U where D.user_id=U.user_id and L.loc_id=D.loc_id and D.user_id in   (select userinfo.user_id from userinfo, friendrelation where userinfo.user_id=friendrelation.user_two_id and friendship_status=2 and user_one_id='".$id_op[0]."'
                       UNION
                       select userinfo.user_id from userinfo, friendrelation where userinfo.user_id=friendrelation.user_one_id and friendship_status=2 and user_two_id='".$id_op[0]."') order by D.diarytime DESC";
             $result_diary=pg_query($query_diary);
@@ -63,7 +63,7 @@
                 echo '<p> at '.$diary[5].", ".$diary[6].", ".$diary[7].'</p>';
                 echo '<br>';
                 echo '<p>';
-                echo $diary[3];
+                echo '<img class= "imageformat" src="uploads/'.$diary[3].'">';
                 echo '<br>';
                 echo $diary[2];
                 echo '</p>';

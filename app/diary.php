@@ -30,7 +30,7 @@
           if(isset($_SESSION['EmailID'])){ 
             $query_diary =  "WITH get_location as(select city, state, country, loc_id from location)
 
-select D.diary_id,D.title, D.entry, M.content, date(diarytime), L.city, L.state, L.country from diaryentry D, get_location L,multimedia M, userinfo U where U.email_id='".$_SESSION['EmailID']."' and D.user_id=U.user_id and L.loc_id=D.loc_id and M.media_id=D.media_id;";
+select D.diary_id,D.title, D.entry, D.multimedia, date(diarytime), L.city, L.state, L.country from diaryentry D, get_location L, userinfo U where U.email_id='".$_SESSION['EmailID']."' and D.user_id=U.user_id and L.loc_id=D.loc_id order by D.diarytime DESC;";
             $result_diary=pg_query($query_diary);
             
             
@@ -40,7 +40,7 @@ select D.diary_id,D.title, D.entry, M.content, date(diarytime), L.city, L.state,
                 echo '<p>'.' at '.$diary[5].", ".$diary[6].", ".$diary[7].'</p>';
                 echo '<br>';
                 echo '<p>';
-                echo $diary[3];
+                echo '<img class= "imageformat" src="uploads/'.$diary[3].'">';
                 echo '<br>';
                 echo $diary[2];
                 echo '</p>';
