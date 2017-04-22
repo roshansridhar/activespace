@@ -45,7 +45,7 @@
             echo '</select>';
           ?>
 
-        <input type="submit" value="Submit" name="submitbutton">
+        <input type="image" alt="Submit" src="img_submit.png" name="submitbutton" value="Submit" width="45" height="45">
         <input type="reset">
 
         </p>

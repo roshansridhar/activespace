@@ -31,7 +31,7 @@
         <p align="center">Select image to upload:<br>
         <input type="text" class="description" name="Description" placeholder="Enter Image description" />
         <input type="file" name="fileToUpload" id="fileToUpload"><br>
-        <input type="submit" value="Upload Image" name="submitbutton"><br>
+        <input type="image" alt="Submit" src="img_submit.png" name="submitbutton" value="Submit" width="45" height="45"><br>
         </p>
         </form>
             <p>
