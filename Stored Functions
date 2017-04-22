@@ -31,3 +31,13 @@ CREATE OR REPLACE FUNCTION upload_photos(character varchar(100),image varchar(50
       INSERT INTO multimedia(post_time,content,description,user_id) VALUES (current_timestamp,image,text,userid);
     END;
     $$ LANGUAGE plpgsql;
+
+-- For uploading diary entries to profile
+CREATE OR REPLACE FUNCTION upload_diary(diary_title varchar(100),diary_desc varchar(50),diary_media varchar(100),location integer, userid integer) 
+    RETURNS void AS $$
+      BEGIN
+      INSERT INTO diaryentry(entry,user_id,diarytime,title,loc_id,multimedia) VALUES (diary_desc,userid,current_timestamp,diary_title,location,diary_media);
+    END;
+    $$ LANGUAGE plpgsql;
+    
+    
