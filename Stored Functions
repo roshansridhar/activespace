@@ -40,4 +40,12 @@ CREATE OR REPLACE FUNCTION upload_diary(diary_title varchar(100),diary_desc varc
     END;
     $$ LANGUAGE plpgsql;
     
+-- For uploading posts to profile
+CREATE OR REPLACE FUNCTION upload_posts(user1 INTEGER,user2 INTEGER, description varchar(150))
+    RETURNS void AS $$
+      BEGIN
+      INSERT INTO posts(poster_id, postee_id, content,post_time) VALUES (user1,user2,description,current_timestamp);
+    END;
+    $$ LANGUAGE plpgsql;
     
+
