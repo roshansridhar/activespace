@@ -37,15 +37,14 @@
     <select name="pick_friend">
       <?php
        $id= "select user_id from userinfo where email_id like '".$_SESSION['EmailID']."';";
-            $result1=pg_query($id);
-            $id_op=pg_fetch_row($result1);
-            
-            $query = "select user_id, username, first_name, last_name from userinfo, friendrelation where userinfo.user_id=friendrelation.user_two_id and friendship_status=2 and user_one_id='".$id_op[0]."'
+        $result1=pg_query($id);
+        $id_op=pg_fetch_row($result1);
+        $query = "select user_id, username, first_name, last_name from userinfo, friendrelation where userinfo.user_id=friendrelation.user_two_id and friendship_status=2 and user_one_id='".$id_op[0]."'
                     UNION
                     select user_id, username, first_name, last_name from userinfo, friendrelation where userinfo.user_id=friendrelation.user_one_id and friendship_status=2 and user_two_id='".$id_op[0]."';";;
-            $rs = pg_query($db, $query) or die("Cannot execute query: $query\n"); 
-            echo '<option default>Choose a friend from the list...</option>';
-            while($row = pg_fetch_row($rs)){
+        $rs = pg_query($db, $query) or die("Cannot execute query: $query\n"); 
+        echo '<option default>Choose a member in the network</option>';
+                    while($row = pg_fetch_row($rs)){
               echo '<option value ='.$row[0].'>'.$row[1].', '.$row[2].' '.$row[3].'</option>';
               }
             echo '</select>';
@@ -84,7 +83,7 @@
             $userid=pg_fetch_row($result1);
             echo "<p>Post has been successfully shared with <a href=search.php?variable_search=".$userid[0].">".$userid[0]."</a> !! <br><br> Click on POSTS in navigation bar to check out the latest uploads!</P>";
           }
-
+          
           }   
         ?>
       </p>
