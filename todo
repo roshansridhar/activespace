@@ -1,4 +1,5 @@
 how to go back to saved page after addloc
 
 CHANGES
-changing about me to varchar(255)
+changing 'about_me' to varchar(255)
+changing 'gender' to varchar(10)
