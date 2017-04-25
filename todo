@@ -1,5 +1,12 @@
+ceck if email ID exists!
 how to go back to saved page after addloc
 
 CHANGES
-changing 'about_me' to varchar(255)
-changing 'gender' to varchar(10)
+changed 'about_me' to varchar(255)
+changed 'gender' to varchar(10)
+changed 'first' and 'last' to varchar(255)
+
+COOL
+timestamps for creating and editing.
+uneditable for creating and editing.
+
