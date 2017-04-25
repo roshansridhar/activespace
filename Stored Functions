@@ -10,7 +10,7 @@ CREATE OR REPLACE FUNCTION accept_friendship(user1 integer, user2 integer)
 CREATE OR REPLACE FUNCTION add_friendship(user1 integer, user2 integer) 
     RETURNS void AS $$
       BEGIN
-      INSERT INTO friendrelation VALUES (user_one_id, user_two_id,1,0,user_one_id,current_timestamp,current_timestamp);
+      INSERT INTO friendrelation VALUES (user1, user2,1,0,user1,current_timestamp,current_timestamp);
     END;
     $$ LANGUAGE plpgsql;
     
