@@ -1,6 +1,7 @@
 <?php
   $invalid_search='';
   $input='';
+  $msg='';
   include('../includes/db_connect.php');  
 ?>
 
