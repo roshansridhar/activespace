@@ -46,9 +46,9 @@
         <label>Email ID: <input type="email" name="form_email" required="" /></label><br>
         <label>Phone: <input type="number" name="form_phone"></label><br>
         <label>Date of Birth: <input type="date" name="form_dob"></label><br>
-        <label><input type="radio" name="form_gender" value="male">Male</label><br>
-        <label><input type="radio" name="form_gender" value="female">Female</label><br>
-        <label><input type="radio" name="form_gender" value="other">Other</label><br>
+        <label><input type="radio" name="form_gender" value="m">Male</label><br>
+        <label><input type="radio" name="form_gender" value="f">Female</label><br>
+        <label><input type="radio" name="form_gender" value="o">Other</label><br>
         <label>Choose your privacy setting:</label><br>
           <select name="visibility">
             <option default>Choose who can see your profile and uploads...</option>
