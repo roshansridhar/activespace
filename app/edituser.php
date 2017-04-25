@@ -33,11 +33,11 @@
                 echo '<form method="POST">';
                 echo '<p>';
                 
-                echo '<label>Username: <input type="text" name="form_username" value="'.htmlspecialchars( $row[username] ).'" required="" /></label><br>';
+                echo '<label>Username: <input type="text" name="form_username" value="'.htmlspecialchars( $row[username] ).'" readonly required="" /></label><br>';
                 echo '<label>Password: <input type="password" name="form_password" value="'.htmlspecialchars( $row[user_password] ).'" required="" /></label><br>';
                 echo '<label>First Name: <input type="text" name="form_first" value="'.htmlspecialchars( $row[first_name] ).'" required="" /></label><br>';
                 echo '<label>Last Name: <input type="text" name="form_last" value="'.htmlspecialchars( $row[last_name] ).'" required="" /></label><br>';
-                echo '<label>Email ID: <input type="email" name="form_email" value="'.htmlspecialchars( $row[email_id] ).'" required="" /></label><br>';
+                echo '<label>Email ID: <input type="email" name="form_email" value="'.htmlspecialchars( $row[email_id] ).'" readonly required="" /></label><br>';
                 echo '<label>Phone: <input type="number" name="form_phone" value="'.htmlspecialchars( $row[phone] ).'" ></label><br>';
                 echo '<label>Date of Birth: <input type="date" name="form_dob" value="'.htmlspecialchars( $row[date_of_birth] ).'" ></label><br>';
                 
@@ -55,7 +55,7 @@
                 echo '  </select><br>';
                 
                 echo '<label>About Me:</label><br>';         
-                echo '<textarea id="about_me_text">'.htmlspecialchars( $row['about_me'] ).'</textarea><br>';
+                echo '<textarea name="about_me_text">'.htmlspecialchars( $row['about_me'] ).'</textarea><br>';
 
                 echo '<label>Location:</label>        ';
                 echo '<a href="addloc.php"><button type="button" name="add_loc" style="float:center;"> + Add Location </button></a><br>';
@@ -69,7 +69,7 @@
                     }
                 echo '</select>';
 
-                echo '<input type="submit" value="Submit" name="newuser_submit">';
+                echo '<input type="submit" value="Submit" name="edituser_submit">';
                 echo '<input type="reset">';                
                 echo '</p>';
                 echo '</form>';
@@ -79,3 +79,11 @@
         </div>
 </body>
 </html>
+<?php
+    if(isset($_POST["edituser_submit"])){ 
+        $query = "UPDATE userinfo SET user_password = '$_POST[form_password]', first_name = '$_POST[form_first]', last_name = '$_POST[form_last]', phone = $_POST[form_phone], gender = '$_POST[form_gender]', date_of_birth = '$_POST[form_dob]', update_timestamp = LOCALTIMESTAMP, about_me = '$_POST[about_me_text]', network_visibility = $_POST[visibility], loc_id = $_POST[form_loc] WHERE email_id = '$_SESSION[EmailID]';";
+        $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
+        echo "User information edited successfully.";
+    }
+    pg_close($db);  
+?>

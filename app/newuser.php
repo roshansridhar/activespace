@@ -86,7 +86,7 @@
     if(isset($_POST["newuser_submit"])){ 
         $query = "INSERT INTO userinfo VALUES (DEFAULT,LOCALTIMESTAMP,'$_POST[form_email]','$_POST[form_username]','$_POST[form_password]','$_POST[form_first]','$_POST[form_last]',$_POST[form_phone],'$_POST[form_gender]','$_POST[form_dob]',NULL,LOCALTIMESTAMP,LOCALTIMESTAMP,'$_POST[about_me_text]',NULL,$_POST[visibility],$_POST[form_loc]);";
         $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
-        echo "New user created successfully. Please log in with your email ID and password on the login screen."
+        echo "New user created successfully. Please log in with your email ID and password on the login screen.";
     }
     pg_close($db);  
 ?>
