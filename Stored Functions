@@ -49,3 +49,10 @@ CREATE OR REPLACE FUNCTION upload_posts(user1 INTEGER,user2 INTEGER, description
     $$ LANGUAGE plpgsql;
     
 
+-- Adding location
+CREATE OR REPLACE FUNCTION add_location(address1 VARCHAR(100), city1 VARCHAR(100),state1 VARCHAR(100), country1 VARCHAR(100))
+    RETURNS void AS $$
+      BEGIN
+      INSERT INTO location(lat,lng,address,city,state,country) VALUES (NULL,NULL,address1,city1,state1,country1);
+    END;
+    $$ LANGUAGE plpgsql;
