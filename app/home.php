@@ -56,7 +56,7 @@
             $result_diary=pg_query($query_diary);
             
             
-            while($diary = pg_fetch_row($result_diary)){
+            if($diary = pg_fetch_row($result_diary)){
                 echo '<h1>'.$diary[1].'</h1>';
                 echo '<p> by <a href="search.php?variable_search='.$diary[8].'">'. $diary[8].'</a></p>';
                 echo '<p> on '. $diary[4].'</p>';
@@ -79,9 +79,8 @@
                   echo '<a href="likers.php?liker='.$likes[1].'">'.(int)$likes[0]."</a> users like this post ";
                 }
                 else{
-                  echo "Be the first to like this ";
+                  echo "Give this a thumbs up!!";
                 }
-                echo '</p>';
                 echo '<br>';
                 echo '<br>';
 
@@ -100,8 +99,12 @@
                   echo $comments[1];
                   echo '<br>';
                  } 
-                 echo '</p>';
                }
+
+              echo '<a class="button" href="add_like.php?diary_like='.$diary[0].'"><img src="like_button.png" name="likebutton" value="Submit" width="25" height="25"></button></a>';
+              echo ' Click here to view diary entry LIKE THIS or ADD COMMENT ';
+              echo '<a class="button" href="add_comment.php?diary_comment='.$diary[0].'"><img src="comment_button.png" name="commentbutton" value="Submit" width="25" height="25"></button></a>';
+              echo '</p>';
              
 
               }
