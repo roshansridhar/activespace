@@ -11,6 +11,7 @@
     <a href="profile.php"><button class="tabs_button">My Profile</button></a>
     <a href="diary.php"><button class="tabs_button" onclick="diary.php?variable1=".$_SESSION['EMAIL_ID']>My Diary Entry</button></a>
     <a href="photos.php"><button class="tabs_button">My Photos</button></a>
+    <a href="posts.php"><button class="tabs_button">My Posts</button></a>
     
 
     <form class="search" action="../app/search_results.php" align="left" method="post">       
