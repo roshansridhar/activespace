@@ -16,7 +16,7 @@
 
     <form class="search" action="../app/search_results.php" align="left" method="post">       
       <div class="searchbox">
-        <input type="text" class="form-control" name="Name" placeholder="Search ActiveSpace" />
+        <input type="text" class="form-control" name="Name" placeholder="Search Network" />
         <input type="image" alt="Submit" align="center" src="img_search.png" name="searchbutton"  width="50" height="50"></div><br>
         <div class="searchbox">
           <input type="radio" name="Association" value="1" checked /> Friend
@@ -31,4 +31,23 @@
       </div>
     </form> 
 
+<form class="search" action="../app/search_key_results.php" align="left" method="post">       
+      <div class="searchbox">
+        <input type="text" class="form-control" name="Name" placeholder="Search ActiveSpace" />
+        <input type="image" alt="Submit" align="center" src="img_search.png" name="searchbutton"  width="50" height="50"></div><br>
+        <div class="searchbox">
+          <input type="radio" name="Association" value="1" checked /> Posts
+        </div>
+        <div class="searchbox">
+          <input type="radio" name="Association" value="2"> Photos
+        </div>
+        <div class="searchbox">
+          <input type="radio" name="Association" value="3"> Diary Entry 
+        </div>
+        <div class="searchbox">
+          <input type="radio" name="Association" value="4"> Everything 
+        </div>
+        <br>
+      </div>
+    </form> 
 
