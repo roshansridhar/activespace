@@ -1,12 +1,15 @@
 <?php
-  $invalid_search='';
-  $input='';
   include('../includes/db_connect.php');  
   
   session_start();
   if(!isset($_SESSION['EmailID'])){
     session_destroy();
     header('Location: '.'login.php');
+
+    $query = "SELECT user_id FROM userinfo WHERE email_id = '$_SESSION[EmailID]';";
+    $res = pg_query($query) or die("Cannot execute query: $query\n");
+    $uid = pg_fetch_row($res);
+    $qwe = 5;
   }
 ?>
 
@@ -24,8 +27,16 @@
     <?php include('../includes/navbar.php'); ?>
 
     <div class="container">
-        <p align="center">View or change your visibility settings</p>
-
+      <p align="center">View or change your visibility settings</p>
+      <?php
+        if(isset($_SESSION[EmailID])){
+          $query = "SELECT * from friendrelation where user_one_id = $uid or  user_two_id = $uid;";
+          $result = pg_query($query);
+          $info = pg_fetch_assoc($result);
+          
+          $info[]
+        }
+      ?>
 
 
 
