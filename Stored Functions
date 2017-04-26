@@ -56,3 +56,33 @@ CREATE OR REPLACE FUNCTION add_location(address1 VARCHAR(100), city1 VARCHAR(100
       INSERT INTO location(lat,lng,address,city,state,country) VALUES (NULL,NULL,address1,city1,state1,country1);
     END;
     $$ LANGUAGE plpgsql;
+    
+
+-- Adding likers
+CREATE OR REPLACE FUNCTION add_diarylikers(user1 INTEGER, diary1 INTEGER)
+    RETURNS void AS $$
+      BEGIN
+      INSERT INTO diary_likes(user_id, diary_id,like_time) VALUES (user1,diary1,current_timestamp);
+    END;
+    $$ LANGUAGE plpgsql;
+    
+-- Adding commenters
+CREATE OR REPLACE FUNCTION add_diarycommenters(user1 INTEGER, diary1 INTEGER, text varchar(100))
+    RETURNS void AS $$
+       BEGIN
+      INSERT INTO diary_comments(user_id,diary_id,comment_entry,comment_time) VALUES(userid,diaryid,text,current_timestamp);
+    END;
+    $$ LANGUAGE plpgsql;
+
+
+    
+    
+    
+
+-- Adding commenters
+CREATE OR REPLACE FUNCTION add_diarycommenters(address1 VARCHAR(100), city1 VARCHAR(100),state1 VARCHAR(100), country1 VARCHAR(100))
+    RETURNS void AS $$
+      BEGIN
+      INSERT INTO location(lat,lng,address,city,state,country) VALUES (NULL,NULL,address1,city1,state1,country1);
+    END;
+    $$ LANGUAGE plpgsql;    
