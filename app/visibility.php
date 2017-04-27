@@ -26,10 +26,10 @@
       <form method="post">
       <p align="center">
       <?php
-          $query = "SELECT * FROM userinfo WHERE username like '$_SESSION[EmailID]';";
+          $query = "SELECT * FROM userinfo WHERE username like '".$_SESSION['EmailID']."';";
           $res = pg_query($query) or die("Cannot execute query: $query\n");
           $uid = pg_fetch_row($res);
-          if(isset($_SESSION[EmailID])){
+          if(isset($_SESSION['EmailID'])){
                 echo '<label>Current Setting:</label>';
                 echo '  <select name="visibility_option">';
                 echo '    <option default>Choose who can see your profile and uploads...</option>';              

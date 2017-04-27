@@ -38,56 +38,76 @@
          $usertwo=pg_fetch_row($result2)[0];
 
          $friendstat="select friendship_status,action_user_id from friendrelation where user_one_id IN (".(int)$userone.",".(int)$usertwo.") and user_two_id IN (".(int)$userone.",".(int)$usertwo.");";
-         $result=pg_query($friendstat);
+         $result_stat=pg_query($friendstat);
+         $row=pg_fetch_row($result_stat);
 
-          if((int)$userone==(int)$usertwo){
-
-            echo 'The following is how your profile is visible to everyone';
-          }
-          else if($row=pg_fetch_row($result)){
-        
-            if($row[0]==2){
-                echo "<p>";
-                echo " You and ".$_GET['variable_search']." are already connected as friends </p>";
-                echo '<br><a href="decline.php?request='.(int)$usertwo.'"><button> DROP FRIENDSHIP </button><a>';
-                echo "</p>";
-              }
-
-            else if(pg_num_rows($result)>0){
-              
-              if($row[1]== (int)$userone){
-                echo "<p> You have already sent ".$_GET['variable_search']." a request to connect </p>";
-              }
-
-              if($row[1]==(int)$usertwo){
-                echo "<p> ";
-                echo $_GET['variable_search']." has previously sent you a request to connect.";
-                echo '<br><a href="accept.php?request='.(int)$usertwo.'"><button>   ACCEPT INVITE </button></a>';
-                echo '<a href="decline.php?request='.(int)$usertwo.'"><button>    DECLINE INVITE </button></a>';
-                echo '<br>';
-                echo '</p>';
-              }
-            }
-          }
-            else{
-              echo "<p> ";
-              echo $_GET['variable_search']." and you are not currently connected.";
-              echo '<a href="add.php?request='.(int)$usertwo.'"><button>   ADD TO NETWORK </button></a>';
-              echo "</p> ";
-              }
+         $searchuser=$_GET['variable_search'];
 
          $query_visibility="select network_visibility from userinfo where user_id ='".(int)$usertwo."';";
          $result=pg_query($query_visibility);
          $vid=pg_fetch_row($result);
-         $searchuser=$_GET['variable_search'];
+
+         $queryfof = "With mutual_user as
+                    (select user_two_id from friendrelation where friendship_status=2 and user_one_id in
+                    (select user_two_id from friendrelation where friendship_status=2 and user_one_id='".(int)$userone."' UNION select user_one_id from friendrelation where friendship_status=2 and user_two_id='".(int)$userone."')
+                      UNION
+                    select user_one_id from friendrelation where friendship_status=2 and user_two_id in
+                    (select user_two_id from friendrelation where friendship_status=2 and user_one_id='".(int)$userone."' UNION select user_one_id from friendrelation where friendship_status=2 and user_two_id='".(int)$userone."'))
+
+                    select user_id from userinfo,mutual_user where mutual_user.user_two_id=userinfo.user_id and user_two_id not in(
+                    select user_two_id from friendrelation where friendship_status=2 and user_one_id='".(int)$userone."' UNION
+                    select user_one_id from friendrelation where friendship_status=2 and user_two_id='".(int)$userone."' UNION
+                    select user_id from userinfo where user_id='".(int)$userone."');";
+          $resultfof =pg_query($queryfof);
+
+
+          if((int)$userone==(int)$usertwo){
+
+            echo 'The following is how your profile is visible to everyone';
+            
+            $extract="select username,picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
+            $finalresult=pg_query($extract);
+            
+            echo '<p>';
+              
+            while($info=pg_fetch_row($finalresult)){
+              echo 'USERNAME :'.$info[0].'<br>';
+              echo 'PROFILE PICTURE :'.$info[1].'<br><br>';
+              echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
+              echo '<p>A little bit about me :'.$info[4].'</p><br>';
+              echo '<p> Things that interests :'.$info[5].'</p><br>';
+              echo '<p>Hit me up! :'.$info[6].'<br>';
+              echo 'Gender :'.$info[7].'<br>';
+              echo 'Birthday :'.$info[8].'<br><br>';
+              echo '<br> Last seen on ActiveSpace :'.$info[9].'<br></p>';
+            }
          
-         if($vid=="0"){
-          echo '<br>';
-          echo "This user's profile is private. The diary, posts and multimedia are not shared to those on their network";
-         }
-         else{
-          $extract="select username,picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
+          echo '</p>';
+          echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
+          echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
+          echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
+      
+          }
+
+
+          else if($row[0]==2){
+                    echo "<p>";
+                    echo " You and ".$_GET['variable_search']." are already connected as friends </p>";
+                    echo '<br><a href="decline.php?request='.(int)$usertwo.'"><button> DROP FRIENDSHIP </button><a>';
+                    echo "</p>";
+
+
+                  if ($vid[0]==0){
+                   echo "User does not share his Posts/Diary/Photos"; 
+                  }
+
+                  else{
+                    
+                   echo '<br>';
+          
+          $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
           $finalresult=pg_query($extract);
+          
           echo '<p>';
           while($info=pg_fetch_row($finalresult)){
            echo 'USERNAME :'.$info[0].'<br>';
@@ -100,13 +120,225 @@
            echo 'Birthday :'.$info[8].'<br><br>';
            echo '<br> Last seen on ActiveSpace :'.$info[9].'<br></p>';
          }
-         echo '</p>';
+         echo '<br><br>';
           echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
           echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
-      
+          echo '<br>';
          }
 
+          }
+                  
+
+          else if($row[0]==1){
+              
+                  if($row[1]== (int)$userone){
+                      echo "<p> You have already sent ".$_GET['variable_search']." a request to connect </p>";
+
+                  if (($vid[0]==0)||($vid[0]==1)){
+                   echo "User does not share his Posts/Diary/Photos"; 
+                  }
+
+                  while($rowfof = pg_fetch_row($resultfof)){
+                  if(($vid[0]==2)&&($rowfof[0]==(int)$usertwo)){
+                    
+          echo '<br>';
+          
+          $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
+          $finalresult=pg_query($extract);
+          
+          echo '<p>';
+          while($info=pg_fetch_row($finalresult)){
+           echo 'USERNAME :'.$info[0].'<br>';
+           echo 'PROFILE PICTURE :'.$info[1].'<br><br>';
+           echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
+           echo '<p>A little bit about me :'.$info[4].'</p><br>';
+           echo '<p> Things that interests :'.$info[5].'</p><br>';
+           echo '<p>Hit me up! :'.$info[6].'<br>';
+           echo 'Gender :'.$info[7].'<br>';
+           echo 'Birthday :'.$info[8].'<br><br>';
+           echo '<br> Last seen on ActiveSpace :'.$info[9].'<br></p>';
+         }
+         echo '<br><br>';
+          echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
+          echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
+          echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
+          echo '<br>';
+         }
+
+
+       }
+             
+                  
+                if($vid[0]==3){
+                $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
+          $finalresult=pg_query($extract);
+          
+          echo '<p>';
+          while($info=pg_fetch_row($finalresult)){
+           echo 'USERNAME :'.$info[0].'<br>';
+           echo 'PROFILE PICTURE :'.$info[1].'<br><br>';
+           echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
+           echo '<p>A little bit about me :'.$info[4].'</p><br>';
+           echo '<p> Things that interests :'.$info[5].'</p><br>';
+           echo '<p>Hit me up! :'.$info[6].'<br>';
+           echo 'Gender :'.$info[7].'<br>';
+           echo 'Birthday :'.$info[8].'<br><br>';
+           echo '<br> Last seen on ActiveSpace :'.$info[9].'<br></p>';
+         }
+         echo '<br><br>';
+          echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
+          echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
+          echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
+          echo '<br>';
+              }
+
+              }
+
+                    
+
+
+                   else if($row[1]==(int)$usertwo){
+                      echo "<p> ";
+                      echo $_GET['variable_search']." has previously sent you a request to connect.";
+                      echo '<br><a href="accept.php?request='.(int)$usertwo.'"><button>   ACCEPT INVITE </button></a>';
+                      echo '<a href="decline.php?request='.(int)$usertwo.'"><button>    DECLINE INVITE </button></a>';
+                      echo '<br>';
+                      echo '</p>';
+
+
+                  if (($vid[0]==0)||($vid[0]==1)){
+                   echo "<p>User does not share his Posts/Diary/Photos</p>"; 
+                  }
+                  
+                  while($rowfof = pg_fetch_row($resultfof)){
+              
+                  if(($vid[0]==2)&&($rowfof[0]==(int)$usertwo)){
+                    
+          echo '<br>';
+          
+          $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
+          $finalresult=pg_query($extract);
+          
+          echo '<p>';
+          while($info=pg_fetch_row($finalresult)){
+           echo 'USERNAME :'.$info[0].'<br>';
+           echo 'PROFILE PICTURE :'.$info[1].'<br><br>';
+           echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
+           echo '<p>A little bit about me :'.$info[4].'</p><br>';
+           echo '<p> Things that interests :'.$info[5].'</p><br>';
+           echo '<p>Hit me up! :'.$info[6].'<br>';
+           echo 'Gender :'.$info[7].'<br>';
+           echo 'Birthday :'.$info[8].'<br><br>';
+           echo '<br> Last seen on ActiveSpace :'.$info[9].'<br></p>';
+         }
+         echo '<br><br>';
+          echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
+          echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
+          echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
+          echo '<br>';
+         }
+
+         
+                }
+                    
+
+                    if($vid[0]==3){
+          $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
+          $finalresult=pg_query($extract);
+          
+          echo '<p>';
+          while($info=pg_fetch_row($finalresult)){
+           echo 'USERNAME :'.$info[0].'<br>';
+           echo 'PROFILE PICTURE :'.$info[1].'<br><br>';
+           echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
+           echo '<p>A little bit about me :'.$info[4].'</p><br>';
+           echo '<p> Things that interests :'.$info[5].'</p><br>';
+           echo '<p>Hit me up! :'.$info[6].'<br>';
+           echo 'Gender :'.$info[7].'<br>';
+           echo 'Birthday :'.$info[8].'<br><br>';
+           echo '<br> Last seen on ActiveSpace :'.$info[9].'<br></p>';
+         }
+         echo '<br><br>';
+          echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
+          echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
+          echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
+          echo '<br>';
+              }
+
+                  }
+                }
+          
+          
+          else{
+              echo "<p> ";
+              echo $_GET['variable_search']." and you are not currently connected.";
+              echo '<a href="add.php?request='.(int)$usertwo.'"><button>   ADD TO NETWORK </button></a>';
+              echo "</p> ";
+
+              echo '<br>';
+          
+          if ($vid[0]==0){
+                   echo "<p>User does not share his Posts/Diary/Photos</p>"; 
+                  }
+          if ($vid[0]==1){
+                   echo "<p>User does not share his Posts/Diary/Photos</p>"; 
+                  }
+
+          while($rowfof = pg_fetch_row($resultfof)){
+
+
+                  if(($vid[0]==2)&&($rowfof[0]==(int)$usertwo)){
+                    
+          echo '<br>';
+          
+          $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
+          $finalresult=pg_query($extract);
+          
+          echo '<p>';
+          while($info=pg_fetch_row($finalresult)){
+           echo 'USERNAME :'.$info[0].'<br>';
+           echo 'PROFILE PICTURE :'.$info[1].'<br><br>';
+           echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
+           echo '<p>A little bit about me :'.$info[4].'</p><br>';
+           echo '<p> Things that interests :'.$info[5].'</p><br>';
+           echo '<p>Hit me up! :'.$info[6].'<br>';
+           echo 'Gender :'.$info[7].'<br>';
+           echo 'Birthday :'.$info[8].'<br><br>';
+           echo '<br> Last seen on ActiveSpace :'.$info[9].'<br></p>';
+         }
+         echo '<br><br>';
+          echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
+          echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
+          echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
+          echo '<br>';
+         }
+
+                }
+
+          if($vid[0]==3){
+          $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
+          $finalresult=pg_query($extract);
+          
+          echo '<p>';
+          while($info=pg_fetch_row($finalresult)){
+           echo 'USERNAME :'.$info[0].'<br>';
+           echo 'PROFILE PICTURE :'.$info[1].'<br><br>';
+           echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
+           echo '<p>A little bit about me :'.$info[4].'</p><br>';
+           echo '<p> Things that interests :'.$info[5].'</p><br>';
+           echo '<p>Hit me up! :'.$info[6].'<br>';
+           echo 'Gender :'.$info[7].'<br>';
+           echo 'Birthday :'.$info[8].'<br><br>';
+           echo '<br> Last seen on ActiveSpace :'.$info[9].'<br></p>';
+         }
+         echo '<br><br>';
+          echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
+          echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
+          echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
+          echo '<br>';
+              }
+            }
          ?>
       </p>
     </div>

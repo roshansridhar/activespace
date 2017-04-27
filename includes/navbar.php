@@ -7,6 +7,18 @@
     <img align="right" style="float:right; margin-top: -125px; margin-right: 100px; display: inline-block; padding: 10px 10px;" src="inbox.gif" name="message" width="50" height="50">
     </a>
 
+    <a href="visibility.php">
+    <img align="right" style="float:right; margin-top: -125px; margin-right: 200px; display: inline-block; padding: 10px 10px;" src="gear.png" name="message" width="50" height="50">
+    </a>
+
+    <a href="edituser.php">
+    <img align="right" style="float:right; margin-top: -125px; margin-right: 300px; display: inline-block; padding: 10px 10px;" src="editprofile.png" name="message" width="50" height="50">
+    </a>
+
+    <a href="events.php">
+    <img align="right" style="float:right; margin-top: -125px; margin-right: 400px; display: inline-block; padding: 10px 10px;" src="events.png" name="message" width="50" height="50">
+    </a>
+
     <a href="home.php" ><button class="tabs_button">My Live Feed</button></a>
     <a href="profile.php"><button class="tabs_button">My Profile</button></a>
     <a href="diary.php"><button class="tabs_button" onclick="diary.php?variable1=".$_SESSION['EMAIL_ID']>My Diary Entry</button></a>
