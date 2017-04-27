@@ -83,7 +83,7 @@
     if(isset($_POST["edituser_submit"])){ 
         $query = "UPDATE userinfo SET user_password = '$_POST[form_password]', first_name = '$_POST[form_first]', last_name = '$_POST[form_last]', phone = $_POST[form_phone], gender = '$_POST[form_gender]', date_of_birth = '$_POST[form_dob]', update_timestamp = LOCALTIMESTAMP, about_me = '$_POST[about_me_text]', network_visibility = $_POST[visibility], loc_id = $_POST[form_loc] WHERE email_id = '$_SESSION[EmailID]';";
         $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
-        echo "User information edited successfully.";
+        echo "<p>User information edited successfully.</p>";
     }
     pg_close($db);  
 ?>

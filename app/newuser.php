@@ -84,9 +84,19 @@
 </html>
 <?php
     if(isset($_POST["newuser_submit"])){ 
-        $query = "INSERT INTO userinfo VALUES (DEFAULT,LOCALTIMESTAMP,'$_POST[form_email]','$_POST[form_username]','$_POST[form_password]','$_POST[form_first]','$_POST[form_last]',$_POST[form_phone],'$_POST[form_gender]','$_POST[form_dob]',NULL,LOCALTIMESTAMP,LOCALTIMESTAMP,'$_POST[about_me_text]',NULL,$_POST[visibility],$_POST[form_loc]);";
+
+        $query = "SELECT email_id FROM userinfo WHERE email_id like '$_POST[form_email]';";
+        $res = pg_query($query) or die("Cannot execute query: $query\n");
+        
+        if(pg_num_rows($res)>0){
+            echo '<p>Email already exists. Please go back and login with your credentials.</p>';
+        }
+        else{
+            $query = "INSERT INTO userinfo VALUES (DEFAULT,LOCALTIMESTAMP,'$_POST[form_email]','$_POST[form_username]','$_POST[form_password]','$_POST[form_first]','$_POST[form_last]',$_POST[form_phone],'$_POST[form_gender]','$_POST[form_dob]',NULL,LOCALTIMESTAMP,LOCALTIMESTAMP,'$_POST[about_me_text]',NULL,$_POST[visibility],$_POST[form_loc]);";
+        
         $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
-        echo "New user created successfully. Please log in with your email ID and password on the login screen.";
+        echo "<p>New user created successfully. Please log in with your email ID and password on the login screen.</p>";
+        }
     }
     pg_close($db);  
 ?>
