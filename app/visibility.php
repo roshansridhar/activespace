@@ -23,27 +23,6 @@
 
       <div class="container">
 <p align="center">View or change your visibility settings</p>
-
-<!--     <form method ="post">
-      <?php
-        //   $query = "SELECT user_id FROM userinfo WHERE email_id like '$_SESSION[EmailID]';";
-        //   $res = pg_query($query) or die("Cannot execute query: $query\n");
-        //   $uid = pg_fetch_row($res);
-        // if(isset($_SESSION[EmailID])){
-        //   $query = "SELECT username, picture_medium, first_name, last_name from userinfo, friendrelation where userinfo.user_id=friendrelation.user_two_id and friendship_status=2 and user_one_id='$uid[0]'
-        //             UNION
-        //             select username, picture_medium, first_name, last_name from userinfo, friendrelation where userinfo.user_id=friendrelation.user_one_id and friendship_status=2 and user_two_id='$uid[0]';";          
-        //   $result = pg_query($query) or die("Cannot execute query: $query\n");
-        //   echo '<select name = "visibility_friend">';
-        //     echo '<option default>Choose a friend ...</option>';
-        //     while($info = pg_fetch_assoc($result)){
-        //       echo '<option value = "'.$info[username].'">'.$info[first_name].' '.$info[last_name].'</option>';
-        //     }
-        //     echo '</select>';          
-        // }
-      ?>
-      <input type="submit" value="Submit" name="selection_friend">
-      </form> -->
       <form method="post">
       <p align="center">
       <?php
@@ -51,6 +30,7 @@
           $res = pg_query($query) or die("Cannot execute query: $query\n");
           $uid = pg_fetch_row($res);
           if(isset($_SESSION[EmailID])){
+                echo '<label>Current Setting:</label>';
                 echo '  <select name="visibility_option">';
                 echo '    <option default>Choose who can see your profile and uploads...</option>';              
                 echo '    <option value = "0"'.(($row[visibility_status]==0)?'selected = "selected"':"").'>Only Me</option>';
@@ -72,6 +52,6 @@
     if(isset($_POST["visibility_selection"])){
       $query = "UPDATE userinfo SET network_visibility = $_POST[visibility_option] WHERE email_id = '$_SESSION[EmailID]';";
       $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
-      echo "Visibility settings edited successfully.";
+      echo "<p>Visibility settings edited successfully.</p>";
     }
 ?>
