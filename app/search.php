@@ -80,7 +80,7 @@
          $result=pg_query($query_visibility);
          $vid=pg_fetch_row($result);
          $searchuser=$_GET['variable_search'];
-         echo $searchuser;
+         
          if($vid=="0"){
           echo '<br>';
           echo "This user's profile is private. The diary, posts and multimedia are not shared to those on their network";
