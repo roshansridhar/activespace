@@ -74,15 +74,22 @@ CREATE OR REPLACE FUNCTION add_diarycommenters(user1 INTEGER, diary1 INTEGER, te
     END;
     $$ LANGUAGE plpgsql;
 
-
-    
-    
-    
-
 -- Adding commenters
 CREATE OR REPLACE FUNCTION add_diarycommenters(address1 VARCHAR(100), city1 VARCHAR(100),state1 VARCHAR(100), country1 VARCHAR(100))
     RETURNS void AS $$
       BEGIN
       INSERT INTO location(lat,lng,address,city,state,country) VALUES (NULL,NULL,address1,city1,state1,country1);
     END;
-    $$ LANGUAGE plpgsql;    
+    $$ LANGUAGE plpgsql; 
+    
+-- Return trigger on updates
+CREATE OR REPLACE FUNCTION updated_timestamp_column()
+    RETURNS TRIGGER AS '
+       BEGIN 
+       NEW.lastmodified = NOW();
+       RETURN NEW;
+      END; '
+language 'plpgsql';
+
+
+    
