@@ -33,7 +33,7 @@
               $result=pg_query($query);
               if($row = pg_fetch_row($result)){
                 if($row[1]==NULL){
-                  echo '<p> We see you still dont have any display picture! Click upload to get started!<br><a href=upload_dp.php><button>UPLOAD</button></a>';
+                  echo '<p> We see you still dont have any display picture! Click upload to get started!<br><a href=upload_dp.php><button>UPLOAD</button></a><br><br>';
                 }
                 else{
                    echo '<img class= "imageformat" src="uploads/'.$row[1].'" float="center" width="300" height="400">';

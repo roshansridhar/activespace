@@ -42,7 +42,7 @@
               $add_friends="select accept_friendship('".(int)$userone[0]."','".(int)$usertwo."');";
               $execute_add=pg_query($add_friends);
               echo "Congratulations! You have successfully connected with ".$username_two[0].". <br> Click Return to go back to your Homepage!";
-              echo '<br><br><a href="home.php"><button>RETURN</button></a>';
+              echo '<br><br><a href="message.php"><button>RETURN</button></a>';
 
             }
           ?>

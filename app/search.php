@@ -312,7 +312,6 @@
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
           echo '<br>';
          }
-
                 }
 
           if($vid[0]==3){

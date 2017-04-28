@@ -60,9 +60,27 @@
                 $query= "select username,picture_medium from userinfo where user_id='".$row[0]."';";
                 $result=pg_query($query);
                 $user_msg = pg_fetch_row($result);
-                echo '<a href="search.php?variable_search='.$user_msg[0].'">'.$user_msg[0].$user_msg[1]."</a> has sent you a request to connect.";
+                echo '<a href="search.php?variable_search='.$user_msg[0].'">'.$user_msg[0]."</a> has sent you a request to connect.";
                 echo '<br><a href="accept.php?request='.(int)$row[0].'"><button>   ACCEPT INVITE </button></a>';
                 echo '<a href="decline.php?request='.(int)$row[0].'"><button>    DECLINE INVITE </button></a>';
+                echo '<br>';
+                echo '</p>';
+              }
+
+            }
+             $friendstat="select action_user_id,action_taken_time from friendrelation where 
+              friendship_status='2' and user_one_id IN (".(int)$userone.",".(int)$usertwo[0].") and user_two_id IN (".(int)$userone.",".(int)$usertwo[0].");";
+                $result=pg_query($friendstat);
+                $row= pg_fetch_row($result);
+                if(pg_num_rows($result)>0){
+                
+                if($row[0]==(int)$userone[0]){
+                echo "<p> ";
+
+                $query= "select username,picture_medium from userinfo where user_id='".$usertwo[0]."';";
+                $result=pg_query($query);
+                $user_msg = pg_fetch_row($result);
+                echo '<a href="search.php?variable_search='.$user_msg[0].'">'.$user_msg[0]."</a> has accepted your request to connect on ".$row[1]." !!";
                 echo '<br>';
                 echo '</p>';
               }
