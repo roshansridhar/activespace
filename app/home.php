@@ -28,23 +28,32 @@
          <p>
          <?php
            if(isset($_SESSION['EmailID'])){
-              $query= "select username from userinfo where email_id='".$_SESSION['EmailID']."';";
+
+              $query= "select username, picture_medium from userinfo where email_id='".$_SESSION['EmailID']."';";
               $result=pg_query($query);
               if($row = pg_fetch_row($result)){
+                if($row[1]==NULL){
+                  echo '<p> We see you still dont have any display picture! Click upload to get started!<br><a href=upload_dp.php><button>UPLOAD</button></a>';
+                }
+                else{
+                   echo '<img class= "imageformat" src="uploads/'.$row[1].'" float="center" width="300" height="400">';
+                }
                 echo $row[0].'! Its good to see you up and running! <br><br>';
                 echo 'Click on either of the buttons below to share a POST or DIARY ENTRY or PICTURE about your latest ventures<br>';
-                echo '<br><br><p> Below you will find updates from your network. Come, lets activate the space! </p><br>';
-                echo '<p align="center">';
-                echo '<a href="upload_post.php"><button> POST IT! </button></a>';
-                echo '<a href="upload_diary.php"><button> DIARY IT! </button></a>';
-                echo '<a href="upload_photo.php"><button> SNAP IT! </button></a>';
-                echo '</p>';
+                 echo '<p align="center">';
+                echo '<a href="upload_post.php"><button>**   POST IT!   **</button></a> ';
+                echo '<a href="upload_diary.php"><button>**   DIARY IT!   **</button></a>';
+                echo '<a href="upload_photo.php"><button>**   SNAP IT!    **</button></a></p>';
+                echo '<br><br><br><p> Below you will find updates from your network. Come, lets activate the space! </p><br><br><br>';
+               
               }
 
               $id= "select user_id from userinfo where email_id like '".$_SESSION['EmailID']."';";
               $result1=pg_query($id);
               $id_op=pg_fetch_row($result1);
               echo '<br>';
+
+              echo '<div class="postbox">';
             
               echo '<p>D   I   A   R   Y</p>';
               echo '<br>';
@@ -55,19 +64,19 @@
                       select userinfo.user_id from userinfo, friendrelation where userinfo.user_id=friendrelation.user_one_id and friendship_status=2 and user_two_id='".$id_op[0]."') order by D.diarytime DESC";
             $result_diary=pg_query($query_diary);
             
+     
             
             if($diary = pg_fetch_row($result_diary)){
-                echo '<h1>'.$diary[1].'</h1>';
-                echo '<p> by <a href="search.php?variable_search='.$diary[8].'">'. $diary[8].'</a></p>';
-                echo '<p> on '. $diary[4].'</p>';
-                echo '<p> at '.$diary[5].", ".$diary[6].", ".$diary[7].'</p>';
+
+                echo '<p>'.$diary[1].'</p>';
+                echo '<p> by <a href="search.php?variable_search='.$diary[8].'">'. $diary[8].'</a>';
+                echo ' on '. $diary[4].' ';
+                echo ' at '.$diary[5].", ".$diary[6].", ".$diary[7].'';
                 echo '<br>';
-                echo '<p>';
                 echo '<img class= "imageformat" src="uploads/'.$diary[3].'">';
                 echo '<br>';
                 echo $diary[2];
-                echo '</p>';
-                
+           
                 $query_likes= "WITH get_likes as
                 (select count(*) as counter,diary_id from diary_likes group by diary_id)
 
@@ -100,15 +109,16 @@
                   echo '<br>';
                  } 
                }
-
-              echo '<a class="button" href="add_like.php?diary_like='.$diary[0].'"><img src="like_button.png" name="likebutton" value="Submit" width="25" height="25"></button></a>';
+              echo '<br><br>';
+              echo '<a class="button" href="add_like.php?diary_like='.$diary[0].'"><img src="like_button.png" name="likebutton" value="Submit" width="35" height="35"></button></a>';
               echo ' Click here to view diary entry LIKE THIS or ADD COMMENT ';
-              echo '<a class="button" href="add_comment.php?diary_comment='.$diary[0].'"><img src="comment_button.png" name="commentbutton" value="Submit" width="25" height="25"></button></a>';
+              echo '<a class="button" href="add_comment.php?diary_comment='.$diary[0].'"><img src="comment_button.png" name="commentbutton" value="Submit" width="35" height="35"></button></a>';
               echo '</p>';
              
 
               }
-              echo '</p>';
+
+            
         echo '<br>';
         echo '<br>';
          

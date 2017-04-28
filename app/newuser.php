@@ -34,17 +34,23 @@
     <div align:"center"; style="color: red; background:rgba(0, 0, 0, .70); font-size: 15px;" ><?php echo $msg ?></div>
 
 
-      <div class="container">
+      <div align:"center" class="container">
       <p align= "center">Create your profile</p>
 
-        <form method="POST">
-        <p>
+        <form align="center" method="POST">
+        <p align="center"> 
         <label>Username: <input type="text" name="form_username" required="" /></label><br>
         <label>Password: <input type="password" name="form_password" required="" /></label><br>
         <label>First Name: <input type="text" name="form_first" required="" /></label><br>
         <label>Last Name: <input type="text" name="form_last" required="" /></label><br>
         <label>Email ID: <input type="email" name="form_email" required="" /></label><br>
         <label>Phone: <input type="number" name="form_phone"></label><br>
+        <form action="newuser.php" method="post" enctype="multipart/form-data">
+        <br>
+        
+        </form>
+         
+             <p align="center">
         <label>Date of Birth: <input type="date" name="form_dob"></label><br>
         <label><input type="radio" name="form_gender" value="m">Male</label><br>
         <label><input type="radio" name="form_gender" value="f">Female</label><br>
@@ -64,17 +70,6 @@
         <a href="addloc.php"><button type="button" name="add_loc" style="float:center;"> + Add Location </button></a>
         <select name="form_loc">
 
-          
-          <?php
-            $lquery = "SELECT loc_id,CONCAT(address,' ',city,' ',state,' ',country) FROM location";
-            $lrs = pg_query($db, $lquery) or die("Cannot execute query: $query\n"); 
-            echo '<option default>Choose a location from the list...</option>';
-            while($lrow = pg_fetch_row($lrs)){
-              echo '<option value ='.$lrow[0].'>'.$lrow[1].'</option>';
-              }
-            echo '</select>';
-          ?>
-
         <input type="submit" value="Submit" name="newuser_submit">
         <input type="reset">
         </form>
@@ -92,7 +87,7 @@
             echo '<p>Email already exists. Please go back and login with your credentials.</p>';
         }
         else{
-            $query = "INSERT INTO userinfo VALUES (DEFAULT,LOCALTIMESTAMP,'$_POST[form_email]','$_POST[form_username]','$_POST[form_password]','$_POST[form_first]','$_POST[form_last]',$_POST[form_phone],'$_POST[form_gender]','$_POST[form_dob]',NULL,LOCALTIMESTAMP,LOCALTIMESTAMP,'$_POST[about_me_text]',NULL,$_POST[visibility],$_POST[form_loc]);";
+            $query = "INSERT INTO userinfo VALUES (DEFAULT,LOCALTIMESTAMP,'$_POST[form_email]','$_POST[form_username]','$_POST[form_password]','$_POST[form_first]','$_POST[form_last]',$_POST[form_phone],'$_POST[form_gender]','$_POST[form_dob]','$_POST[picture_medium]',LOCALTIMESTAMP,LOCALTIMESTAMP,'$_POST[about_me_text]',NULL,$_POST[visibility],$_POST[form_loc]);";
         
         $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
         echo "<p>New user created successfully. Please log in with your email ID and password on the login screen.</p>";

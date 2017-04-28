@@ -72,7 +72,7 @@
               
             while($info=pg_fetch_row($finalresult)){
               echo 'USERNAME :'.$info[0].'<br>';
-              echo 'PROFILE PICTURE :'.$info[1].'<br><br>';
+               echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
               echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
               echo '<p>A little bit about me :'.$info[4].'</p><br>';
               echo '<p> Things that interests :'.$info[5].'</p><br>';
@@ -111,7 +111,7 @@
           echo '<p>';
           while($info=pg_fetch_row($finalresult)){
            echo 'USERNAME :'.$info[0].'<br>';
-           echo 'PROFILE PICTURE :'.$info[1].'<br><br>';
+           echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
            echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
            echo '<p>A little bit about me :'.$info[4].'</p><br>';
            echo '<p> Things that interests :'.$info[5].'</p><br>';
@@ -150,7 +150,7 @@
           echo '<p>';
           while($info=pg_fetch_row($finalresult)){
            echo 'USERNAME :'.$info[0].'<br>';
-           echo 'PROFILE PICTURE :'.$info[1].'<br><br>';
+           echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
            echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
            echo '<p>A little bit about me :'.$info[4].'</p><br>';
            echo '<p> Things that interests :'.$info[5].'</p><br>';
@@ -177,7 +177,7 @@
           echo '<p>';
           while($info=pg_fetch_row($finalresult)){
            echo 'USERNAME :'.$info[0].'<br>';
-           echo 'PROFILE PICTURE :'.$info[1].'<br><br>';
+           echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
            echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
            echo '<p>A little bit about me :'.$info[4].'</p><br>';
            echo '<p> Things that interests :'.$info[5].'</p><br>';
@@ -223,7 +223,7 @@
           echo '<p>';
           while($info=pg_fetch_row($finalresult)){
            echo 'USERNAME :'.$info[0].'<br>';
-           echo 'PROFILE PICTURE :'.$info[1].'<br><br>';
+          echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
            echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
            echo '<p>A little bit about me :'.$info[4].'</p><br>';
            echo '<p> Things that interests :'.$info[5].'</p><br>';
@@ -250,8 +250,7 @@
           echo '<p>';
           while($info=pg_fetch_row($finalresult)){
            echo 'USERNAME :'.$info[0].'<br>';
-           echo 'PROFILE PICTURE :'.$info[1].'<br><br>';
-           echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
+           echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
            echo '<p>A little bit about me :'.$info[4].'</p><br>';
            echo '<p> Things that interests :'.$info[5].'</p><br>';
            echo '<p>Hit me up! :'.$info[6].'<br>';
@@ -298,7 +297,7 @@
           echo '<p>';
           while($info=pg_fetch_row($finalresult)){
            echo 'USERNAME :'.$info[0].'<br>';
-           echo 'PROFILE PICTURE :'.$info[1].'<br><br>';
+           echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
            echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
            echo '<p>A little bit about me :'.$info[4].'</p><br>';
            echo '<p> Things that interests :'.$info[5].'</p><br>';
@@ -323,7 +322,7 @@
           echo '<p>';
           while($info=pg_fetch_row($finalresult)){
            echo 'USERNAME :'.$info[0].'<br>';
-           echo 'PROFILE PICTURE :'.$info[1].'<br><br>';
+           echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
            echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
            echo '<p>A little bit about me :'.$info[4].'</p><br>';
            echo '<p> Things that interests :'.$info[5].'</p><br>';

@@ -53,7 +53,8 @@
           echo '<p>';
               while($row = pg_fetch_row($result2)){
           echo '<a href="search.php?variable_search='.$row[0].'">'.$row[0].'</a>';
-          echo " ".$row[1]." ".$row[2]." ".$row[3];
+          echo 'PROFILE PICTURE:<img class= "imageformat" src="uploads/'.$row[1].'"><br><br>';
+          echo $row[2]." ".$row[3];
           echo '<br>';
           }
           echo '</p>';
@@ -81,7 +82,7 @@
           echo '<p>';
           while($row = pg_fetch_row($result2)){
             echo '<a href="search.php?variable_search='.$row[0].'">'.$row[0].'</a>';
-            echo " ".$row[1]." ".$row[2]." ".$row[3];
+            echo '<img class= "imageformat" src="uploads/'.$row[1].'" float="center" width="50" height="70">';
             echo '<br>';
             }
           echo '</p>';
@@ -99,7 +100,8 @@
           echo '<p>';
           while($row = pg_fetch_row($result)){
             echo '<a href="search.php?variable_search='.$row[0].'">'.$row[0].'</a>';
-            echo " ".$row[1]." ".$row[2]." ".$row[3];
+            echo '<img class= "imageformat" src="uploads/'.$row[1].'" float="center" width="50" height="70">';
+          echo $row[2]." ".$row[3];
             echo '<br>';
             }
           echo '</p>';
@@ -127,7 +129,8 @@
                 echo '<p>';
               while($row = pg_fetch_row($result2)){
                 echo '<a href="search.php?variable_search='.$row[0].'">'.$row[0].'</a>';
-                echo " ".$row[1]." ".$row[2]." ".$row[3];
+                echo '<img class= "imageformat" src="uploads/'.$row[1].'" float="center" width="50" height="70">';
+          echo $row[2]." ".$row[3];
                 echo '<br>';
                 }
               echo '</p>';
@@ -160,7 +163,8 @@
                 echo '<p>';
                 while($row = pg_fetch_row($result2)){
                   echo '<a href="search.php?variable_search='.$row[0].'">'.$row[0].'</a>';
-                  echo " ".$row[1]." ".$row[2]." ".$row[3];
+                  echo '<img class= "imageformat" src="uploads/'.$row[1].'" float="center" width="50" height="70">';
+          echo $row[2]." ".$row[3];
                   echo '<br>';
                   }      
                   echo '</p>';
@@ -181,7 +185,7 @@
                 echo '<p>';
                 while($row = pg_fetch_row($result2)){
                   echo '<a href="search.php?variable_search='.$row[0].'">'.$row[0].'</a>';
-                  echo " ".$row[1]." ".$row[2]." ".$row[3];
+                   echo '<img class= "imageformat" src="uploads/'.$row[1].'" float="center" width="50" height="70">';
                   echo '<br>';
                 }
                 echo '</p>';
