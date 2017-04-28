@@ -81,15 +81,6 @@ CREATE OR REPLACE FUNCTION add_diarycommenters(address1 VARCHAR(100), city1 VARC
       INSERT INTO location(lat,lng,address,city,state,country) VALUES (NULL,NULL,address1,city1,state1,country1);
     END;
     $$ LANGUAGE plpgsql; 
-    
--- Return trigger on updates
-CREATE OR REPLACE FUNCTION updated_timestamp_column()
-    RETURNS TRIGGER AS '
-       BEGIN 
-       NEW.lastmodified = NOW();
-       RETURN NEW;
-      END; '
-language 'plpgsql';
 
 -- UPLOAD DISPLAY PICTURE
 
@@ -99,3 +90,14 @@ language 'plpgsql';
       UPDATE userinfo SET picture_medium=image WHERE user_id=userid;
     END;
     $$ LANGUAGE plpgsql;
+    
+-- TRIGGER AND STORED FUNCTION FOR FRIENDSHIP STATUS
+CREATE OR REPLACE FUNCTION update_modified_column()	
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.action_taken_time = now();
+    RETURN NEW;	
+END;
+$$ language 'plpgsql';
+
+CREATE TRIGGER update_customer_modtime BEFORE UPDATE ON friendrelation FOR EACH ROW EXECUTE PROCEDURE  update_modified_column();
