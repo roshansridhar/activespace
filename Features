@@ -1,0 +1,52 @@
+LOGIN/SIGN UP
+User-signs up
+User-logs in
+User- can edit his profile at any time
+
+TIMELINE
+User is directed to a live news feed of diary entries/posts/photos from his network.
+
+LIKES/COMMENTS
+User can like/comment on any diary entries.
+
+DIARY/POSTS/PHOTOS
+User can upload his diary/posts/photos.
+User gets to decide if he wants to broadcast messages or pick a specific friend to share a post with.
+
+LOCATIONS
+User has the liberty to create a new location while creating his profile or creating a diary entry, which will be stored in the network's database.
+
+NOTIFICATION ***
+USer has an notification inbox which on-click directs him to people who have sent him friend requests and tells him when his friend request sent to them was accepted.
+
+SEARCH BOX dedicated for PEOPLE ***
+If no keyword is supplied=USer can search all his friends, all his FOF, everyone and browse to each of their profiles and look for their diary/photos/posts subject to their networ visibility settings.
+USer can search for people on First name basis-case sensitive!
+
+SEARCH BOX dedicated for specific word 
+Pick Posts/Photos/Events/Diaryentry and look for  a certain keyword in each of them.
+IF no keyword is input all of the posts/photos and diaryentries will show up for their friend network.
+
+NAVBAR ***
+Ease of accessing all TIMELINE/ PROFILE/ PHOTOS/ DIARY ENTRY/ POSTS belongin to the user, ordered in descending order.
+
+PROFILE PHOTO  ***
+User can upload his profile photo, where all his friends/FOF/all in the network can view when they look him.
+Every user can be looked up by a complete stranger however user can choose whom he can share his photos/diary/posts with.
+Visibility settings are accessible at any time and user can change it to Only me/Friends/Friends of Friends/Everyone.
+
+ADD/ACCEPT/DECLINE *
+Apart from notification inbox, browsing to random users or users in you circle will show you a notification if you are connected/friends/if you have sent request previously/if you ahve a pending request from their end/ or if you arent currently connected you ahve an option to ADD them/ ACCEPT them or DECLINE their invitation.
+
+EVENTS
+Events in the area are listed out and user can Join those events.
+
+Logout button *
+Ends the user sessions.
+
+
+
+timestamps for creating and editing.
+uneditable for creating and editing.
+ceck if email ID exists
+
