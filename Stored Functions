@@ -91,5 +91,11 @@ CREATE OR REPLACE FUNCTION updated_timestamp_column()
       END; '
 language 'plpgsql';
 
+-- UPLOAD DISPLAY PICTURE
 
-    
+    CREATE OR REPLACE FUNCTION upload_dp(image varchar(100),userid integer) 
+    RETURNS void AS $$
+      BEGIN
+      UPDATE userinfo SET picture_medium=image WHERE user_id=userid;
+    END;
+    $$ LANGUAGE plpgsql;
