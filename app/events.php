@@ -26,7 +26,7 @@
     <div class="container">
         <p align="center"> EVENTS AROUND US</p>
             <?php 
-                $queryd = "SELECT user_id FROM userinfo WHERE email_id = '$_SESSION[EmailID]';";
+                $queryd = "SELECT user_id FROM userinfo WHERE email_id = '".$_SESSION['EmailID']."';";
                 $resd = pg_query($queryd) or die("Cannot execute query: $queryd\n");
                 $uidd = pg_fetch_row($resd);
 
@@ -36,7 +36,7 @@
                     echo '<form method = "POST">';
                     echo '<p>';
                     echo '<label>Event Name: '.$row['title'].'</label><br><br>';
-                    echo 'Event Time: '.$row['event_time'].'</label><br><br>';
+                    echo '<label>Event Time: '.$row['event_time'].'</label><br><br>';
                     echo '<label>'.$row['description'].'</label><br><br>';
 
                     $querym = "SELECT * FROM event_members WHERE event_id = ".$row['event_id'].";";

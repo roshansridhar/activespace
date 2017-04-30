@@ -4,9 +4,13 @@
   include('../includes/db_connect.php');  
   
   session_start();
+  $query="Update userinfo set last_log_in=current_timestamp where email_id='".$_SESSION['EmailID']."';";
+  $execute=pg_query($query);
+
   if(!isset($_SESSION['EmailID'])){
     session_destroy();
     header('Location: '.'login.php');
+
   }
 ?>
 
