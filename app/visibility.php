@@ -26,7 +26,7 @@
       <form method="post">
       <p align="center">
       <?php
-          $query = "SELECT * FROM userinfo WHERE username like '".$_SESSION['EmailID']."';";
+          $query = "SELECT user_id FROM userinfo WHERE email_id like '".$_SESSION['EmailID']."';";
           $res = pg_query($query) or die("Cannot execute query: $query\n");
           $uid = pg_fetch_row($res);
           if(isset($_SESSION['EmailID'])){
