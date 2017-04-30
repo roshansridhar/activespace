@@ -65,7 +65,7 @@
 <?php 
                   $lquery = "SELECT loc_id,CONCAT(address,' ',city,' ',state,' ',country) FROM location";
                   $lresult = pg_query($db, $lquery) or die("Cannot execute query: $query\n"); 
-                  echo '<option default>Choose a location from the list...</option>';
+                  echo '<option value="null" default>Choose a location from the list...</option>';
                   while($lrow = pg_fetch_row($lresult)){
                     echo '<option value ='.$lrow[0].' '.(($lrow[0]==$row['loc_id'])?'selected = "selected"':"").'>'.$lrow[1].'</option>';
                     }

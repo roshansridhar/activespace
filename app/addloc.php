@@ -3,11 +3,6 @@
   $input='';
   include('../includes/db_connect.php');  
   
-  session_start();
-  if(!isset($_SESSION['EmailID'])){
-    session_destroy();
-    header('Location: '.'login.php');
-  }
 ?>
 
 <!DOCTYPE html>
