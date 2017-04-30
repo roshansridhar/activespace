@@ -59,6 +59,7 @@
                     else{
                         echo '<a href="add_event.php?event='.$row[event_id].'">RSVP</a>';
                     }
+
                     echo '</p>';
                     echo '</form>';
                 }    
