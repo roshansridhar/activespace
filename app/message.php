@@ -45,8 +45,11 @@
               $profileuser="select user_id from userinfo;";
               $result2=pg_query($profileuser);
               
+              echo '<p><br> FRIEND REQUESTS <br><br>';
 
               while($usertwo=pg_fetch_row($result2)){
+
+                
                 $friendstat="select action_user_id from friendrelation where 
               friendship_status='1' and user_one_id IN (".(int)$userone.",".(int)$usertwo[0].") and user_two_id IN (".(int)$userone.",".(int)$usertwo[0].");";
                 $result=pg_query($friendstat);
@@ -57,7 +60,7 @@
                 if($row[0]==(int)$usertwo[0]){
                 echo "<p> ";
 
-                $query= "select username,picture_medium from userinfo where user_id='".$row[0]."';";
+                $query= "select username,picture_medium from userinfo where user_id='".(int)$row[0]."';";
                 $result=pg_query($query);
                 $user_msg = pg_fetch_row($result);
                 echo '<a href="search.php?variable_search='.$user_msg[0].'">'.$user_msg[0]."</a> has sent you a request to connect.";
@@ -68,6 +71,8 @@
               }
 
             }
+
+            
              $friendstat="select action_user_id,action_taken_time from friendrelation where 
               friendship_status='2' and user_one_id IN (".(int)$userone.",".(int)$usertwo[0].") and user_two_id IN (".(int)$userone.",".(int)$usertwo[0].");";
                 $result=pg_query($friendstat);
@@ -86,11 +91,23 @@
               }
 
             }
-            
           }
           
-        }
-            
+            echo '<p><br><br> POSTS FROM FRIENDS <br><br>';
+            $query_posts =  "select A.username,posts.content,date(posts.post_time)from userinfo A, posts where A.user_id=posts.poster_id and postee_id='".(int)$userone."' order by posts.post_time DESC;"; 
+              $result_posts=pg_query($query_posts);
+             echo '<p>';
+              while($row = pg_fetch_row($result_posts)){
+                echo '<a href="search.php?variable_search='.$row[0].'">'.$row[0].'</a>';
+                echo ' posted the following to you!';
+                echo '<br>';
+                echo $row[1]." on ".$row[2]."";
+                echo '<br>';
+                echo '<br>';
+              }
+           echo '</p> <a href="posts.php><button>Reply to the posts<button></a>'; 
+          
+         }   
         ?>
       </p>
     </div>
