@@ -58,7 +58,7 @@
                         echo '<a href="remove_event.php?event='.$row['event_id'].'">Withdraw</a>';
                     }
                     else{
-                        echo '<a href="add_event.php?event='.$row['event_id'].'">RSVP</a>';
+                        echo '<a href="add_event.php?event='.$row['event_id'].'">Click to RSVP</a>';
                     }
 
                     echo '</p>';
