@@ -23,16 +23,14 @@
 <body>
     <?php include('../includes/navbar.php'); ?>
 
-    <div class="container">
-    <h2>Add a location to the ACTIVESPACE social network</h2>
-        <div class="container">
-    <form align="center" method="POST" style=" border:1px solid #ccc ">
-        <p>
+    <div align:"center" class="container">
+    <p align= "center">Add a location to the ACTIVESPACE social network</p>
+    <form method="POST">
+    <p align="center" >
         Address: <input type="text" name="form_address"><br>
         City: <input type="text" name="form_city"><br>
         State: <input type="text" name="form_state"><br>
-        Country: <input type="text" name="form_country"><br>
-        <p>
+        Country: <input type="text" name="form_country">
         <input type="submit" value="Submit" name="newloc_submit">
         <input type="reset">
         </p>

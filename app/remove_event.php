@@ -14,7 +14,7 @@
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-    <title>ActiveSpace: Homepage</title>
+    <title>ActiveSpace: Not going</title>
     <link rel="stylesheet" type="text/css" href="../assets/styles/styles.css">
     <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="../assets/styles/home.css">

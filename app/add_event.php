@@ -14,7 +14,7 @@
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-    <title>ActiveSpace: Homepage</title>
+    <title>ActiveSpace: Going</title>
     <link rel="stylesheet" type="text/css" href="../assets/styles/styles.css">
     <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="../assets/styles/home.css">
@@ -33,7 +33,7 @@
           (int)$event_id=$_GET['event'];
             $querys = "INSERT INTO event_members VALUES (".$event_id.",".$uidd[0].");";
             $results = pg_query($querys) or die("Cannot execute query: $querys\n");
-            echo "You are now going to the event!<br>";
+            echo "You are now going to the event! ";
             echo '<a href="events.php"><button align="center">Go back</button></a>';
         }
         ?>
