@@ -110,9 +110,8 @@ insert into location values (2,null,null,'breakneck ridge','cold springs','ny','
 insert into location values (3,null,null,null,'montauk','ny','usa');
 
 --events-
-insert into events values (1,null,current_timestamp,3,NULL);
-insert into events values (2,null,current_timestamp,2,NULL);
-
+insert into events values (1,"Location: Breakneck Ridge\n\nEvent Info: This trek is not for the light-hearted.\nExperienced trekkers ONLY.",current_timestamp,2,NULL,"Hiking at Breakneck Ridge");
+insert into events values (2,"Location: Central Park\n\nEvent Info: Please bring your own mat and a water bottle.\nWe accomodate all levels of experience.",current_timestamp,1,NULL,"Meditation in Central Park");
 
 --event_members-
 insert into event_members values(1,2);
