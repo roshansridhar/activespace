@@ -59,23 +59,23 @@
     <label>About Me:</label><br>
       <textarea id="about_me_text"></textarea>
 
-    <label>Location:</label>        
-      <select name="form_loc">
-        <?php 
-          $lquery = "SELECT loc_id,CONCAT(address,' ',city,' ',state,' ',country) FROM location";
-          $lresult = pg_query($db, $lquery) or die("Cannot execute query: $query\n"); 
-          echo '<option default>Choose a location from the list...</option>';
-          while($lrow = pg_fetch_row($lresult)){
-            echo '<option value ='.$lrow[0].' '.(($lrow[0]==$row['loc_id'])?'selected = "selected"':"").'>'.$lrow[1].'</option>';
-          }
-        echo '</select>'; 
-        ?>
-    <a href="addloc.php"><button type="button" name="add_loc" style="float:center;"> + Add Location </button></a>
-    <input type="submit" value="Submit" name="newuser_submit">
-    <input type="reset">
-    </form>
-  </p>
-</div>
+        <label>Location:</label>        
+        <select name="form_loc">
+<?php 
+                  $lquery = "SELECT loc_id,CONCAT(address,' ',city,' ',state,' ',country) FROM location";
+                  $lresult = pg_query($db, $lquery) or die("Cannot execute query: $query\n"); 
+                  echo '<option value="null" default>Choose a location from the list...</option>';
+                  while($lrow = pg_fetch_row($lresult)){
+                    echo '<option value ='.$lrow[0].' '.(($lrow[0]==$row['loc_id'])?'selected = "selected"':"").'>'.$lrow[1].'</option>';
+                    }
+                echo '</select>'; 
+?>
+        <a href="addloc.php"><button type="button" name="add_loc" style="float:center;"> + Add Location </button></a>
+        <input type="submit" value="Submit" name="newuser_submit">
+        <input type="reset">
+        </form>
+      </p>
+        </div>
 </body>
 </html>
 
