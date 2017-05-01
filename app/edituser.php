@@ -41,9 +41,9 @@
                 echo '<label>Phone: <input type="number" name="form_phone" value="'.htmlspecialchars( $row['phone'] ).'" ></label><br>';
                 echo '<label>Date of Birth: <input type="date" name="form_dob" value="'.htmlspecialchars( $row['date_of_birth'] ).'" ></label><br>';
                 
-                echo '<label><input type="radio" name="form_gender" '.(($row['gender']=="male") ?' checked="checked" ':"").' value="male">Male</label><br>';
-                echo '<label><input type="radio" name="form_gender" '.(($row['gender']=="female") ?' checked="checked" ':"").' value="female">Female</label><br>';
-                echo '<label><input type="radio" name="form_gender" '.(($row['gender']=="other") ?' checked="checked" ':"").' value="other">Other</label><br>';
+                echo '<label><input type="radio" name="form_gender" '.(($row['gender']==" Male ") ?' checked="checked" ':"").' value="male">Male</label><br>';
+                echo '<label><input type="radio" name="form_gender" '.(($row['gender']==" Female ") ?' checked="checked" ':"").' value="female">Female</label><br>';
+                echo '<label><input type="radio" name="form_gender" '.(($row['gender']==" Other ") ?' checked="checked" ':"").' value="other">Other</label><br>';
                 
                 echo '<label>Choose your privacy setting:</label><br>';
                 echo '  <select name="visibility">';

@@ -138,6 +138,15 @@
               
               echo '<p>';
               while($row = pg_fetch_row($result_posts)){
+                if($row[0]==$row[1]){
+                echo '<a href="search.php?variable_search='.$row[0].'">'.$row[0].'</a>';
+                echo ' posted to Everyone';
+                echo '<br>';
+                echo $row[2]." ".$row[3]."";
+                echo '<br>';
+                echo '<br>';
+              }
+                else{
                 echo '<a href="search.php?variable_search='.$row[0].'">'.$row[0].'</a>';
                 echo ' posted to ';
                 echo '<a href="search.php?variable_search='.$row[1].'">'.$row[1].'</a>';
@@ -145,6 +154,7 @@
                 echo $row[2]." ".$row[3]."";
                 echo '<br>';
                 echo '<br>';
+                }
               }
               echo '</p>';
 

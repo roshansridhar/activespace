@@ -45,9 +45,9 @@
      <label>Email ID: <input type="email" name="form_email" required="" /></label><br>
      <label>Phone: <input type="number" name="form_phone"></label><br>
      <label>Date of Birth: <input type="date" name="form_dob" required="" /></label><br>
-     <label><input type="radio" name="form_gender" value="m">Male</label><br>
-     <label><input type="radio" name="form_gender" value="f">Female</label><br>
-     <label><input type="radio" name="form_gender" value="o">Other</label><br>
+     <label><input type="radio" name="form_gender" value=" Male ">Male</label><br>
+     <label><input type="radio" name="form_gender" value=" Female ">Female</label><br>
+     <label><input type="radio" name="form_gender" value=" Other ">Other</label><br>
      <label>Choose your privacy setting:</label><br>
         <select name="visibility">
           <option value = "0" default>Only Me</option>
