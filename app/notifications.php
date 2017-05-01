@@ -42,18 +42,14 @@
         $currentuser="select user_id from userinfo where email_id='".$_SESSION['EmailID']."';";
         $result1=pg_query($currentuser);
         $userone=pg_fetch_row($result1)[0];
-
-// obtain all the userids from user table to check if new friend requests have been sent or accepted
-        $profileuser="select user_id from userinfo;";
-        $result2=pg_query($profileuser);
-        $userone=pg_fetch_row($result2)[0];
               
         echo '<p><br> PENDING FRIEND REQUESTS <br><br>';
 
 // Displays the previously accepted friend requests with timestamps and pending request 
         
-          $friendstat="select count(*) from friendrelation where 
-              friendship_status='1' and user_one_id IN (".(int)$userone.") or user_two_id IN (".(int)$userone." )and action_user_id NOT IN (".(int)$userone.");";
+          $friendstat="With friends as (select * from friendrelation where friendship_status=1 and action_user_id <> ".(int)$userone.")
+
+select count(*) from friends where user_one_id  = ".(int)$userone." or user_two_id =".(int)$userone.";";
           $result=pg_query($friendstat);
           $row= pg_fetch_row($result);
 
@@ -67,8 +63,9 @@
 
           echo '<p><br> ACCEPTED FRIEND REQUESTS (sent by you) <br><br>';
 
-          $friendstat2="select count(*) from friendrelation where 
-              friendship_status='2' and user_one_id IN (".(int)$userone.") or user_two_id IN (".(int)$userone.") and action_user_id IN ('".(int)$userone[0]."');";
+          $friendstat2="With friends as (select * from friendrelation where friendship_status=2 and action_user_id = ".(int)$userone.")
+
+select count(*) from friends;";
           $result2=pg_query($friendstat2);
           $row= pg_fetch_row($result2);
 
@@ -81,11 +78,11 @@
 
           echo '<p><br> POSTS RECEIVED  <br><br>';
 
-          $query_posts =  "select count(*) from posts where postee_id=".(int)$userone.";"; 
+          $query_posts =  "select count(*) from posts where postee_id=".(int)$userone." and poster_id <> ".(int)$userone.";"; 
           $result3=pg_query($query_posts);
-          $row= pg_fetch_row($result3);
-          echo 'You have '.(int)$row[0].' posts in your inbox. Click here to check them out and reply';
-          echo '<button><a href= "messages.php"> Posts Messages </a></button>';
+          $row3= pg_fetch_row($result3);
+          echo 'You have '.(int)$row3[0].' posts in your inbox. Click here to check them out and reply';
+          echo '<button><a href= "message.php"> Posts Messages </a></button>';
 
             }
         ?>
