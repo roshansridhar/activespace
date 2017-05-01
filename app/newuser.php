@@ -5,17 +5,33 @@
   include('../includes/db_connect.php');  
 ?>
 
-<!-- User gets a notification indicating if the username already exists -->
-<?php
-  $ID='';
-  if(isset($_POST["newuser_submit"])){
-    $query = " SELECT username from userinfo where username = '$_POST[form_username]' ";
-    $result = pg_query($query);
-    if(pg_num_rows($result)>0){
-        $msg = 'Username already exists. Please choose a different username.';
+<!-- checks for existing user, else enters new user details in the backed -->
+  <?php
+    if(isset($_POST["newuser_submit"])){ 
+
+        $querya = "SELECT email_id FROM userinfo WHERE email_id like '$_POST[form_email]';";
+        $resa = pg_query($querya) or die("Cannot execute query: $query\n");
+        
+        $query = " SELECT username from userinfo where username = '$_POST[form_username]' ";
+        $result = pg_query($query);
+        if(pg_num_rows($result)>0){
     }
-  }
-?>
+
+
+        if(pg_num_rows($res)>0){
+          echo '<p>Email already exists. Please go back and login with your credentials.</p>';
+        }
+        else if(pg_num_rows($resa)>0){
+            echo "<p>Username already exists. Please choose a different username.</p>";
+        }
+        else{
+          $query = "INSERT INTO userinfo VALUES (DEFAULT,LOCALTIMESTAMP,'$_POST[form_email]','$_POST[form_username]','$_POST[form_password]','$_POST[form_first]','$_POST[form_last]',$_POST[form_phone],'$_POST[form_gender]','$_POST[form_dob]',NULL,LOCALTIMESTAMP,LOCALTIMESTAMP,'".$_POST['about_me_text']."',NULL,$_POST[visibility],$_POST[form_loc]);";
+        
+          $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
+          echo "<p>New user created successfully. Please log in with your email ID and password on the login screen.</p>";
+          }
+    }  
+  ?>
 
 <!DOCTYPE html>
 <html>
@@ -77,23 +93,3 @@
         </div>
 </body>
 </html>
-
-<!-- checks for existing user, else enters new user details in the backed -->
-  <?php
-    if(isset($_POST["newuser_submit"])){ 
-
-        $query = "SELECT email_id FROM userinfo WHERE email_id like '$_POST[form_email]';";
-        $res = pg_query($query) or die("Cannot execute query: $query\n");
-        
-        if(pg_num_rows($res)>0){
-          echo '<p>Email already exists. Please go back and login with your credentials.</p>';
-        }
-        else{
-          $query = "INSERT INTO userinfo VALUES (DEFAULT,LOCALTIMESTAMP,'$_POST[form_email]','$_POST[form_username]','$_POST[form_password]','$_POST[form_first]','$_POST[form_last]',$_POST[form_phone],'$_POST[form_gender]','$_POST[form_dob]',NULL,LOCALTIMESTAMP,LOCALTIMESTAMP,'".$_POST['about_me_text']."',NULL,$_POST[visibility],$_POST[form_loc]);";
-        
-          $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
-          echo "<p>New user created successfully. Please log in with your email ID and password on the login screen.</p>";
-          }
-    }
-    pg_close($db);  
-  ?>
