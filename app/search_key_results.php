@@ -347,7 +347,7 @@
                 }
 
                 if ($input=="5"){
-                  echo '<p><br><br> Displaying USERS in this location <br><br></p>';
+                  echo '<h1><br><br> Displaying USERS in this location <br><br></h1>';
                   $query_loc= "select username from userinfo,location where userinfo.loc_id=location.loc_id and location.city like '%".$_POST['Name']."%' or location.state like '%".$_POST['Name']."%'or location.country like '%".$_POST['Name']."%';";
                   $execute=pg_query($query_loc);
                   while($rowc = pg_fetch_row($execute)){
@@ -355,7 +355,7 @@
                     }
                     
                    
-                    echo '<p><br><br> Displaying DIARY ENTRIES in this location <br><br></p>';
+                    echo '<h1><br><br> Displaying DIARY ENTRIES in this location <br><br></h1>';
                   $query_diary =  "WITH get_location as(select city, state, country, loc_id from location)
 
 select U.username,D.title, D.entry, D.multimedia, date(diarytime), L.city, L.state, L.country from diaryentry D, get_location L, userinfo U where D.user_id=U.user_id and L.loc_id=D.loc_id and L.city like '%".$_POST['Name']."%' or L.state like '%".$_POST['Name']."%'or L.country like '%".$_POST['Name']."%';";
@@ -376,7 +376,7 @@ select U.username,D.title, D.entry, D.multimedia, date(diarytime), L.city, L.sta
                 }
                   
                 
-                echo '<p><br><br> Displaying EVENTS in this location <br><br></p>';
+                echo '<h1><br><br> Displaying EVENTS in this location <br><br></h1>';
                 
               $query_events= "select title,event_time from events,location where events.loc_id=location.loc_id and location.city like '%".$_POST['Name']."%' or location.state like '%".$_POST['Name']."%'or location.country like '%".$_POST['Name']."%';";
                   $execute=pg_query($query_events);
