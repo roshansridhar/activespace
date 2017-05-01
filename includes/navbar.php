@@ -54,10 +54,13 @@
           <input type="radio" name="Association" value="2"> Photos
         </div>
         <div class="searchbox">
-          <input type="radio" name="Association" value="3"> Diary Entry 
+          <input type="radio" name="Association" value="3"> Diary
         </div>
         <div class="searchbox">
-          <input type="radio" name="Association" value="4"> Everything 
+          <input type="radio" name="Association" value="4"> Events 
+        </div>
+        <div class="searchbox">
+          <input type="radio" name="Association" value="5"> Location 
         </div>
         <br>
       </div>
