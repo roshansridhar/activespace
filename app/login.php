@@ -4,7 +4,7 @@ $ID='';
 $PWD='';
 include('../includes/db_connect.php'); 
 
-  
+#executes on submit button FROM log in form, it checks for invalid user/password else starts session  
 if(isset($_POST["submitbutton"])){     
     if(empty($_POST['EmailID'])) {
         $ID= 'No Email ID input';
@@ -21,7 +21,7 @@ if(isset($_POST["submitbutton"])){
             header('Location: '.'home.php');
         }
         else{
-             $Invalid_pwd = 'Username or Password is invalid. Please try again or seek Forgot password help!';
+             $Invalid_pwd = 'Username or Password is invalid. Please try again!';
         }
     }
 }
@@ -54,7 +54,9 @@ if(isset($_POST["submitbutton"])){
     </style>
     <h4> ActiveSpace </h4>
     <div align="center">
-         <form class="signin" action="login.php" align="center" method="post">       
+         <form class="signin" action="login.php" align="center" method="post"> 
+
+            <!-- FORM-Existing user LOGIN       -->
             <h2 class="heading"> Welcome Back, Lace Up! </h2>
             <input type="text" class="form-control" name="EmailID" placeholder="Email Address" required="" autofocus="" />
             <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
@@ -70,6 +72,8 @@ if(isset($_POST["submitbutton"])){
         <br>
         <br> 
         <br>
+
+            <!-- New User SIGN UP LINK -->
         <h2>Hello There! Lost in Space? There's always something on at ActiveSpace. Let's get started :)</h2>
             <div align="center">
         <a href="newuser.php" class="button"> <button> Sign UP </button> </a>

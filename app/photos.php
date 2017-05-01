@@ -13,8 +13,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Displaying all photos shared to the network  -->
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-    <title>ActiveSpace: Homepage</title>
+    <title>ActiveSpace: Multimedia</title>
     <link rel="stylesheet" type="text/css" href="../assets/styles/styles.css">
     <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="../assets/styles/home.css">
@@ -24,7 +25,7 @@
     <?php include('../includes/navbar.php'); ?>
 
     <div class="container">
-        <p align="center">M  Y      M  U  L  T  I  M  E  D  I  A</p>
+        <p align="center">M Y      P H O T O S </p>
          <p>
          <?php
            if(isset($_SESSION['EmailID'])){
