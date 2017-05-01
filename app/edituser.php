@@ -69,8 +69,8 @@
                     }
                 echo '</select>';
                 echo '<br><br>'; 
-                echo '<input type="submit" value="Submit" name="edituser_submit">';
-                echo '<input type="reset">';                
+                echo '<button><input type="submit" value="Submit" name="edituser_submit" width="100" height="100"></button>';
+                echo '<button><input type="reset" width="100" height="100"></button>';                
                 echo '</p>';
                 echo '</form>';
             }

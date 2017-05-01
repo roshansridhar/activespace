@@ -121,10 +121,9 @@
           <form class="comment" action="add_comment.php?diary_comment=<?php echo $diary_id ?>" align="left" method="post">
           <p>
           <input type="text" class="form-control" name="Comment" align="center" placeholder="Add Comment" />
-          <button> <input type="image" alt="Submit" src="comment_button.png" name="commentbutton" value="Submit" width="30" height="30"></button>   
           <input type="hidden" value="<?php echo $diary_id?>" name="diary_id">
           <input type="hidden" value="<?php echo $user_id?>" name="user_id">
-          
+          <button> <input type="image" alt="Submit" src="comment_button.png" name="commentbutton" value="Submit" width="30" height="30"></button>   
           </p>
           </form>
 

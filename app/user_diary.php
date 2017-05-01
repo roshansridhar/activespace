@@ -96,7 +96,8 @@ select D.diary_id,D.title, D.entry, D.multimedia, date(diarytime), L.city, L.sta
                }
                echo '<p>';
              echo '<a class="button" href="add_like.php?diary_like='.$diary[0].'"><img src="like_button.png" name="likebutton" value="Submit" width="25" height="25"></button></a>';
-              echo ' Click here to view diary entry LIKE THIS or ADD COMMENT ';
+               echo '   <a class="button" href="add_dlike.php?diary_like='.$diary[0].'"><img src="dlike_button.png" name="dlikebutton" value="Submit" width="35" height="35"></button></a>';
+               echo ' Click here to view diary entry LIKE THIS or ADD COMMENT ';
               echo '<a class="button" href="add_comment.php?diary_comment='.$diary[0].'"><img src="comment_button.png" name="commentbutton" value="Submit" width="25" height="25"></button></a>';
               echo '</p>';
               echo '</p>';
