@@ -35,7 +35,7 @@
 
 <!-- Form for user to fill out details about them -->
    <div align:"center" class="container">
-   <p align= "center">Create your profile</p
+   <p align= "center">Create your profile</p>
      <form align="center" method="POST">
      <p align="center"> 
      <label>Username: <input type="text" name="form_username" required="" /></label><br>
@@ -44,20 +44,19 @@
      <label>Last Name: <input type="text" name="form_last" required="" /></label><br>
      <label>Email ID: <input type="email" name="form_email" required="" /></label><br>
      <label>Phone: <input type="number" name="form_phone"></label><br>
-     <label>Date of Birth: <input type="date" name="form_dob"></label><br>
+     <label>Date of Birth: <input type="date" name="form_dob" required="" /></label><br>
      <label><input type="radio" name="form_gender" value="m">Male</label><br>
      <label><input type="radio" name="form_gender" value="f">Female</label><br>
      <label><input type="radio" name="form_gender" value="o">Other</label><br>
      <label>Choose your privacy setting:</label><br>
         <select name="visibility">
-          <option default>Choose who can see your profile and uploads...</option>
-          <option value = "0">Only Me</option>
+          <option value = "0" default>Only Me</option>
           <option value = "1">Friends</option>
           <option value = "2">Friends of friends</option>
           <option value = "3">Everyone</option>
         </select><br>
     <label>About Me:</label><br>
-      <textarea id="about_me_text"></textarea>
+      <textarea name="about_me_text"></textarea>
 
         <label>Location:</label>        
         <select name="form_loc">
@@ -90,7 +89,7 @@
           echo '<p>Email already exists. Please go back and login with your credentials.</p>';
         }
         else{
-          $query = "INSERT INTO userinfo VALUES (DEFAULT,LOCALTIMESTAMP,'$_POST[form_email]','$_POST[form_username]','$_POST[form_password]','$_POST[form_first]','$_POST[form_last]',$_POST[form_phone],'$_POST[form_gender]','$_POST[form_dob]','$_POST[picture_medium]',LOCALTIMESTAMP,LOCALTIMESTAMP,'$_POST[about_me_text]',NULL,$_POST[visibility],$_POST[form_loc]);";
+          $query = "INSERT INTO userinfo VALUES (DEFAULT,LOCALTIMESTAMP,'$_POST[form_email]','$_POST[form_username]','$_POST[form_password]','$_POST[form_first]','$_POST[form_last]',$_POST[form_phone],'$_POST[form_gender]','$_POST[form_dob]',NULL,LOCALTIMESTAMP,LOCALTIMESTAMP,'".$_POST['about_me_text']."',NULL,$_POST[visibility],$_POST[form_loc]);";
         
           $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
           echo "<p>New user created successfully. Please log in with your email ID and password on the login screen.</p>";
