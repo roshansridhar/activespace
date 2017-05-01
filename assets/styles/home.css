@@ -46,7 +46,7 @@ h4 {
   float: right;
   margin-top: -40px;
   display: inline-block;
-  background-color: rgba(255, 255, 255, .15);
+  background-color: rgba(255, 255, 255, .45);
   text-align: center;
   padding: 5px 5px;
   text-decoration: none;
@@ -71,7 +71,24 @@ div.postbox {
     padding: 10px;
     font-family: Arial;
 } 
-
+div.imagebox {
+  border: 1px black solid;
+    height: 64px;
+    width: 64px;
+    background: #444;
+    display: table-cell;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+    float: center;
+    background-color: rgba(255, 255, 255, .15);
+    margin: 10px 10 10px 10;
+}
+.imagebox img {
+    display:block;
+    margin: 0px auto;
+}
+     
 input[type="text"],input[type="password"],input[type="email"],input[type="number"],input[type="date"] {
     width: 200px;
     display: inline-block;
@@ -123,7 +140,7 @@ p{  width: 1250px;
     padding: 10px;
     margin: auto;
     overflow: ellipsis;
-    display:i nline-block;
+    display:i inline-block;
     position: relative;   
     float: center;
     white-space: pre-line;

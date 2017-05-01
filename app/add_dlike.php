@@ -36,19 +36,19 @@
 				     
 				      (int)$user_id=$row[0];
 
-        if($_GET['diary_like']){
-        (int)$diary_id=$_GET['diary_like'];
-        $likequery="select add_diarylikers('".$user_id."','".$diary_id."');";
+        if($_GET['diary_dlike']){
+        (int)$diary_id=$_GET['diary_dlike'];
+        $likequery="select add_diarydlikers('".$user_id."','".$diary_id."');";
         if($execute=@pg_query($likequery)){
-          echo '<input type ="image" src="like_button.png" width="45" height="45">';
-          echo '<br> Your like has been added <br>';
+          echo '<input type ="image" src="dlike_button.png" width="45" height="45">';
+          echo '<br> Your dislike has been added <br>';
         }
         else
-          echo 'You have previously liked this post!';
+          echo 'You have previously disliked this post!';
 
         }
 
-        echo '<a class="button" href="add_like.php?diary_like='.$diary_id.'"><img src="like_button.png" name="likebutton" value="Submit" width="25" height="25"></button></a>';
+        echo '<a class="button" href="add_dlike.php?diary_dlike='.$diary_id.'"><img src="dlike_button.png" name="dlikebutton" value="Submit" width="25" height="25"></button></a>';
               
 
 		 $query_diary =  "WITH get_location as(select city, state, country, loc_id from location)
@@ -94,8 +94,7 @@
                 else{
                   echo "Give this a thumbs down!!";
                 }
-                echo '<br>';
-                echo '<br>';
+                
                
                 
                 echo '<br>';
@@ -113,6 +112,7 @@
                   echo " on ".$comments[2]." said ";
                   echo '<br>';
                   echo $comments[1];
+                  echo '<br>';
                  } 
                }
       }
@@ -120,11 +120,10 @@
            ?>
           <form class="comment" action="add_comment.php?diary_comment=<?php echo $diary_id ?>" align="left" method="post">
           <p>
-          <input type="text" class="form-control" name="Comment" align="center" placeholder="Add Comment" />
-          <button> <input type="image" alt="Submit" src="comment_button.png" name="commentbutton" value="Submit" width="30" height="30"></button>   
+          <input type="text" class="form-control" name="Comment" align="center" placeholder="Add a Comment in here" />
           <input type="hidden" value="<?php echo $diary_id?>" name="diary_id">
           <input type="hidden" value="<?php echo $user_id?>" name="user_id">
-          
+          <button> <input type="image" alt="Submit" src="comment_button.png" name="commentbutton" value="Submit" width="30" height="30"></button>   
           </p>
           </form>
 

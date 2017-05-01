@@ -116,6 +116,22 @@
                 }
                 echo '<br>';
                 echo '<br>';
+                $query_dlikes= "WITH get_dlikes as
+                (select count(*) as counter,diary_id from diary_dlikes group by diary_id)
+
+                select L.counter,L.diary_id from get_dlikes L where L.diary_id='".$diary[0]."';";
+                $result_dlikes=pg_query($query_dlikes);
+                (int)$dlikes=pg_fetch_row($result_dlikes);
+                echo '<p>';
+                if((int)$dlikes[0]>0){
+                  echo '<a href="dlikers.php?dliker='.$dlikes[1].'">'.(int)$dlikes[0]."</a> users dislike this post ";
+                }
+                else{
+                  echo "Give this a thumbs down!!";
+                }
+                echo '<br>';
+                echo '<br>';
+
 
                 $query_comments= "WITH get_username as
                 (select username,user_id from userinfo)
@@ -135,7 +151,8 @@
                }
 
               echo '<a class="button" href="add_like.php?diary_like='.$diary[0].'"><img src="like_button.png" name="likebutton" value="Submit" width="25" height="25"></button></a>';
-              echo ' Click here to view diary entry LIKE THIS or ADD COMMENT ';
+               echo '   <a class="button" href="add_dlike.php?diary_dlike='.$diary[0].'"><img src="dlike_button.png" name="dlikebutton" value="Submit" width="35" height="35"></button></a>';
+               echo ' Click here to view diary entry LIKE THIS or ADD COMMENT ';
               echo '<a class="button" href="add_comment.php?diary_comment='.$diary[0].'"><img src="comment_button.png" name="commentbutton" value="Submit" width="25" height="25"></button></a>';
               echo '</p>';
              
@@ -275,6 +292,21 @@
                 }
                 echo '<br>';
                 echo '<br>';
+                $query_dlikes= "WITH get_dlikes as
+                (select count(*) as counter,diary_id from diary_dlikes group by diary_id)
+
+                select L.counter,L.diary_id from get_dlikes L where L.diary_id='".$diary[0]."';";
+                $result_dlikes=pg_query($query_dlikes);
+                (int)$dlikes=pg_fetch_row($result_dlikes);
+                echo '<p>';
+                if((int)$dlikes[0]>0){
+                  echo '<a href="dlikers.php?dliker='.$dlikes[1].'">'.(int)$dlikes[0]."</a> users dislike this post ";
+                }
+                else{
+                  echo "Give this a thumbs down!!";
+                }
+                echo '<br>';
+                echo '<br>';
 
                 $query_comments= "WITH get_username as
                 (select username,user_id from userinfo)
@@ -294,7 +326,8 @@
                }
 
               echo '<a class="button" href="add_like.php?diary_like='.$diary[0].'"><img src="like_button.png" name="likebutton" value="Submit" width="25" height="25"></button></a>';
-              echo ' Click here to view diary entry LIKE THIS or ADD COMMENT ';
+               echo '   <a class="button" href="add_dlike.php?diary_like='.$diary[0].'"><img src="dlike_button.png" name="dlikebutton" value="Submit" width="35" height="35"></button></a>';
+               echo ' Click here to view diary entry LIKE THIS or ADD COMMENT ';
               echo '<a class="button" href="add_comment.php?diary_comment='.$diary[0].'"><img src="comment_button.png" name="commentbutton" value="Submit" width="25" height="25"></button></a>';
               echo '</p>';
              

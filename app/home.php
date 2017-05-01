@@ -36,19 +36,22 @@
               $query= "select username, picture_medium from userinfo where email_id='".$_SESSION['EmailID']."';";
               $result=pg_query($query);
               if($row = pg_fetch_row($result)){
+                echo'<p align="center">';
                 if($row[1]==NULL){
-                  echo '<p> We see you still dont have any display picture! Click upload to get started!<br><a href=upload_dp.php><button>UPLOAD</button></a><br><br>';
+                  echo 'We see you still dont have any display picture! Click upload to get started!<br><a href=upload_dp.php><button>UPLOAD</button></a><br><br>';
                 }
                 else{
-                   echo '<img class= "imageformat" src="uploads/'.$row[1].'" float="center" width="300" height="400">';
+                   echo '<img class="imageformat" src="uploads/'.$row[1].'" align="center" width="180" height="250"><br>';
                 }
-                echo $row[0].'! Its good to see you up and running! <br><br>';
+                
+                echo '<br>'.$row[0].'! Its good to see you up and running! <br><br>';
                 echo 'Click on either of the buttons below to share a POST or DIARY ENTRY or PICTURE about your latest ventures<br>';
                  echo '<p align="center">';
                 echo '<a href="upload_post.php"><button>**   POST IT!   **</button></a> ';
                 echo '<a href="upload_diary.php"><button>**   DIARY IT!   **</button></a>';
-                echo '<a href="upload_photo.php"><button>**   SNAP IT!    **</button></a></p>';
-                echo '<br><br><br><p> Below you will find updates from your network. Come, lets activate the space! </p><br><br><br>';
+                echo '<a href="upload_photo.php"><button>**   SNAP IT!    **</button></a>';
+                echo '</p>';
+                echo '<br><br><br><<h2> Below you will find updates from your network. Come, lets activate the space! </h2><br><br><br>';
                
               }
 
@@ -72,7 +75,7 @@
             
             if($diary = pg_fetch_row($result_diary)){
 
-                echo '<p>'.$diary[1].'</p>';
+                echo '<h1>'.$diary[1].'</h1>';
                 echo '<p> by <a href="search.php?variable_search='.$diary[8].'">'. $diary[8].'</a>';
                 echo ' on '. $diary[4].' ';
                 echo ' at '.$diary[5].", ".$diary[6].", ".$diary[7].'';
@@ -97,6 +100,22 @@
                 echo '<br>';
                 echo '<br>';
 
+                $query_dlikes= "WITH get_dlikes as
+                (select count(*) as counter,diary_id from diary_dlikes group by diary_id)
+
+                select L.counter,L.diary_id from get_dlikes L where L.diary_id='".$diary[0]."';";
+                $result_dlikes=pg_query($query_dlikes);
+                (int)$dlikes=pg_fetch_row($result_dlikes);
+                echo '<p>';
+                if((int)$dlikes[0]>0){
+                  echo '<a href="dlikers.php?dliker='.$dlikes[1].'">'.(int)$dlikes[0]."</a> users dislike this post ";
+                }
+                else{
+                  echo "Give this a thumbs down!!";
+                }
+                echo '<br>';
+                echo '<br>';
+
                 $query_comments= "WITH get_username as
                 (select username,user_id from userinfo)
 
@@ -115,7 +134,8 @@
                }
               echo '<br><br>';
               echo '<a class="button" href="add_like.php?diary_like='.$diary[0].'"><img src="like_button.png" name="likebutton" value="Submit" width="35" height="35"></button></a>';
-              echo ' Click here to view diary entry LIKE THIS or ADD COMMENT ';
+              echo '   <a class="button" href="add_dlike.php?diary_dlike='.$diary[0].'"><img src="dlike_button.png" name="dlikebutton" value="Submit" width="35" height="35"></button></a>';
+              echo ' Click here to view diary entry LIKE / DISLIKE or ADD COMMENT ';
               echo '<a class="button" href="add_comment.php?diary_comment='.$diary[0].'"><img src="comment_button.png" name="commentbutton" value="Submit" width="35" height="35"></button></a>';
               echo '</p>';
              

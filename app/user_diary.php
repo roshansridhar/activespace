@@ -58,6 +58,21 @@ select D.diary_id,D.title, D.entry, D.multimedia, date(diarytime), L.city, L.sta
                 else{
                   echo "Be the first to like this ";
                 }
+                 $query_dlikes= "WITH get_dlikes as
+                (select count(*) as counter,diary_id from diary_dlikes group by diary_id)
+
+                select L.counter,L.diary_id from get_dlikes L where L.diary_id='".$diary[0]."';";
+                $result_dlikes=pg_query($query_dlikes);
+                (int)$dlikes=pg_fetch_row($result_dlikes);
+                echo '<p>';
+                if((int)$dlikes[0]>0){
+                  echo '<a href="dlikers.php?dliker='.$dlikes[1].'">'.(int)$dlikes[0]."</a> users dislike this post ";
+                }
+                else{
+                  echo "Give this a thumbs down!!";
+                }
+                echo '<br>';
+                echo '<br>';
                 echo '</p>';
                 echo '<br>';
                 echo '<br>';

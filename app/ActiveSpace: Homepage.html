@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <title>ActiveSpace: Homepage</title>
+    <link rel="stylesheet" type="text/css" href="../assets/styles/styles.css">
+    <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="../assets/styles/home.css">
+</head>
+
+<body>
+    <a href="home.php" color="#FFCA28"><h4> ActiveSpace </h4></a>
+    <a href="logout.php">
+    <img align="right" style="float:right; margin-top: -140px; display: inline-block; padding: 10px 10px;"src="Power_button.png" name="logout" width="70" height="70">
+    </a>
+
+    <a href="message.php">
+    <img align="right" style="float:right; margin-top: -125px; margin-right: 100px; display: inline-block; padding: 10px 10px;" src="inbox.gif" name="message" width="50" height="50">
+    </a>
+
+    <a href="visibility.php">
+    <img align="right" style="float:right; margin-top: -125px; margin-right: 200px; display: inline-block; padding: 10px 10px;" src="gear.png" name="message" width="50" height="50">
+    </a>
+
+    <a href="edituser.php">
+    <img align="right" style="float:right; margin-top: -125px; margin-right: 300px; display: inline-block; padding: 10px 10px;" src="editprofile.png" name="message" width="50" height="50">
+    </a>
+
+    <a href="events.php">
+    <img align="right" style="float:right; margin-top: -125px; margin-right: 400px; display: inline-block; padding: 10px 10px;" src="events.png" name="message" width="50" height="50">
+    </a>
+
+    <a href="home.php" ><button class="tabs_button">My Live Feed</button></a>
+    <a href="profile.php"><button class="tabs_button">My Profile</button></a>
+    <a href="diary.php"><button class="tabs_button" onclick="diary.php?variable1=".$_SESSION['EMAIL_ID']>My Diary Entry</button></a>
+    <a href="photos.php"><button class="tabs_button">My Photos</button></a>
+    <a href="posts.php"><button class="tabs_button">My Posts</button></a>
+    
+
+    <form class="search" action="../app/search_results.php" align="left" method="post">       
+      <div class="searchbox">
+        <input type="text" class="form-control" name="Name" placeholder="Search Network" />
+        <input type="image" alt="Submit" align="center" src="search_human.png" name="searchbutton"  width="50" height="50"></div><br>
+        <div class="searchbox">
+          <input type="radio" name="Association" value="1" checked /> Friend
+        </div>
+        <div class="searchbox">
+          <input type="radio" name="Association" value="2"> Friend of Friend
+        </div>
+        <div class="searchbox">
+          <input type="radio" name="Association" value="3"> Everyone 
+        </div>
+        <br>
+      </div>
+    </form> 
+
+<form class="search" action="../app/search_key_results.php" align="left" method="post">       
+      <div class="searchbox">
+        <input type="text" class="form-control" name="Name" placeholder="Search ActiveSpace" />
+        <input type="image" alt="Submit" align="center" src="search_posts.png" name="searchbutton"  width="50" height="50"></div><br>
+        <div class="searchbox">
+          <input type="radio" name="Association" value="1" checked /> Posts
+        </div>
+        <div class="searchbox">
+          <input type="radio" name="Association" value="2"> Photos
+        </div>
+        <div class="searchbox">
+          <input type="radio" name="Association" value="3"> Diary
+        </div>
+        <div class="searchbox">
+          <input type="radio" name="Association" value="4"> Events 
+        </div>
+        <div class="searchbox">
+          <input type="radio" name="Association" value="5"> Location 
+        </div>
+        <br>
+      </div>
+    </form> 
+
+
+    <div class="container">
+        <p align="center">L    I    V    E    F    E    E    D</p>
+         <p>
+         <p align="center"><img class="imageformat" src="uploads/fiona_new_dp.jpg" align="center" width="180" height="250"><br>AndreaJovi123! Its good to see you up and running! <br><br>Click on either of the buttons below to share a POST or DIARY ENTRY or PICTURE about your latest ventures<br><p align="center"><a href="upload_post.php"><button>**   POST IT!   **</button></a> <a href="upload_diary.php"><button>**   DIARY IT!   **</button></a><a href="upload_photo.php"><button>**   SNAP IT!    **</button></a></p><br><br><br><p> Below you will find updates from your network. Come, lets activate the space! </p><br><br><br><br><div class="postbox"><p>D   I   A   R   Y</p><br><p>Srinidhi@makerspace</p><p> by <a href="search.php?variable_search=BCraig">BCraig</a> on 2017-04-26  at New York, NY, United States<br><img class= "imageformat" src="uploads/20170426_135125.jpg"><br>Beach balloon fun!<p><a href="likers.php?liker=52">3</a> users like this post <br><br><p><a href="search.php?variable_search=AndreaJovi123">AndreaJovi123</a> on 2017-04-26 said <br>LOL too good<br><a href="search.php?variable_search=AndreaJovi123">AndreaJovi123</a> on 2017-04-26 said <br>What is going on! Where did that ball come from<br><br><br><a class="button" href="add_like.php?diary_like=52"><img src="like_button.png" name="likebutton" value="Submit" width="35" height="35"></button></a> Click here to view diary entry LIKE THIS or ADD COMMENT <a class="button" href="add_comment.php?diary_comment=52"><img src="comment_button.png" name="commentbutton" value="Submit" width="35" height="35"></button></a></p><br><br><p>P   O   S   T   S</p><br><p><a href="search.php?variable_search=mon">mon</a> posted to <a href="search.php?variable_search=AndreaJovi123">AndreaJovi123</a><br>you to brutuse 2017-04-28<br><br><a href="search.php?variable_search=mon">mon</a> posted to <a href="search.php?variable_search=AndreaJovi123">AndreaJovi123</a><br>Can anybody hear me?? 2017-04-28<br><br><a href="search.php?variable_search=mon">mon</a> posted to Everyone<br>can anybody hear me 2017-04-28<br><br><a href="search.php?variable_search=mon">mon</a> posted to <a href="search.php?variable_search=AndreaJovi123">AndreaJovi123</a><br>Hello hello hello 2017-04-28<br><br><a href="search.php?variable_search=FionaSequeira">FionaSequeira</a> posted to <a href="search.php?variable_search=AndreaJovi123">AndreaJovi123</a><br>hey, just saw your message 2017-04-27<br><br><a href="search.php?variable_search=Maxx">Maxx</a> posted to <a href="search.php?variable_search=danielcharles007">danielcharles007</a><br>hey 2017-04-24<br><br><a href="search.php?variable_search=Maxx">Maxx</a> posted to Everyone<br>hey 2017-04-24<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to <a href="search.php?variable_search=darwin_johanson">darwin_johanson</a><br>Hey, can you give me a call at the earliest? 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to <a href="search.php?variable_search=darwin_johanson">darwin_johanson</a><br>Hey, can you give me a call at the earliest? 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to <a href="search.php?variable_search=darwin_johanson">darwin_johanson</a><br>Hey, can you give me a call at the earliest? 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to <a href="search.php?variable_search=danielcharles007">danielcharles007</a><br>HEY!!! 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to <a href="search.php?variable_search=darwin_johanson">darwin_johanson</a><br>ff 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to <a href="search.php?variable_search=darwin_johanson">darwin_johanson</a><br>ff 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to <a href="search.php?variable_search=danielcharles007">danielcharles007</a><br>Can we speak soon, please? 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to <a href="search.php?variable_search=danielcharles007">danielcharles007</a><br>Can we speak soon, please? 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to <a href="search.php?variable_search=danielcharles007">danielcharles007</a><br>Can we speak soon, please? 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to <a href="search.php?variable_search=darwin_johanson">darwin_johanson</a><br>Hey, can you give me a call at the earliest? 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to <a href="search.php?variable_search=darwin_johanson">darwin_johanson</a><br>Hey, can you give me a call at the earliest? 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to Everyone<br>Whos gonna be in NYC tomorrow 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to Everyone<br>f 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to Everyone<br>f 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to Everyone<br>f 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to Everyone<br>hey 2017-04-23<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to <a href="search.php?variable_search=darwin_johanson">darwin_johanson</a><br>g 2017-04-23<br><br><a href="search.php?variable_search=FaySn0w001">FaySn0w001</a> posted to <a href="search.php?variable_search=BCraig">BCraig</a><br>POSTS 2017-04-13<br><br><a href="search.php?variable_search=darwin_johanson">darwin_johanson</a> posted to <a href="search.php?variable_search=BCraig">BCraig</a><br>POSTS 2017-04-13<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a> posted to <a href="search.php?variable_search=BCraig">BCraig</a><br>POSTS 2017-04-13<br><br><a href="search.php?variable_search=Watsonsden777">Watsonsden777</a> posted to <a href="search.php?variable_search=BCraig">BCraig</a><br>POSTS 2017-04-13<br><br><a href="search.php?variable_search=FaySn0w001">FaySn0w001</a> posted to <a href="search.php?variable_search=BCraig">BCraig</a><br>POSTS 2017-04-13<br><br><a href="search.php?variable_search=BCraig">BCraig</a> posted to Everyone<br>POSTS 2017-04-13<br><br></p><br><p>M   E   D   I   A</p><br><p><a href="search.php?variable_search=mon">mon</a><br><img class= "imageformat" src="uploads/17814453_1453509068026629_920407809648868837_o.jpg">meme 2017-04-28<br><br><a href="search.php?variable_search=FionaSequeira">FionaSequeira</a><br><img class= "imageformat" src="uploads/trial_dp1.jpg"> 2017-04-28<br><br><a href="search.php?variable_search=FionaSequeira">FionaSequeira</a><br><img class= "imageformat" src="uploads/trial_dp.jpg"> 2017-04-28<br><br><a href="search.php?variable_search=FionaSequeira">FionaSequeira</a><br><img class= "imageformat" src="uploads/trial.jpg"> 2017-04-28<br><br><a href="search.php?variable_search=FionaSequeira">FionaSequeira</a><br><img class= "imageformat" src="uploads/dee.jpg"> 2017-04-28<br><br><a href="search.php?variable_search=FionaSequeira">FionaSequeira</a><br><img class= "imageformat" src="uploads/dp.jpg"> 2017-04-28<br><br><a href="search.php?variable_search=FionaSequeira">FionaSequeira</a><br><img class= "imageformat" src="uploads/fiona1.jpg">fiona 2017-04-28<br><br><a href="search.php?variable_search=mon">mon</a><br><img class= "imageformat" src="uploads/loneycow_logo_high-res.jpg">moo 2017-04-27<br><br><a href="search.php?variable_search=darwin_johanson">darwin_johanson</a><br><img class= "imageformat" src="uploads/image.jpg">content 2017-04-21<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a><br><img class= "imageformat" src="uploads/">text 2017-04-12<br><br><a href="search.php?variable_search=Maxx">Maxx</a><br><img class= "imageformat" src="uploads/">text 2017-04-12<br><br><a href="search.php?variable_search=BCraig">BCraig</a><br><img class= "imageformat" src="uploads/">text 2017-04-12<br><br><a href="search.php?variable_search=BCraig">BCraig</a><br><img class= "imageformat" src="uploads/">text 2017-04-12<br><br><a href="search.php?variable_search=hiltonscarlett">hiltonscarlett</a><br><img class= "imageformat" src="uploads/">text 2017-04-12<br><br><a href="search.php?variable_search=Watsonsden777">Watsonsden777</a><br><img class= "imageformat" src="uploads/">text 2017-04-12<br><br><a href="search.php?variable_search=FaySn0w001">FaySn0w001</a><br><img class= "imageformat" src="uploads/">text 2017-04-12<br><br><a href="search.php?variable_search=FaySn0w001">FaySn0w001</a><br><img class= "imageformat" src="uploads/">text 2017-04-12<br><br><a href="search.php?variable_search=darwin_johanson">darwin_johanson</a><br><img class= "imageformat" src="uploads/">text 2017-04-12<br><br><a href="search.php?variable_search=InaWoody09">InaWoody09</a><br><img class= "imageformat" src="uploads/">text 2017-04-12<br><br><a href="search.php?variable_search=darwin_johanson">darwin_johanson</a><br><img class= "imageformat" src="uploads/">text 2017-04-12<br><br></p>      </p>
+    </div>
+  </body>
+</html>
