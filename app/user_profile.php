@@ -31,9 +31,9 @@
         <p align="center">L    I    V    E    F    E    E    D</p>
          <p>
          <?php
-           if(isset($_SESSION['EmailID'])){
+           if(isset($_GET['user'])){
 
-              $query= "select username, picture_medium from userinfo where email_id='".$_SESSION['EmailID']."';";
+              $query= "select username, picture_medium from userinfo where username='".$_GET['user']."';";
               $result=pg_query($query);
               if($row = pg_fetch_row($result)){
                 echo'<p align="center">';
@@ -41,7 +41,7 @@
                   echo 'We see you still dont have any display picture! Click upload to get started!<br><a href=upload_dp.php><button>UPLOAD</button></a><br><br>';
                 }
                 else{
-                   echo '<img class="imageformat" src="uploads/'.$row[1].'" align="center" width="250" height="250"><br>';
+                   echo '<img class="imageformat" src="uploads/'.$row[1].'" align="center" width="180" height="250"><br>';
                 }
                 
                 echo '<br>'.$row[0].'! Its good to see you up and running! <br><br>';
