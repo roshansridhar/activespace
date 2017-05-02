@@ -40,15 +40,16 @@
             $result_posts=pg_query($query_posts);
             echo '<p>';
             while($row = pg_fetch_row($result_posts)){
-              echo '<a href="search.php?variable_search='.$row[0].'">'.$row[0].'</a>';
-              echo ' posted the following to you!';
+              echo '<button><a href="search.php?variable_search='.$row[0].'">'.$row[0].'</a>';
+              echo ' posted to you!';
               echo '<br>';
               echo $row[1]." on ".$row[2]."";
               echo '<br>';
               echo '<br>';
+              echo '<a href="upload_post.php">Reply to the posts</button></a>'; 
             }
-           echo '</p> <a href="posts.php><button>Reply to the posts<button></a>'; 
-          
+           
+          echo '</p>';
          }   
         ?>
       </p>

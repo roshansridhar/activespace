@@ -42,16 +42,16 @@
           }
       ?>
       <input type="submit" value="Submit" name="visibility_selection">
+      <?php
+        if(isset($_POST["visibility_selection"])){
+          $query = "UPDATE userinfo SET network_visibility = $_POST[visibility_option] WHERE email_id = '$_SESSION[EmailID]';";
+          $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
+          echo "<div align='center'><p>Visibility settings edited successfully.</p></div>";
+        }
+      ?>
       </p>
       </form>
     </div>
   </body>
 </html>
 
-<?php
-    if(isset($_POST["visibility_selection"])){
-      $query = "UPDATE userinfo SET network_visibility = $_POST[visibility_option] WHERE email_id = '$_SESSION[EmailID]';";
-      $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
-      echo "<p align='center'>Visibility settings edited successfully.</p>";
-    }
-?>
