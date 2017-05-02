@@ -87,6 +87,7 @@
           echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
           echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
+          echo '<a href="user_friends.php?item='.$searchuser.'"><button class="tabs_button"> Friends</button></a>';
           echo '<br><br></p>';
          }
 
@@ -125,6 +126,7 @@
           echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
           echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
+          echo '<a href="user_friends.php?item='.$searchuser.'"><button class="tabs_button"> Friends</button></a>';
           echo '<br><br></p>';
          }
 
@@ -167,6 +169,7 @@
           echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
           echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
+          echo '<a href="user_friends.php?item='.$searchuser.'"><button class="tabs_button"> Friends</button></a>';          
           echo '<br><br></p>';
          }
          
@@ -192,6 +195,7 @@
           echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
           echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
+          echo '<a href="user_friends.php?item='.$searchuser.'"><button class="tabs_button"> Friends</button></a>';
           echo '<br>';
               }
 
@@ -235,6 +239,7 @@
           echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
           echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
+          echo '<a href="user_friends.php?item='.$searchuser.'"><button class="tabs_button"> Friends</button></a>';
           echo '<br>';
               }
 
@@ -284,6 +289,7 @@
           echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
           echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
+          echo '<a href="user_friends.php?item='.$searchuser.'"><button class="tabs_button"> Friends</button></a>';
           echo '<br>';
          }
                 }}
@@ -308,6 +314,7 @@
           echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
           echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
+          echo '<a href="user_friends.php?item='.$searchuser.'"><button class="tabs_button"> Friends</button></a>';
           echo '<br>';
               }
             }

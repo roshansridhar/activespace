@@ -82,7 +82,7 @@
                         $id_op=pg_fetch_row($result1);
                         $query = "select upload_dp('".$filename."','".$id_op[0]."'); ";
                         $result = pg_query($query);
-                        echo "File has been successfully uploaded! <br> Click on Photos in navigation bar to check out the latest uploads!";
+                        echo "File has been successfully uploaded! <br> Click on My Profile in navigation bar to check out your display picture!";
                     } 
                     // If moving a file does not work.
                     else {
