@@ -89,7 +89,6 @@ select D.diary_id,D.title, D.entry, D.multimedia, date(diarytime), L.city, L.sta
                   while($comments=pg_fetch_row($result_comments)){
                   echo '<a href="search.php?variable_search='.$comments[0].'">'.$comments[0].'</a>';
                   echo " on ".$comments[2]." said ";
-                  echo '<br>';
                   echo $comments[1];
                   echo '<br>';
                  } 

@@ -99,7 +99,7 @@
                   echo " on ".$comments[2]." said ";
                   echo '<br>';
                   echo $comments[1];
-                
+                  echo '<br>';
                  } 
                }
       }
