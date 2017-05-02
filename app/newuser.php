@@ -22,6 +22,8 @@
   <a href="home.php" color="#FFCA28"><h4> ActiveSpace </h4></a>
   <div align:"center"; style="color: red; background:rgba(0, 0, 0, .70); font-size: 15px;" ><?php echo $msg ?></div>
 
+  <div class="container">
+
 
 <!-- checks for existing user, else enters new user details in the backed -->
   <?php
@@ -50,7 +52,9 @@
           echo '<a href="login.php><button> LOGIN </button></a>';}
     }  
   ?>
+    </div>
 
+    
 <!-- Form for user to fill out details about them -->
    <div align:"center" class="container">
    <p align= "center">Create your profile</p>
