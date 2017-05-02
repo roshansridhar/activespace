@@ -83,11 +83,12 @@
             }
          
           echo '</p>';
+          echo '<br><br><br><p>';
           echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
           echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
-      
-          }
+          echo '<br><br></p>';
+         }
 
 
           else if($row[0]==2){
@@ -120,11 +121,11 @@
            echo 'Birthday :'.$info[8].'<br><br>';
            echo '<br> Last seen on ActiveSpace :'.$info[9].'<br></p>';
          }
-         echo '<br><br>';
+         echo '<br><br><br><p>';
           echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
           echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
-          echo '<br>';
+          echo '<br><br></p>';
          }
 
           }
@@ -133,16 +134,19 @@
           else if($row[0]==1){
               
                   if($row[1]== (int)$userone){
+
                       echo "<p> You have already sent ".$_GET['variable_search']." a request to connect </p>";
 
                   if (($vid[0]==0)||($vid[0]==1)){
                    echo "User does not share his Posts/Diary/Photos"; 
                   }
 
-                  while($rowfof = pg_fetch_row($resultfof)){
-                  if(($vid[0]==2)&&($rowfof[0]==(int)$usertwo)){
+                  if($vid[0]==2){
+                    echo '<p> User shares posts with Friends of Friends, if you can view the profile you have mutual friends! </p>';
+                      while($rowfof = pg_fetch_row($resultfof)){
+                        if(($vid[0]==2)&&($rowfof[0]==(int)$usertwo)){
                     
-          echo '<br>';
+          echo '<p><br> Friend of a Friend!<br></p>';
           
           $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
           $finalresult=pg_query($extract);
@@ -159,18 +163,16 @@
            echo 'Birthday :'.$info[8].'<br><br>';
            echo '<br> Last seen on ActiveSpace :'.$info[9].'<br></p>';
          }
-         echo '<br><br>';
+         echo '<br><br><br><p>';
           echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
           echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
-          echo '<br>';
+          echo '<br><br></p>';
          }
-
-
-       }
-             
-                  
-                if($vid[0]==3){
+         
+         
+         }}
+          if($vid[0]==3){
                 $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
           $finalresult=pg_query($extract);
           
@@ -193,6 +195,8 @@
           echo '<br>';
               }
 
+              
+
               }
 
                     
@@ -207,43 +211,12 @@
                       echo '</p>';
 
 
-                  if (($vid[0]==0)||($vid[0]==1)){
+                  if ($vid[0]==0){
                    echo "<p>User does not share his Posts/Diary/Photos</p>"; 
                   }
                   
-                  while($rowfof = pg_fetch_row($resultfof)){
-              
-                  if(($vid[0]==2)&&($rowfof[0]==(int)$usertwo)){
-                    
-          echo '<br>';
-          
-          $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
-          $finalresult=pg_query($extract);
-          
-          echo '<p>';
-          while($info=pg_fetch_row($finalresult)){
-           echo 'USERNAME :'.$info[0].'<br>';
-          echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
-           echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
-           echo '<p>A little bit about me :'.$info[4].'</p><br>';
-           echo '<p> Things that interests :'.$info[5].'</p><br>';
-           echo '<p>Hit me up! :'.$info[6].'<br>';
-           echo 'Gender :'.$info[7].'<br>';
-           echo 'Birthday :'.$info[8].'<br><br>';
-           echo '<br> Last seen on ActiveSpace :'.$info[9].'<br></p>';
-         }
-         echo '<br><br>';
-          echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
-          echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
-          echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
-          echo '<br>';
-         }
-
-         
-                }
-                    
-
-                    if($vid[0]==3){
+                  
+         else{
           $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
           $finalresult=pg_query($extract);
           
@@ -283,13 +256,14 @@
           if ($vid[0]==1){
                    echo "<p>User does not share his Posts/Diary/Photos</p>"; 
                   }
-
+           if($vid[0]==2){
+                    echo '<p> User shares posts with Friends of Friends, if you can view the profile you have mutual friends! </p>';       
           while($rowfof = pg_fetch_row($resultfof)){
 
 
                   if(($vid[0]==2)&&($rowfof[0]==(int)$usertwo)){
                     
-          echo '<br>';
+          echo '<p><br> Friend of Friend <br></p>';
           
           $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
           $finalresult=pg_query($extract);
@@ -312,7 +286,7 @@
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
           echo '<br>';
          }
-                }
+                }}
 
           if($vid[0]==3){
           $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
@@ -337,6 +311,7 @@
           echo '<br>';
               }
             }
+            
          ?>
       </p>
     </div>
