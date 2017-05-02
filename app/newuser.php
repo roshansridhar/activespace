@@ -5,6 +5,26 @@
   include('../includes/db_connect.php');  
 ?>
 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <title>ActiveSpace: New User</title>
+    <link rel="stylesheet" type="text/css" href="../assets/styles/styles.css">
+    <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="../assets/styles/home.css">
+</head>
+
+<body>
+  
+  <a href="home.php" color="#FFCA28"><h4> ActiveSpace </h4></a>
+  <div align:"center"; style="color: red; background:rgba(0, 0, 0, .70); font-size: 15px;" ><?php echo $msg ?></div>
+
+  <div class="container">
+
+
 <!-- checks for existing user, else enters new user details in the backed -->
   <?php
     if(isset($_POST["newuser_submit"])){ 
@@ -32,23 +52,9 @@
           echo '<a href="login.php><button> LOGIN </button></a>';}
     }  
   ?>
+    </div>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-    <title>ActiveSpace: New User</title>
-    <link rel="stylesheet" type="text/css" href="../assets/styles/styles.css">
-    <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="../assets/styles/home.css">
-</head>
-
-<body>
-  
-  <a href="home.php" color="#FFCA28"><h4> ActiveSpace </h4></a>
-  <div align:"center"; style="color: red; background:rgba(0, 0, 0, .70); font-size: 15px;" ><?php echo $msg ?></div>
-
+    
 <!-- Form for user to fill out details about them -->
    <div align:"center" class="container">
    <p align= "center">Create your profile</p>
