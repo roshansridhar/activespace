@@ -83,11 +83,12 @@
             }
          
           echo '</p>';
+          echo '<br><br><br><p>';
           echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
           echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
-      
-          }
+          echo '<br><br></p>';
+         }
 
 
           else if($row[0]==2){
@@ -120,11 +121,11 @@
            echo 'Birthday :'.$info[8].'<br><br>';
            echo '<br> Last seen on ActiveSpace :'.$info[9].'<br></p>';
          }
-         echo '<br><br>';
+         echo '<br><br><br><p>';
           echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
           echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
-          echo '<br>';
+          echo '<br><br></p>';
          }
 
           }
@@ -133,6 +134,7 @@
           else if($row[0]==1){
               
                   if($row[1]== (int)$userone){
+
                       echo "<p> You have already sent ".$_GET['variable_search']." a request to connect </p>";
 
                   if (($vid[0]==0)||($vid[0]==1)){
@@ -142,7 +144,7 @@
                   while($rowfof = pg_fetch_row($resultfof)){
                   if(($vid[0]==2)&&($rowfof[0]==(int)$usertwo)){
                     
-          echo '<br>';
+          echo '<br> Friend of a Friend <br>';
           
           $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
           $finalresult=pg_query($extract);
@@ -159,18 +161,16 @@
            echo 'Birthday :'.$info[8].'<br><br>';
            echo '<br> Last seen on ActiveSpace :'.$info[9].'<br></p>';
          }
-         echo '<br><br>';
+         echo '<br><br><br><p>';
           echo '<a href="user_diary.php?item='.$searchuser.'"><button class="tabs_button"> Diary Entry</button></a>';
           echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
-          echo '<br>';
+          echo '<br><br></p>';
          }
-
-
-       }
-             
-                  
-                if($vid[0]==3){
+         
+         
+         }
+          if($vid[0]==3){
                 $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
           $finalresult=pg_query($extract);
           
@@ -191,6 +191,10 @@
           echo '<a href="user_photos.php?item='.$searchuser.'"><button class="tabs_button"> Photos</button></a>';
           echo '<a href="user_posts.php?item='.$searchuser.'"><button class="tabs_button"> Posts</button></a>';
           echo '<br>';
+              }
+
+              else {
+                echo '<p>User profile is private</p>';
               }
 
               }
@@ -215,7 +219,7 @@
               
                   if(($vid[0]==2)&&($rowfof[0]==(int)$usertwo)){
                     
-          echo '<br>';
+          echo '<br> Friend of a Friend!<br>';
           
           $extract="select username, picture_medium, first_name,last_name,about_me,interests,phone,gender,date_of_birth, last_log_in from userinfo where user_id='".(int)$usertwo."';" ;
           $finalresult=pg_query($extract);

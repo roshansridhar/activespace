@@ -28,7 +28,7 @@
     <?php include('../includes/navbar.php'); ?>
 
     <div class="container">
-        <p align="center">L    I    V    E    F    E    E    D</p>
+        <p align="center">PROFILE</p>
          <p>
          <?php
            if(isset($_GET['user'])){

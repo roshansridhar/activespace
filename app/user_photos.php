@@ -24,7 +24,7 @@
     <?php include('../includes/navbar.php'); ?>
 
     <div class="container">
-        <p align="center"> M  U  L  T  I  M  E  D  I  A </p>
+        <p align="center"> PHOTOS </p>
          <p>
          <?php
            if($_GET['item']){
