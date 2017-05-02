@@ -52,6 +52,6 @@
     if(isset($_POST["visibility_selection"])){
       $query = "UPDATE userinfo SET network_visibility = $_POST[visibility_option] WHERE email_id = '$_SESSION[EmailID]';";
       $rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
-      echo "<p>Visibility settings edited successfully.</p>";
+      echo "<p align='center'>Visibility settings edited successfully.</p>";
     }
 ?>
