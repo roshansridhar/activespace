@@ -36,7 +36,7 @@
           
 //Posts from friends to current user are displayed here 
             echo 'POSTS FROM FRIENDS';
-            $query_posts =  "select A.username,posts.content,date(posts.post_time)from userinfo A, posts where A.user_id=posts.poster_id and postee_id='".(int)$userone."' order by posts.post_time DESC;"; 
+            $query_posts =  "select A.username,posts.content,date(posts.post_time)from userinfo A, posts where A.user_id=posts.poster_id and postee_id='".(int)$userone."' and poster_id <> postee_id order by posts.post_time DESC;"; 
             $result_posts=pg_query($query_posts);
             echo '<p>';
             while($row = pg_fetch_row($result_posts)){

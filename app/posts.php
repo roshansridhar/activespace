@@ -42,11 +42,12 @@
             echo '<p>';
             while($row = pg_fetch_row($result_posts)){
               if($row[2]==$id_op[0]){
-                echo 'YOU broadcasted to EVERYONE on your network';
+                echo '<p>YOU broadcasted to EVERYONE on your network';
                 echo '<br>';
                 echo $row[0]." ".$row[1];
                 echo '<br>';
                 echo '<br>';
+                echo '</p>';
                 }
 
               else{

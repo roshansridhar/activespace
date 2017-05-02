@@ -43,7 +43,7 @@
               $add_friends="select decline_friendship('".$userone[0]."','".$usertwo."');";
               $execute_add=pg_query($add_friends);
               echo "You have successfully been disconnected with ".$username_two[0].". <br> Click Return to go back to your Homepage!";
-              echo '<br><br><a href="message.php"><button>RETURN</button></a>';
+              echo '<br><br><a href="friendstats.php"><button>RETURN</button></a>';
 
             }
           ?>
