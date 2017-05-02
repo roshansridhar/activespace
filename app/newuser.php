@@ -86,8 +86,8 @@
                 echo '</select>'; 
 ?>
         <a href="addloc.php"><button type="button" name="add_loc" style="float:center;"> + Add Location </button></a>
-        <input type="submit" value="Submit" name="newuser_submit">
-        <input type="reset">
+        <button><input type="submit" value="Submit" name="newuser_submit" width="100" height="100"></button>
+        <button><input type="reset" width="100" height="100"></button>
         </form>
       </p>
         </div>
