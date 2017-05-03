@@ -26,9 +26,9 @@
       <form method="post">
       <p align="center">
       <?php
-          $query = "SELECT user_id FROM userinfo WHERE email_id like '".$_SESSION['EmailID']."';";
+          $query = "SELECT network_visibility FROM userinfo WHERE email_id like '".$_SESSION['EmailID']."';";
           $res = pg_query($query) or die("Cannot execute query: $query\n");
-          $uid = pg_fetch_row($res);
+          $row = pg_fetch_assoc($res);
           if(isset($_SESSION['EmailID'])){
                 echo '<label>Current Setting:</label>';
                 echo '  <select name="visibility_option">';

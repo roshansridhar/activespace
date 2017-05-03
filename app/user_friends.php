@@ -31,8 +31,7 @@
               $id= "select user_id from userinfo where username like '".$_GET['item']."';";
               $result1=pg_query($id);
               $id_op=pg_fetch_row($result1);
-              
-         echo 
+
               
               $query_friends = "select username, picture_medium, first_name, last_name from userinfo, friendrelation where userinfo.user_id=friendrelation.user_two_id and friendship_status=2 and user_one_id='".$id_op[0]."'
                     UNION
