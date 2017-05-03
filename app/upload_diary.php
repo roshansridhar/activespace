@@ -55,8 +55,12 @@
         
         <?php
           if(isset($_POST["submitbutton"])) {
-            if(empty($_GET['fileToUpload'])){
-                  $title = $_POST['title'];
+            if($_FILES['fileToUpload']['name'] == ""){
+                if($_POST['form_loc'] == "Choose a location from the list..."){
+                    echo '<p>Please enter a location to proceed</p>';
+                }
+                else {
+                    $title = $_POST['title'];
                         // Gets description from POST 
                         $description = $_POST['Description'];
                         // Gets photo name
@@ -68,8 +72,13 @@
                         $query = "select upload_diary('".$title."','".$description."',NULL,'".$location."','".$id_op[0]."');";
                         $result = pg_query($query);
                 echo 'Diary entry without image is being uploaded';
+                }
+                  
                 
             } 
+            else if($_POST['form_loc'] == "Choose a location from the list..."){
+                echo '<p>Please enter a location to proceed</p>';
+            }
             else {
                 $target_dir = "uploads/";
                 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);

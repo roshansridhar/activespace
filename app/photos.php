@@ -34,7 +34,7 @@
               $id_op=pg_fetch_row($result1);
 
               
-              $query_media =  "select multimedia.content,multimedia.description,date(multimedia.post_time)from userinfo, multimedia where userinfo.user_id=multimedia.user_id and multimedia.user_id ='".(int)$id_op[0]."';";
+              $query_media =  "select multimedia.content,multimedia.description,date(multimedia.post_time)from userinfo, multimedia where userinfo.user_id=multimedia.user_id and multimedia.user_id ='".(int)$id_op[0]."' order by multimedia.post_time DESC;";
                 
               $result_media=pg_query($query_media);
               
@@ -43,8 +43,9 @@
                 echo '<img class= "imageformat" src="uploads/'.$row[0].'">';
                 echo '<br>';
                 echo $row[1];
-                echo '<br>'; 
+                
                 echo $row[2];
+                echo '<br>'; 
               }
               echo '</p>';
           }   
