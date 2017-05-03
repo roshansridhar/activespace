@@ -32,11 +32,10 @@
           if(isset($_SESSION['EmailID'])){
                 echo '<label>Current Setting:</label>';
                 echo '  <select name="visibility_option">';
-                echo '    <option default>Choose who can see your profile and uploads...</option>';              
-                echo '    <option value = "0"'.(($row[visibility_status]==0)?'selected = "selected"':"").'>Only Me</option>';
-                echo '    <option value = "1"'.(($row[visibility_status]==1)?'selected = "selected"':"").'>Friends</option>';
-                echo '    <option value = "2"'.(($row[visibility_status]==2)?'selected = "selected"':"").'>Friends of friends</option>';
-                echo '    <option value = "3"'.(($row[visibility_status]==3)?'selected = "selected"':"").'>Everyone</option>';
+                echo '    <option value = "0"'.(($row[network_visibility]==0)?'selected = "selected"':"").' default>Only Me</option>';
+                echo '    <option value = "1"'.(($row[network_visibility]==1)?'selected = "selected"':"").'>Friends</option>';
+                echo '    <option value = "2"'.(($row[network_visibility]==2)?'selected = "selected"':"").'>Friends of friends</option>';
+                echo '    <option value = "3"'.(($row[network_visibility]==3)?'selected = "selected"':"").'>Everyone</option>';
                 echo '  </select><br>';
                 echo '</select>';          
           }
