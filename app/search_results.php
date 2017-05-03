@@ -118,9 +118,9 @@
 
 
     	     if ($input=="1"){
-            $query = "select username, picture_medium, first_name, last_name from userinfo, friendrelation where userinfo.user_id=friendrelation.user_two_id and friendship_status=2 and user_one_id='".$id_op[0]."' and first_name like '%".$_POST['Name']."%'
+            $query = "select username, picture_medium, first_name, last_name from userinfo, friendrelation where userinfo.user_id=friendrelation.user_two_id and friendship_status=2 and user_one_id='".$id_op[0]."' and first_name like '%".$_POST['Name']."%' or last_name like '%".$_POST['Name']."%' or username like '%".$_POST['Name']."%'
             UNION
-            select username, picture_medium, first_name, last_name from userinfo, friendrelation where userinfo.user_id=friendrelation.user_one_id and friendship_status=2 and user_two_id='".$id_op[0]."'and first_name like '%".$_POST['Name']."%';";
+            select username, picture_medium, first_name, last_name from userinfo, friendrelation where userinfo.user_id=friendrelation.user_one_id and friendship_status=2 and user_two_id='".$id_op[0]."'and first_name like '%".$_POST['Name']."%' or last_name like '%".$_POST['Name']."%' or username like '%".$_POST['Name']."%';";
             $result2=pg_query($query);
             
             if(pg_num_rows($result2)>0){
@@ -152,7 +152,7 @@
                       select username, picture_medium, first_name, last_name from userinfo,mutual_user where mutual_user.user_two_id=userinfo.user_id and user_two_id not in(
                       select user_two_id from friendrelation where friendship_status=2 and user_one_id='".$id_op[0]."' UNION
                       select user_one_id from friendrelation where friendship_status=2 and user_two_id='".$id_op[0]."' UNION
-                      select user_id from userinfo where user_id='".$id_op[0]."') and first_name like '%".$_POST['Name']."%';";
+                      select user_id from userinfo where user_id='".$id_op[0]."') and first_name like '%".$_POST['Name']."%' or last_name like '%".$_POST['Name']."%' or username like '%".$_POST['Name']."%';";
        
 
               $result2=pg_query($query);
@@ -176,7 +176,7 @@
               }
 
           if ($input=="3"){
-              $query = " select username, picture_medium, first_name, last_name from userinfo where first_name like '%".$_POST['Name']."%';"; 
+              $query = " select username, picture_medium, first_name, last_name from userinfo where first_name like '%".$_POST['Name']."%' or last_name like '%".$_POST['Name']."%' or username like '%".$_POST['Name']."%';"; 
               $result2= pg_query($query);
 
               if(pg_num_rows($result2)>0){

@@ -55,6 +55,22 @@
         
         <?php
           if(isset($_POST["submitbutton"])) {
+            if(empty($_GET['fileToUpload'])){
+                  $title = $_POST['title'];
+                        // Gets description from POST 
+                        $description = $_POST['Description'];
+                        // Gets photo name
+
+                        $location= $_POST['form_loc'];
+                $id= "select user_id from userinfo where email_id like '".$_SESSION['EmailID']."';";
+                        $result1=pg_query($id);
+                        $id_op=pg_fetch_row($result1);
+                        $query = "select upload_diary('".$title."','".$description."',NULL,'".$location."','".$id_op[0]."');";
+                        $result = pg_query($query);
+                echo 'Diary entry without image is being uploaded';
+                
+            } 
+            else {
                 $target_dir = "uploads/";
                 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
                 $uploadOk = 1;
@@ -108,13 +124,18 @@
                         $result = pg_query($query);
                         echo "Diary Entry has been successfully uploaded! <br><br> Click on Diary Entry in navigation bar to check out the latest uploads!";
 
-                    } 
+                    }
+                
+                    
                     // If moving a file does not work.
                     else {
                         echo "Sorry, there was an error uploading your file.";
                     }
                 }
-            }      
+            }
+        }
+             
+        
         ?>
       </p>
     </div>
