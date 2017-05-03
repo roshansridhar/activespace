@@ -383,7 +383,7 @@
                   $query_loc= "select username from userinfo,location where userinfo.loc_id=location.loc_id and location.city like '%".$_POST['Name']."%' or location.state like '%".$_POST['Name']."%'or location.country like '%".$_POST['Name']."%';";
                   $execute=pg_query($query_loc);
                   while($rowc = pg_fetch_row($execute)){
-                        echo '<p><a href="search.php?varaible_search='.$rowc[0].'">'.$rowc[0].'</a> lived here/lives here. Hit them up!</p>';
+                        echo '<p><a href="search.php?variable_search='.$rowc[0].'">'.$rowc[0].'</a> lived here/lives here. Hit them up!</p>';
                     }
                     
                    

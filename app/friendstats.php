@@ -60,14 +60,24 @@
                 echo '<br>';
                 echo '</p>';
               }
-            }
+            }}
+
+
+
+            $currentuser="select user_id from userinfo where email_id='".$_SESSION['EmailID']."';";
+              $result1=pg_query($currentuser);
+              $userone=pg_fetch_row($result1)[0];
+              $profileuser="select user_id from userinfo;";
+              $result2=pg_query($profileuser);
+              
+              while($usertwo=pg_fetch_row($result2)){
              $friendstat="select action_user_id,action_taken_time from friendrelation where 
               friendship_status='2' and user_one_id IN (".(int)$userone.",".(int)$usertwo[0].") and user_two_id IN (".(int)$userone.",".(int)$usertwo[0].");";
                 $result=pg_query($friendstat);
                 $row= pg_fetch_row($result);
                 if(pg_num_rows($result)>0){
                 
-                if($row[0]==(int)$userone[0]){
+                if($row[0]==(int)$userone){
                 echo "<p> ";
                 $query= "select username,picture_medium from userinfo where user_id='".$usertwo[0]."';";
                 $result=pg_query($query);
@@ -79,6 +89,7 @@
             }
             
           }
+
           
         }
             

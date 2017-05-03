@@ -4,6 +4,14 @@
   include('../includes/db_connect.php');  
   
   session_start();
+  
+  // session_register("EmailID");
+  // $EmailID = $_SESSION['EmailID'];
+  
+
+  // $sessionfile = fopen("sessionfile.txt", "a");
+  // fputs($sessionfile, session_encode( ) );
+  // fclose($sessionfile);
   $query="Update userinfo set last_log_in=current_timestamp where email_id='".$_SESSION['EmailID']."';";
   $execute=pg_query($query);
 
