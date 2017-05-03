@@ -219,7 +219,7 @@
           $query_posts =  "select A.username,B.username,posts.content,date(posts.post_time)from userinfo A, userinfo B, posts where A.network_visibility IN (1,2,3) and A.user_id=posts.poster_id and B.user_id=postee_id and posts.poster_id in
                       (select userinfo.user_id from userinfo, friendrelation where userinfo.user_id=friendrelation.user_two_id and friendship_status=2 and user_one_id='".$id_op[0]."'
                       UNION
-                      select userinfo.user_id from userinfo, friendrelation where userinfo.user_id=friendrelation.user_one_id and friendship_status=2 and user_two_id='".$id_op[0]."') and posts.content like '%".$_POST['Name']."%'order by posts.post_time DESC";
+                      select userinfo.user_id from userinfo, friendrelation where userinfo.user_id=friendrelation.user_one_id and friendship_status=2 and user_two_id='".$id_op[0]."') and posts.content like '%".$_POST['Name']."%' order by posts.post_time DESC";
               $result_posts=pg_query($query_posts);
               
               echo '<p>';
@@ -260,7 +260,7 @@
 
                     select D.diary_id,D.title, D.entry, D.multimedia, date(diarytime), L.city, L.state, L.country, U.username from diaryentry D, get_location L, userinfo U where U.network_visibility IN (1,2,3) and D.user_id=U.user_id and L.loc_id=D.loc_id and D.user_id in   (select userinfo.user_id from userinfo, friendrelation where userinfo.user_id=friendrelation.user_two_id and friendship_status=2 and user_one_id='".$id_op[0]."'
                       UNION
-                      select userinfo.user_id from userinfo, friendrelation where userinfo.user_id=friendrelation.user_one_id and friendship_status=2 and user_two_id='".$id_op[0]."') and D.title like '%".$_POST['Name']."%' order by D.diarytime DESC";
+                      select userinfo.user_id from userinfo, friendrelation where userinfo.user_id=friendrelation.user_one_id and friendship_status=2 and user_two_id='".$id_op[0]."') and D.title like '%".$_POST['Name']."%' or D.entry like '%".$_POST['Name']."%' order by D.diarytime DESC";
             $result_diary=pg_query($query_diary);
             
             
@@ -342,7 +342,7 @@
                 $resd = pg_query($queryd) or die("Cannot execute query: $queryd\n");
                 $uidd = pg_fetch_row($resd);
 
-                $query = "SELECT * FROM events where title like '%".$_POST['Name']."%';";
+                $query = "SELECT * FROM events where title like '%".$_POST['Name']."%' or description like '".$_POST['Name']."';";
                 $result = pg_query($query) or die("Cannot execute query: $query\n");
                 while($row = pg_fetch_assoc($result)){
                     echo '<form method = "POST">';
