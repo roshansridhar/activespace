@@ -191,3 +191,19 @@ CREATE TABLE public.posts
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
+
+CREATE TABLE public.diary_dlikes
+(
+    diary_id integer NOT NULL,
+    user_id integer NOT NULL,
+    dlike_time timestamp without time zone,
+    CONSTRAINT diary_dlikes_pkey PRIMARY KEY (diary_id, user_id),
+    CONSTRAINT diary_dlikes_diary_id_fkey FOREIGN KEY (diary_id)
+        REFERENCES public.diaryentry (diary_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT diary_dlikes_user_id_fkey FOREIGN KEY (user_id)
+        REFERENCES public.userinfo (user_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
