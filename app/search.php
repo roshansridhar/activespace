@@ -75,7 +75,6 @@
                echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
               echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
               echo '<p>A little bit about me :'.$info[4].'</p><br>';
-              echo '<p> Things that interests :'.$info[5].'</p><br>';
               echo '<p>Hit me up! :'.$info[6].'<br>';
               echo 'Gender :'.$info[7].'<br>';
               echo 'Birthday :'.$info[8].'<br><br>';
@@ -93,10 +92,8 @@
 
 
           else if($row[0]==2){
-                    echo "<p>";
                     echo " You and ".$_GET['variable_search']." are already connected as friends </p>";
-                    echo '<br><a href="decline.php?request='.(int)$usertwo.'"><button> DROP FRIENDSHIP </button><a>';
-                    echo "</p>";
+                    echo '<br><a href="decline.php?request='.(int)$usertwo.'"><p align="center"><button> DROP FRIENDSHIP </button></p><a>';
 
 
                   if ($vid[0]==0){
@@ -116,7 +113,6 @@
            echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
            echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
            echo '<p>A little bit about me :'.$info[4].'</p><br>';
-           echo '<p> Things that interests :'.$info[5].'</p><br>';
            echo '<p>Hit me up! :'.$info[6].'<br>';
            echo 'Gender :'.$info[7].'<br>';
            echo 'Birthday :'.$info[8].'<br><br>';
@@ -159,7 +155,6 @@
            echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
            echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
            echo '<p>A little bit about me :'.$info[4].'</p><br>';
-           echo '<p> Things that interests :'.$info[5].'</p><br>';
            echo '<p>Hit me up! :'.$info[6].'<br>';
            echo 'Gender :'.$info[7].'<br>';
            echo 'Birthday :'.$info[8].'<br><br>';
@@ -185,7 +180,6 @@
            echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
            echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
            echo '<p>A little bit about me :'.$info[4].'</p><br>';
-           echo '<p> Things that interests :'.$info[5].'</p><br>';
            echo '<p>Hit me up! :'.$info[6].'<br>';
            echo 'Gender :'.$info[7].'<br>';
            echo 'Birthday :'.$info[8].'<br><br>';
@@ -229,7 +223,6 @@
            echo 'USERNAME :'.$info[0].'<br>';
            echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
            echo '<p>A little bit about me :'.$info[4].'</p><br>';
-           echo '<p> Things that interests :'.$info[5].'</p><br>';
            echo '<p>Hit me up! :'.$info[6].'<br>';
            echo 'Gender :'.$info[7].'<br>';
            echo 'Birthday :'.$info[8].'<br><br>';
@@ -279,7 +272,6 @@
            echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
            echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
            echo '<p>A little bit about me :'.$info[4].'</p><br>';
-           echo '<p> Things that interests :'.$info[5].'</p><br>';
            echo '<p>Hit me up! :'.$info[6].'<br>';
            echo 'Gender :'.$info[7].'<br>';
            echo 'Birthday :'.$info[8].'<br><br>';
@@ -304,7 +296,6 @@
            echo '<img class= "imageformat" src="uploads/'.$info[1].'" float="center" width="100" height="150">';
            echo 'FULL NAME :'.$info[2]." ".$info[3].'<br><br>';
            echo '<p>A little bit about me :'.$info[4].'</p><br>';
-           echo '<p> Things that interests :'.$info[5].'</p><br>';
            echo '<p>Hit me up! :'.$info[6].'<br>';
            echo 'Gender :'.$info[7].'<br>';
            echo 'Birthday :'.$info[8].'<br><br>';
