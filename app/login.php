@@ -61,7 +61,6 @@ if(isset($_POST["submitbutton"])){
             <input type="text" class="form-control" name="EmailID" placeholder="Email Address" required="" autofocus="" />
             <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
             <br>
-            <h3 background= "white"><a href="Forgotpwd.php">Can't recall the password?</a></h3>
             <div align="center">
                 <input type="image" alt="Submit" src="img_submit.png" name="submitbutton" value="Submit" width="45" height="45">
             </div> 

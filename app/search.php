@@ -93,10 +93,10 @@
 
 
           else if($row[0]==2){
-                    echo "<p>";
+
                     echo " You and ".$_GET['variable_search']." are already connected as friends </p>";
-                    echo '<br><a href="decline.php?request='.(int)$usertwo.'"><button> DROP FRIENDSHIP </button><a>';
-                    echo "</p>";
+                    echo '<br><p align="center"><a href="decline.php?request='.(int)$usertwo.'"><button> DROP FRIENDSHIP </button><a></p>';
+
 
 
                   if ($vid[0]==0){
